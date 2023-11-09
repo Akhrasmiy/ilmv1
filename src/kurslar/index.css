@@ -144,7 +144,9 @@
   color: #ffffff;
   padding: 12px 50px;
 }
-
+.about-head{
+  display: none;
+}
 .sidebar-main-content {
   overflow-y: scroll;
   max-height: 90vh;
@@ -159,6 +161,9 @@
 }
 
 @media only screen and (max-width: 540px) {
+  .about-head{
+    display: block;
+  }
   .every__course-buttons {
     margin-top: 78px;
   }
