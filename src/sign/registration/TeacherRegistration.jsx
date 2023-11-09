@@ -12,7 +12,9 @@ const TeacherRegistration = () => {
   const passwordRepeatRef = useRef();
   const fileRef = useRef();
   const navigate = useNavigate();
-
+  const handlechange= () =>{
+    usernameRef.current.value=usernameRef.current.value.toLowerCase().trim()
+  }
   const onBack = () => {
     navigate(-1);
   };
@@ -57,6 +59,7 @@ const TeacherRegistration = () => {
             type="text"
             placeholder="username"
             required
+            onChange={handlechange}
           />
           <input ref={emailRef} type="email" placeholder="email" required />
           {/* <div className="input_registr_file"> */}

@@ -9,6 +9,9 @@ const TeacherLogin = () => {
   const onBack = () => {
     navigate(-1);
   };
+  const handlechange= () =>{
+    usernameRef.current.value=usernameRef.current.value.toLowerCase().trim()
+  }
   const onHandler = (e) => {
     e.preventDefault();
     const obj = {
@@ -34,7 +37,7 @@ const TeacherLogin = () => {
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
         <form className="sign_form" onSubmit={(e) => onHandler(e)}>
-          <input ref={usernameRef} type="text" placeholder="username" />
+          <input ref={usernameRef} onChange={handlechange} type="text" placeholder="username" />
           <input ref={passwordRef} type="password" placeholder="password" />
           <button type="submit">Login</button>
         </form>

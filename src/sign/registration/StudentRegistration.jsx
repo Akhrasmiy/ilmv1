@@ -16,11 +16,12 @@ const StudentRegistration = () => {
   const onBack = () => {
     navigate(-1);
   };
-
+  const handlechange= () =>{
+    usernameRef.current.value=usernameRef.current.value.toLowerCase().trim()
+  }
   const onHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", fileRef.current.files[0]);
     formData.append("username", usernameRef.current.value);
     formData.append("password", passwordRef.current.value);
     formData.append("email", emailRef.current.value);
@@ -48,9 +49,8 @@ const StudentRegistration = () => {
         <form className="registr_form" onSubmit={(e) => onHandler(e)}>
           <input ref={nameRef} type="text" placeholder="ism" required />
           <input ref={surnameRef} type="text" placeholder="familiya" required />
-          <input ref={usernameRef} type="text" placeholder="username" required />
+          <input ref={usernameRef} onChange={handlechange} type="text" placeholder="username" required />
           <input ref={emailRef} type="email" placeholder="email" required />
-          <input ref={fileRef} type="file" placeholder="profilephoto" required />
           <input ref={passwordRef} type="password" placeholder="parol" required />
           <input ref={passwordRepeatRef} type="password" placeholder="parolni qayta yozing" required />
           <div className="register-mobile__forBtn">

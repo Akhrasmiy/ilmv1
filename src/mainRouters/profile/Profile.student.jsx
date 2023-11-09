@@ -5,6 +5,7 @@ import "./style.css";
 import StudentNavbar from "../../navbar/student/StudentNavbar";
 import MobileHeader from "../../components/mobileHeader/mobileHeader";
 import axios from "axios";
+import default_img from "../../imgs/user-1.png"
 
 function Profile() {
   function deleteplatforma(url){
@@ -84,10 +85,16 @@ function Profile() {
         />
 
         <div className="profile-content">
-          <img
+          {
+            profile?.path ? <img
             src={"https://api.ilmlar.com" + deleteplatforma(profile.path)}
             alt=""
-          />
+          /> : <img
+          src={default_img}
+          alt=""
+        />
+            
+          }
           <h1>{profile.fullname}</h1>
           <div className="profile-content-para">
             <p>Username: {profile.username}</p>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import "./style.css"
+import "./style.css";
+import defaultimg from "../../imgs/user-1.png"
 import axios from 'axios'
 function deleteplatforma(url) {
   try {
@@ -31,7 +32,9 @@ function Userprofile() {
   return (
     <div>
       <div className='userprofile' style={{ textAlign: "center", paddingTop: 15 }}>
-        <img src={"https://api.ilmlar.com" + deleteplatforma(profile?.path)} alt="" />
+        {
+          profile?.path ? <img src={"https://api.ilmlar.com" + deleteplatforma(profile?.path)} alt="" /> : <img src={defaultimg} alt="" />
+        }
         <h2>{profile?.fullname}</h2>
       </div>
     </div>
