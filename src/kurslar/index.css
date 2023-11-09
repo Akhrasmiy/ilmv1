@@ -1,3 +1,21 @@
+.back-1 {
+  background-color: #5B4784;
+  border: none;
+  outline: none;
+  width: 51px;
+  height: 51px;
+  border-radius: 50%;
+  display: flex;
+  margin-right: 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.back-1 ion-icon {
+  color: #fff;
+  font-size: 30px;
+}
+
 .sidebar-main-content {
   padding: 0 6px;
   padding-top: 21px;
@@ -144,7 +162,7 @@
   color: #ffffff;
   padding: 12px 50px;
 }
-.about-head{
+.about-head {
   display: none;
 }
 .sidebar-main-content {
@@ -161,7 +179,7 @@
 }
 
 @media only screen and (max-width: 540px) {
-  .about-head{
+  .about-head {
     display: block;
   }
   .every__course-buttons {

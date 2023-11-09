@@ -112,16 +112,27 @@ function AboutCourseInfo() {
         setProfil(res.data);
       });
   }, []);
+  function onBack(){
+    navigate(-1);
+  }
   return (
     <div className="main__course-buy">
       <div className="about-head">
-        <MobileHeader
-          changeModalDars={changeModalDars}
-          changeModal={changeModal}
-          modal={modal}
-          modalDarslar={modalDarslar}
-          type={"Kurs haqida"}
-        />
+        <div style={{ display: "flex" }}>
+          <button onClick={onBack} className="back-1" >
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          <div style={{ width: "85%" }}>
+            <MobileHeader
+              changeModalDars={changeModalDars}
+              changeModal={changeModal}
+              modal={modal}
+              modalDarslar={modalDarslar}
+              type={"Kurs haqida"}
+              wherey="teach"
+            />
+          </div>
+        </div>
       </div>
       <div className="every__cource-info sidebar-main-wrap w100">
         <div className={modal ? "def modal-navbar" : "def yoq"}>
