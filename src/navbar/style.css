@@ -4,7 +4,10 @@
     background: rgba(0, 0, 0, 0.3);
     background-color: #3e305c;
 }
-
+.navbar_back{
+    width: 25px;
+    height: 25px;
+}
 .user-navbar {
     width: 23vw;
 }

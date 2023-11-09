@@ -5,6 +5,7 @@ import "./index.css";
 import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
+import urlJoin from "url-join";
 function NotBoughtCourse() {
   function savekurs(id) {
     axios
@@ -86,11 +87,9 @@ function NotBoughtCourse() {
       .then((response) => {
         console.log(response.data);
         if (response.data !== "hisobingizni toldiring") {
-
-          navigate("/student/kurs/olinganlar/" + kursId)
-        }
-        else{
-          alert("hisongizni toldring")
+          navigate("/student/kurs/olinganlar/" + kursId);
+        } else {
+          alert("hisongizni toldring");
         }
       })
       .catch((error) => {
@@ -99,6 +98,15 @@ function NotBoughtCourse() {
   }
   return (
     <div className="main__course-buy">
+      <div className="about-head">
+        <MobileHeader
+          changeModalDars={changeModalDars}
+          changeModal={changeModal}
+          modal={modal}
+          modalDarslar={modalDarslar}
+          type={"Kurs haqida"}
+        />
+      </div>
       <div className="every__cource-info sidebar-main-wrap w100">
         <div className={modal ? "def modal-navbar" : "def yoq"}>
           <StudentNavbar changeModal={changeModal} modal={modal} />
@@ -110,18 +118,13 @@ function NotBoughtCourse() {
               : "sidebar-main-wrap mobile_none"
           }
         >
-          <MobileHeader
-            changeModalDars={changeModalDars}
-            changeModal={changeModal}
-            modal={modal}
-            modalDarslar={modalDarslar}
-            type={"Kurs haqida"}
-          />
           <div
             className="every__cource-bigImg"
             style={{
-              backgroundImage: `url(${"https://api.ilmlar.com" + deleteplatforma(kurs?.obloshka)
-                })`,
+              backgroundImage: `url(${urlJoin(
+                "https://api.ilmlar.com/",
+                `${kurs?.obloshka}`
+              )})`,
             }}
           ></div>
 
@@ -135,8 +138,7 @@ function NotBoughtCourse() {
               >
                 <img
                   src={
-                    "https://api.ilmlar.com" +
-                    deleteplatforma(teacher?.path)
+                    "https://api.ilmlar.com" + deleteplatforma(teacher?.path)
                   }
                   alt=""
                 />
@@ -157,11 +159,11 @@ function NotBoughtCourse() {
                 Olingan: {kurs?.subs?.length}
               </p>
               <p className="every__cource-para">
-                Davomiyligi: {kurs?.muddati}oy
+                Davomiyligi: {kurs?.muddati} oy
               </p>
             </div>
             <div className="every__course-buttons">
-              <button onClick={() => kursOlish(kursId)}>Sotib olish</button>
+              <button onClick={() => kursOlish(kursId)}>Kursni olish</button>
             </div>
           </div>
         </div>

@@ -31,7 +31,7 @@ function StudentNavbar({ changeModal, modal }) {
     console.log(window.location.pathname)
   }, [window.location.pathname]);
   useEffect(()=>{
-    if(window.location.pathname === "/student"||window.location.pathname === "/student/"||window.location.pathname === "/student/hisoblar"||window.location.pathname === "/student/profile/subs"||window.location.pathname ==="/student/profile/darslar"){
+    if(window.location.pathname === "/student" || window.location.pathname === "/student/" || window.location.pathname === "/student/hisoblar"||window.location.pathname === "/student/profile/subs"||window.location.pathname ==="/student/profile/darslar"){
       setNav(true)
     }
     else{
@@ -82,7 +82,7 @@ function StudentNavbar({ changeModal, modal }) {
           <Link to="/student/profile/subs">profile</Link>
         </li></>
           ):(<li onClick={() => {navigate(-1)}} ref={lessonsRef}>
-          <img src={or4} alt="" />
+          <img className="navbar_back" src={or4} alt="" />
           <Link>orqaga</Link>
         </li>)
         }
