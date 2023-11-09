@@ -6,6 +6,7 @@ import "./index.css";
 import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
+import urlJoin from "url-join";
 function AboutCourseInfo() {
   const [heart, setHeart] = useState(false);
   const [kurs, setKurs] = useState({});
@@ -66,17 +67,18 @@ function AboutCourseInfo() {
 
   function deleteplatforma(url) {
     try {
-      if (url?.includes("platforma")) {
-        url = url.split("/");
-        let res = "";
-        for (let i = 2; i < url.length; i++) {
-          res += "/" + url[i];
-        }
-        return res;
+      if (url.includes("platforma")) {
+        const parts = url.split("/");
+        const s = parts.slice(2).join("/");
+        console.log(s);
+        // console.log(s);
+        return s; // Remove the first 3 segments of the URL
       }
-      return "" + url;
+      console.log(url);
+      return url;
     } catch (error) {
       console.log(error);
+      return url;
     }
   }
   useEffect(() => {
@@ -112,6 +114,13 @@ function AboutCourseInfo() {
   }, []);
   return (
     <div className="main__course-buy">
+      <MobileHeader
+            changeModalDars={changeModalDars}
+            changeModal={changeModal}
+            modal={modal}
+            modalDarslar={modalDarslar}
+            type={"Kurs haqida"}
+          />
       <div className="every__cource-info sidebar-main-wrap w100">
         <div className={modal ? "def modal-navbar" : "def yoq"}>
           <StudentNavbar changeModal={changeModal} modal={modal} />
@@ -123,18 +132,14 @@ function AboutCourseInfo() {
               : "sidebar-main-wrap mobile_none"
           }
         >
-          <MobileHeader
-            changeModalDars={changeModalDars}
-            changeModal={changeModal}
-            modal={modal}
-            modalDarslar={modalDarslar}
-            type={"Kurs haqida"}
-          />
+          
           <div
             className="every__cource-bigImg"
             style={{
-              backgroundImage: `url(${"https://api.ilmlar.com/" + kurs?.obloshka
-                })`,
+              backgroundImage: `url(${urlJoin(
+                "https://api.ilmlar.com/",
+                `${kurs?.obloshka}`
+              )})`,
             }}
           ></div>
 
@@ -148,7 +153,9 @@ function AboutCourseInfo() {
               >
                 <img
                   src={
-                    ("https://api.ilmlar.com" + deleteplatforma(teacher?.path)) ? ("https://api.ilmlar.com" + (teacher?.path)) : ("https://api.ilmlar.com" + (teacher?.path))
+                    "https://api.ilmlar.com" + deleteplatforma(teacher?.path)
+                      ? "https://api.ilmlar.com" + teacher?.path
+                      : "https://api.ilmlar.com" + teacher?.path
                   }
                   alt=""
                 />
@@ -189,7 +196,9 @@ function AboutCourseInfo() {
               <p className="every__cource-para">
                 Kurs narxi: {kurs?.narxi} so'm
               </p>
-              <p className="every__cource-para">Olingan: {kurs?.subs?.length || kurs?.subs}</p>
+              <p className="every__cource-para">
+                Olingan: {kurs?.subs?.length || kurs?.subs}
+              </p>
               <p className="every__cource-para">
                 Davomiyligi: {kurs?.muddati}oy
               </p>
@@ -200,12 +209,7 @@ function AboutCourseInfo() {
                   const isCursIdExists = profile?.mycurs?.some(
                     (curs) => curs?.cursId === kursId
                   );
-
-                  if (isCursIdExists) {
-                    navigate("/student/kurs/olinganlar/" + kursId);
-                  } else {
-                    navigate("/student/notboughtcouse/" + kursId)
-                  }
+                  navigate("/student/kurs/olinganlar/" + kursId);
                 }}
               >
                 Video darslar

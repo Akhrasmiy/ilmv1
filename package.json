@@ -18,7 +18,8 @@
     "react-multi-carousel": "^2.8.2",
     "react-router-dom": "^6.12.1",
     "react-toastify": "^9.1.3",
-    "sass": "^1.63.4"
+    "sass": "^1.63.4",
+    "url-join": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

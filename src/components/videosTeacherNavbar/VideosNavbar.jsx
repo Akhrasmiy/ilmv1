@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import prev from '../../imgs/prev.svg'
-
+import prev from "../../imgs/prev.svg";
+import or1 from "../../imgs/or1.svg";
+import or2 from "../../imgs/or2.svg";
+import './style.css';
 function VideosNavbar(props) {
-  const { courseData, handleVideoSelection, handleCourseIndex ,changeModal, modal} = props;
+  const {
+    courseData,
+    handleVideoSelection,
+    handleCourseIndex,
+    changeModal,
+    modal,
+  } = props;
   const [modalClass, setModalClass] = useState("");
 
   const handleClick = () => {
@@ -20,19 +28,25 @@ function VideosNavbar(props) {
       <div className={modal ? "circle" : "d-none circle"} onClick={handleClick}>
         <img src={prev} alt="prev" />
       </div>
-      <ul className="">
-        {courseData.map((course, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              handleVideoSelection(course);
-              handleCourseIndex(index + 1);
-            }}
-          >
-            {index + 1}-dars. {course.nomi}
-          </li>
-        ))}
-      </ul>
+      <div className="teacher_all_video_navbar">
+        <div>
+          {courseData.map((course, index) => (
+            <div
+            className="teacher_all_video_navbar_one"
+              key={index}
+              onClick={() => {
+                handleVideoSelection(course);
+                handleCourseIndex(index + 1);
+              }}
+            >
+              <p>{index + 1}-dars. {course.nomi}</p>
+              {
+                course.orni ? "" : <img src={or2} alt="" />
+              }
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

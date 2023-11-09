@@ -6,6 +6,7 @@ import t1 from "../../imgs/t1.svg";
 import t2 from "../../imgs/t2.svg";
 import t6 from "../../imgs/t6.svg";
 import prev from "../../imgs/prev.svg";
+import or4 from "../../imgs/or4.svg";
 function StudentNavbar({ changeModal, modal }) {
   const [modalClass, setModalClass] = useState("");
   const [nav, setNav] = useState(true);
@@ -81,7 +82,7 @@ function StudentNavbar({ changeModal, modal }) {
           <Link to="/student/profile/subs">profile</Link>
         </li></>
           ):(<li onClick={() => {navigate(-1)}} ref={lessonsRef}>
-          <img src={t1} alt="" />
+          <img src={or4} alt="" />
           <Link>orqaga</Link>
         </li>)
         }

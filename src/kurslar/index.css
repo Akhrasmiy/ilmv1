@@ -61,8 +61,8 @@
 
 .every__cource-desc {
   padding: 23px 30px 15px 23px;
-  background: #5b4784;
-  box-shadow: 15px 15px 100px rgba(0, 0, 0, 0.3);
+  /* background: #5b4784; */
+  /* box-shadow: 15px 15px 100px rgba(0, 0, 0, 0.3); */
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 }
@@ -166,7 +166,7 @@
     height: 100%;
   }
   .every__cource-desc {
-    background: rgba(0, 0, 0, 0.3);
+    /* background: rgba(0, 0, 0, 0.3); */
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }

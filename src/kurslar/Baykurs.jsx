@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./courseInfo.css";
 import VideosNavbar from "../components/videosTeacherNavbar/VideosNavbar";
+import or3 from "../imgs/or3.svg";
 
 import styles from "./courseInfo.module.css";
 import axios from "axios";
@@ -25,7 +26,7 @@ function deleteplatforma(url) {
 
 function Baykurs() {
   const { kursId } = useParams();
-  const courseId=kursId
+  const courseId = kursId;
   const navigate = useNavigate();
 
   const [courseData, setCourseData] = useState([]);
@@ -49,14 +50,13 @@ function Baykurs() {
     setModalDarslar(value);
   };
 
-
   useEffect(() => {
     axios
-    .get("https://api.ilmlar.com/courses/" + kursId, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    })
+      .get("https://api.ilmlar.com/courses/" + kursId, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         setCourseData(res.data.vedios);
         setSelectedVideo(res.data.vedios[0]);
@@ -77,26 +77,14 @@ function Baykurs() {
   };
   return (
     <div className="app-content">
-      <div className="course_info">
-        <div><button onClick={onBack} className="back">
+      <div onClick={() => onBack()} className="btn_wrap">
+        <button className="back">
           <ion-icon name="chevron-back-outline"></ion-icon>
-        </button></div>
+        </button>
+      </div>
+
+      <div className="course_info">
         
-        {/* <div className="videos_navbar video_information_scroll">
-          <ul className="videos_navbar">
-            {courseData.map((course, index) => (
-              <li
-                key={index}
-                onClick={() => {
-                  setSelectedVideo(course);
-                  setCourseIndex(index + 1);
-                }}
-              >
-                {index + 1}-dars. {course.nomi}
-              </li>
-            ))}
-          </ul>
-        </div> */}
         <div className={modal ? "def2 modal-navbar" : "def2 yoq"}>
           <VideosNavbar
             courseData={courseData}
@@ -111,12 +99,11 @@ function Baykurs() {
             modal || modalDarslar ? "blur main_lesson mobile" : " main_lesson"
           }
         >
-          <div style={{display:"flex"}}>
-          <button onClick={onBack} className={styles.back}>
-                <ion-icon name="chevron-back-outline"></ion-icon>
-              </button>
+          <div style={{ display: "flex" }}>
+            <button onClick={onBack} className={styles.back}>
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
             <div style={{ width: "85%" }}>
-              
               <MobileHeader
                 changeModalDars={changeModal}
                 changeModal={changeModalDars}
@@ -125,22 +112,26 @@ function Baykurs() {
                 type={"Video dars"}
                 wherey="teach"
               />
-              
             </div>
-            
           </div>
           <div className="video_information video_information_scroll">
             <div className="img_div">
-              <video
-                src={`https://api.ilmlar.com/${deleteplatforma(
-                  selectedVideo.orni
-                )}`}
-                alt=""
-                disablePictureInPicture
-                playbackRate={3}
-                controls
-                controlsList="nodownload"
-              />
+              {selectedVideo.orni ? (
+                <video
+                  src={`https://api.ilmlar.com/${deleteplatforma(
+                    selectedVideo.orni
+                  )}`}
+                  alt=""
+                  disablePictureInPicture
+                  playbackRate={3}
+                  controls
+                  controlsList="nodownload"
+                />
+              ) : (
+                <div>
+                  <img src={or3} alt="" />
+                </div>
+              )}
             </div>
             <div className="video_information_content">
               <h3>

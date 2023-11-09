@@ -1,0 +1,13 @@
+.teacher_all_video_navbar{
+  padding: 32px 18px;
+}
+.teacher_all_video_navbar_one{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
+  padding: 10px 0;
+}
+.teacher_all_video_navbar_one img{
+  width: 20px;
+}
