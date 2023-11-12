@@ -94,7 +94,7 @@ function TeachUpdateonekurs() {
     formData.append("vediosdesc", desc)
 
     await axios
-      .put(`http://localhost:5001/courses/${courseId}`, {
+      .put(`https://api.ilmlar.com/courses/${courseId}`, {
         "name": courseNameRef.current.value,
         "desc": courseDescRef.current.value,
         "muddati": courseMuddatiRef.current.value,
@@ -105,7 +105,7 @@ function TeachUpdateonekurs() {
       },
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type":"application/json",
             "Authorization": localStorage.getItem("token")
           }
         })
@@ -145,7 +145,7 @@ function TeachUpdateonekurs() {
     for (let i = 0; i < data?.vedios?.length; i++) {
       names.push(data.vedios[i].nomi)
       desc.push(data.vedios[i].desc)
-      isopen.push(data.vedios[i].isOpen)
+      isopen.push(data.vedios[i].isOpen)||isopen.push(false)
     }
   }, [data])
 
