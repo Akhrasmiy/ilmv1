@@ -82,16 +82,7 @@ function TeachUpdateonekurs() {
   const names = []
   const desc = []
   const isopen = []
-  const onSendForm = async () => {
-    const formData = new FormData();
-    formData.append('_method', 'put')
-    formData.append("obloshka", courseImgRef.current.files[0]);
-    formData.append("name", courseNameRef.current.value);
-    formData.append("desc", courseDescRef.current.value);
-    formData.append("muddati", courseMuddatiRef.current.value);
-    formData.append("narxi", priceRef.current.value * 1.25);
-    formData.append("vediosname", names)
-    formData.append("vediosdesc", desc)
+  const onSendForm = async (e) => {
 
     await axios
       .put(`https://api.ilmlar.com/courses/${courseId}`, {
@@ -106,7 +97,7 @@ function TeachUpdateonekurs() {
         {
           headers: {
             "Content-Type":"application/json",
-            "Authorization": localStorage.getItem("token")
+            "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVySWQiOiI2NTIzZjBiYmJjNTYzYzE4MTQ1Yjg2Y2YiLCJpYXQiOjE2OTk3ODQ0NDksImV4cCI6MTcxMjc0NDQ0OX0.Ua8-TpwWMrDExly_5zY-w5DuyvaPU8fOTSprsnRyPuI"
           }
         })
       .then((res) => {
