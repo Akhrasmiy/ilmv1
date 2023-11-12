@@ -97,7 +97,7 @@ function TeachUpdateonekurs() {
         {
           headers: {
             "Content-Type":"application/json",
-            "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVySWQiOiI2NTIzZjBiYmJjNTYzYzE4MTQ1Yjg2Y2YiLCJpYXQiOjE2OTk3ODQ0NDksImV4cCI6MTcxMjc0NDQ0OX0.Ua8-TpwWMrDExly_5zY-w5DuyvaPU8fOTSprsnRyPuI"
+            "Authorization": localStorage.getItem("token")
           }
         })
       .then((res) => {
