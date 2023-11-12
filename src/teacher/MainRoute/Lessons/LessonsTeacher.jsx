@@ -6,7 +6,9 @@ import axios from "axios";
 import MobileHeader from "../../../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../../../navbar/student/StudentNavbar";
 import TeacherNavbar from "../../../navbar/teacher/TeacherNavbar";
-function LessonsTeacher() {
+function LessonsTeacher(props) {
+  const where=props.where
+  console.log(where)
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
@@ -69,9 +71,9 @@ function LessonsTeacher() {
           />
         </div>
         <div className="main_teacher_content sidebar-main-wrap teacher-main-sidebar">
-          <div className="lessons_wrap">
+          <div className="lessons_wrap grid-cols-3">
             {courses.map((course, index) => {
-              return <LessonCard cart={course} key={index} />;
+              return <LessonCard where={where} cart={course} key={index} />;
             })}
           </div>
         </div>

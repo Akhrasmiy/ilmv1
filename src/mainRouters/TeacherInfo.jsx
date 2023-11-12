@@ -40,25 +40,7 @@ function TeacherInfo() {
     });
   }, [teacherId]);
 
-  //   useEffect(() => {
-  //     const fetchTeachers = async () => {
-  //       const fetchedTeacherData = [];
-  //       for (let i = 0; i < profile.teachers.length; i++) {
-  //         const response = await axios.get(
-  //           "https://api.ilmlar.com/teacherinfo/" + profile.teachers[i]
-  //         );
-  //         if(response.status === 200){
-  //             console.log(response.data);
-  //             fetchedTeacherData.push(response.data);
-  //         }
-  //       }
-  //       setTeacherData(fetchedTeacherData);
-  //     };
 
-  //     if(profile.teachers) {
-  //         fetchTeachers();
-  //     }
-  // }, [profile]);
 
   useEffect(() => {
     axios
@@ -79,31 +61,7 @@ function TeacherInfo() {
     }
   }, [subs]);
 
-  // useEffect(() => {
-  //   async function fetchFunction() {
-  //     const fetchedTeacherData = [];
-  //     for (let i = 0; i < teacherData.length; i++) {
-  //       await axios
-  //         .get("https://api.ilmlar.com/courses/" + teacherData[i], {
-  //           headers: {
-  //             Authorization: localStorage.getItem("token"),
-  //           },
-  //         })
-  //         .then((res) => {
-  //           console.log(res);
-  //           fetchedTeacherData.push(res.data);
-  //           setTeacherInfo([...fetchedTeacherData]);
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //     }
-  //   }
-  //   if(teacherData.length > 0){
-  //     fetchFunction();
-  //   }
 
-  // }, []);
 
   const fetchTeachersFunc = async () => {
     const fetchedTeacherData = [];
@@ -216,7 +174,6 @@ function TeacherInfo() {
                             <h5 style={{paddingLeft:"10px"}}>{item.Kursname}</h5>
                             <br />
                             <p>{item.Kursdesc} </p> 
-                            {/* style={{position:"absolute", top:"15px", left:"-10px"}} */}
                           </div>
                         </div>
                       );

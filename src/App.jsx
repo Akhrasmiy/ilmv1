@@ -20,7 +20,6 @@ import TakingMoney from "./teacher/MainRoute/takingMoney/TakingMoney";
 import PaidCourseDownload from "./teacher/MainRoute/paidCouseDownload/PaidCourseDownload";
 import FreeCourseDownload from "./teacher/MainRoute/freeCourseDownload/FreeCourseDownload";
 import TeacherProfile from "./teacher/MainRoute/profile/TeacherProfile";
-import Statistic from "./teacher/MainRoute/statistic/Statistic";
 import SelectDownloadCourse from "./teacher/MainRoute/selectDownloadCourse/SelectDownloadCourse";
 import TeacherBalance from "./teacher/MainRoute/teacherBalance/TeacherBalance";
 import StudentProfileEdit from "./teacher/pages/studentProfileEdit/StudentProfileEdit";
@@ -66,12 +65,12 @@ function App() {
 
         <Route path="/teacher" element={<TeacherLayout />}>
           <Route index element={<LessonsTeacher />} />
-          <Route path="darslar" element={<LessonsTeacher />} />
+          <Route path="darslar" element={<LessonsTeacher where='lesson' />} />
           <Route path="hisoblar" element={<TeacherBalance />} />
           <Route path="Kurs/:id" element={<AboutCourseInfo />} />
           <Route path="kurs/" element={<SelectDownloadCourse />} />
-          <Route path="update/kurs/" element={<TeachUpdatekurs />} />
-          <Route path="statistic" element={<Statistic />} />
+          <Route path="update/kurs/" element={<LessonsTeacher where='update' />} />
+          <Route path="statistic" element={<LessonsTeacher where='statistik' />} />
           <Route path="profile" element={<TeacherProfile />} />
         </Route>
         <Route path="teacher/course/:courseId" element={<CourseInfo />} />

@@ -96,14 +96,6 @@ function TeacherNavbar({ changeModal, modal }) {
           <img src={t3} alt="" />
           <Link to="/teacher/kurs">kurs yuklash</Link>
         </li>
-        <li ref={statisticRef}>
-          <img src={t4} alt="" />
-          <Link to="/teacher/statistic">statistika</Link>
-        </li>
-        <li ref={updateRef}>
-          <img src={t5} alt="" />
-          <Link to="/teacher/update/kurs">kursni yangilash</Link>
-        </li>
         <li ref={profileRef}>
           <img src={t6} alt="" />
           <Link to="/teacher/profile">profile</Link>
