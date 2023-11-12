@@ -11,10 +11,10 @@ import Loader from "../../loader/Loader";
 function Lessons() {
   const [courses, setCourses] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [query, setquery] = useState('');
+  const [query, setquery] = useState("");
   useEffect(() => {
     setLoader(true);
-    axios.get("https://api.ilmlar.com/courses/?q="+query).then((res) => {
+    axios.get("https://api.ilmlar.com/courses/?q=" + query).then((res) => {
       setLoader(false);
       setCourses(res.data);
     });

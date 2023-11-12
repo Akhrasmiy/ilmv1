@@ -27,18 +27,19 @@
     border-radius: 15px;
     text-transform: capitalize;
     width: 100%;
-    padding: 14px 15px 14px 70px;
-    font-family: "Inter";
+    padding: 14px 15px 14px 75px;
+    font-family: sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 15px;
+    letter-spacing: 0.9px;
     color: #ffffff;
 }
 
 .Nav ul li img {
-    width: 27px;
-    height: 27px;
+    width: 31px;
+    height: 31px;
     object-fit: cover;
     position: absolute;
     top: 50%;
@@ -97,17 +98,18 @@
     border-radius: 15px;
     text-transform: capitalize;
     width: 100%;
-    padding: 14px 15px 14px 70px;
-    font-family: "Inter";
+    padding: 14px 15px 14px 75px;
+    font-family: sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 0.9px;
     line-height: 15px;
     color: #ffffff;
 }
 .teacher-navbar ul li img {
-    width: 27px;
-    height: 27px;
+    width: 31px;
+    height: 31px;
     object-fit: cover;
     position: absolute;
     top: 50%;

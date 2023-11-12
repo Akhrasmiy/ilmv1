@@ -15,7 +15,7 @@ function StudentNavbar({ changeModal, modal }) {
   const profileRef = useRef();
   let navigate = useNavigate();
   useEffect(() => {
-    if (window.location.pathname === "/student") {
+    if (window.location.pathname === "/student" || window.location.pathname === "/student/") {
       lessonsRef?.current?.classList?.add("active");
       balanceRef?.current?.classList?.remove("active");
       profileRef?.current?.classList?.remove("active");
@@ -55,18 +55,6 @@ function StudentNavbar({ changeModal, modal }) {
         <Userprofile />
       </div>
       <ul className="student_nav_main">
-        {/* <li ref={lessonsRef}>
-          <img src={t1} alt="" />
-          <Link to="/student">darslar</Link>
-        </li>
-        <li ref={balanceRef}>
-          <img src={t2} alt="" />
-          <Link to="/student/hisoblar">hisob balans</Link>
-        </li>
-        <li ref={profileRef}>
-          <img src={t6} alt="" />
-          <Link to="/student/profile/subs">profile</Link>
-        </li> */}
         {
           nav?(
             <><li ref={lessonsRef}>
