@@ -92,6 +92,7 @@ function FreeCourseDownload() {
       const videoData = videoDataArray[i];
       formData.append("vediosdesc", videoData.description);
       formData.append("vediosname", videoData.title);
+      formData.append("isOpen", videoData.isopen);
       if (videoData.file) {
         formData.append("file", videoData.file);
       } else {
