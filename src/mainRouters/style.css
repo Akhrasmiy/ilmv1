@@ -157,7 +157,7 @@
 .courses_list img {
   height: 100%;
   width: 250px;
-  background: url(There-are-lots-of-English-courses-so-you-can-choose-a-trusted-one.png);
+/*   background: url(There-are-lots-of-English-courses-so-you-can-choose-a-trusted-one.png); */
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
 }
