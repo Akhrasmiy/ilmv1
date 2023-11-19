@@ -89,6 +89,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       </div>
       <h2>Izohlar</h2>
       <div className="commints">
+
         {Comments?.reverse()?.map((commint, index) => {
           if (commint.username && commint.text && commint?.text != "")
             return (
@@ -114,6 +115,28 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
               </div>
             );
         })}
+
+      {commints?.map((commint, index) => {
+        if(commint.username && commint.text)
+        return <div className="d-block">
+          <div className="d-flex">
+            <p className="commint-username">{commint.username}</p>
+            <p>{commint.text}</p>
+            {
+            commint.userPath ? <img
+            width={"35px"}
+            src={"https://api.ilmlar.com" + deleteplatforma(commint.userPath)}
+            alt=""
+          /> : <img
+          src={defaultimg}
+          alt=""
+        />
+            
+          }
+          </div>
+
+        </div>
+      })}
       </div>
       <div className="writing_comment">
         <form
