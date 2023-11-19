@@ -115,6 +115,7 @@ function AboutCourseInfo() {
   function onBack() {
     navigate(-1);
   }
+  console.log(kurs.Comments);
 
   return (
     <div className="main__course-buy">
@@ -236,13 +237,13 @@ function AboutCourseInfo() {
         </div>
       </div>
       <div className="mobileForedit">
-        <CommentsList commints={kurs?.Commint} />
+        <CommentsList commints={kurs?.Commints} />
       </div>
       <div className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
         <CommentsList
           modalDarslar={modalDarslar}
           changeModalDars={changeModalDars}
-          commints={kurs?.Comment}
+          commints={kurs?.Comments}
         />
       </div>
     </div>
