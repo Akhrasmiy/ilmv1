@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Commint from "../../components/comments/Comment";
 import prev from "../../imgs/prev.svg";
 import sent from "../../imgs/sent.svg";
@@ -25,6 +25,7 @@ function deleteplatforma(url) {
 
 function CommentsList({ modalDarslar, changeModalDars, commints }) {
   console.log(commints);
+  const [Comments,setcomments]=useState(commints)
   const handleClick = () => {
     changeModalDars(false);
   };
@@ -41,8 +42,9 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
           'Authorization': localStorage.getItem("token"),
         },
       })
-      .then((response) => {
-
+      .then((res) => {
+        setcomments(res.data.Comments)
+        console.log(res.data.Comments);
       })
       .catch((error) => {
         console.log('Xatolik yuz berdi: ', error);
@@ -68,7 +70,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       </div>
       <h2>Izohlar</h2>
       <div className="commints">
-      {commints?.map((commint, index) => {
+      {Comments?.map((commint, index) => {
         if(commint.username && commint.text)
         return <div className="d-block">
           <div className="d-flex">

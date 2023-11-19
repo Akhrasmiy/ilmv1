@@ -237,7 +237,7 @@ function AboutCourseInfo() {
         </div>
       </div>
       <div className="mobileForedit">
-        <CommentsList commints={kurs?.Commints} />
+        <CommentsList commints={kurs?.Comments} />
       </div>
       <div className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
         <CommentsList
