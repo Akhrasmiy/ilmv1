@@ -70,7 +70,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       </div>
       <h2>Izohlar</h2>
       <div className="commints">
-      {Comments?.map((commint, index) => {
+      {commints?.map((commint, index) => {
         if(commint.username && commint.text)
         return <div className="d-block">
           <div className="d-flex">
