@@ -9,6 +9,7 @@ import axios from "axios";
 import Loader from "../../loader/Loader";
 
 function Lessons() {
+  
   const [courses, setCourses] = useState([]);
   const [loader, setLoader] = useState(false);
   const [query, setquery] = useState("");

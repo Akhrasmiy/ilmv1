@@ -67,18 +67,18 @@ function AboutCourseInfo() {
 
   function deleteplatforma(url) {
     try {
-      if (url.includes("platforma")) {
-        const parts = url.split("/");
-        const s = parts.slice(2).join("/");
-        console.log(s);
-        // console.log(s);
-        return s; // Remove the first 3 segments of the URL
+      if (url?.includes("platforma")) {
+        url = url.split("/")
+        let res = ""
+        for (let i = 2; i < url.length; i++) {
+          res += "/" + url[i]
+        }
+        return (res)
       }
-      console.log(url);
-      return url;
+      else { return url }
+
     } catch (error) {
-      console.log(error);
-      return url;
+      console.log(error)
     }
   }
   useEffect(() => {
@@ -112,9 +112,10 @@ function AboutCourseInfo() {
         setProfil(res.data);
       });
   }, []);
-  function onBack(){
+  function onBack() {
     navigate(-1);
   }
+
   return (
     <div className="main__course-buy">
       <div className="about-head">
@@ -160,15 +161,13 @@ function AboutCourseInfo() {
               <div
                 className="every__cource-title"
                 onClick={() => {
-                  navigate("/student/teacherinfo/" + teacher?._id);
+                  navigate("/student/teacherinfo/" + deleteplatforma(teacher?._id));
                 }}
               >
+
                 <img
-                  src={
-                    "https://api.ilmlar.com" + deleteplatforma(teacher?.path)
-                      ? "https://api.ilmlar.com" + teacher?.path
-                      : "https://api.ilmlar.com" + teacher?.path
-                  }
+                  src={urlJoin("https://api.ilmlar.com/", `${deleteplatforma(teacher?.path)}`)}
+
                   alt=""
                 />
                 <h3>{teacher?.fullname}</h3>
@@ -243,7 +242,7 @@ function AboutCourseInfo() {
         <CommentsList
           modalDarslar={modalDarslar}
           changeModalDars={changeModalDars}
-          commints={kurs?.Comments}
+          commints={kurs?.Comment}
         />
       </div>
     </div>

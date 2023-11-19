@@ -7,21 +7,22 @@ import urlJoin from "url-join";
 const Cart = (props) => {
   const navigate = useNavigate();
   let kursId = props.cart._id;
-  function deleteplatforma(url){
+  function deleteplatforma(url) {
     try {
-      if(url.includes("platforma")){
-        url=url.split("/")
-        let res=""
-        for(let i=2;i<url.length;i++){
-          res+="/"+url[i]
+      if (url?.includes("platforma")) {
+        url = url.split("/")
+        let res = ""
+        for (let i = 2; i < url.length; i++) {
+          res += "/" + url[i]
         }
-        return(res)
+        return (res)
       }
-      return "/"+url
+      else { return url }
+  
     } catch (error) {
       console.log(error)
     }
-  }
+  } 
   // console.log(props?.cart?.obloshka);
   const [teacher,setTeacher]=useState({});
 
@@ -37,12 +38,13 @@ const Cart = (props) => {
       }}
     >
       <div className="main-cart">
-        <img src={"https://api.ilmlar.com"+deleteplatforma(props?.cart?.obloshka)} alt="" />
+      
+        <img src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(props?.cart?.obloshka)}`)} alt="" />
         <div className="cart-desc_wrap">
           <h3>{props?.cart?.Kursname?.length < 45 ? props?.cart?.Kursname : props?.cart?.Kursname?.split(0, 43) + "..."}</h3>
           <p>{props?.cart?.Kursdesc}</p>
           <div className="desc">
-            <img className="small_img" src={urlJoin("https://api.ilmlar.com", `${teacher.path}`)} alt="" />
+            <img className="small_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma( teacher.path)}`)} alt="" />
             <span>{teacher?.fullname?.length < 30 ? teacher?.fullname : teacher.fullname?.split(0, 28) + "..."}</span>
           </div>
         </div>

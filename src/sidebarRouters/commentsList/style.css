@@ -14,8 +14,11 @@
 }
 .writing_comment{
   position: fixed;
-  width: 20%;
+  width: 90%;
   bottom: 70px;
+}
+.writing_comment form{
+  width: 95%;
 }
 .writing_comment input{
   width: 100%;

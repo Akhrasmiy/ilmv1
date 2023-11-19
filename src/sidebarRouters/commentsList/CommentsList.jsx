@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from "react";
 import Commint from "../../components/comments/Comment";
 import prev from "../../imgs/prev.svg";
 import sent from "../../imgs/sent.svg";
-const cursId=(window.location.pathname.split('/').at(-1))
+const cursId = (window.location.pathname.split('/').at(-1))
 import "./style.css";
 import axios from "axios";
+import defaultimg from "../../imgs/user-1.png"
+
 
 function CommentsList({ modalDarslar, changeModalDars, commints }) {
   const handleClick = () => {
@@ -14,23 +16,29 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
     e.preventDefault()
     console.log()
     axios
-    .post('https://api.ilmlar.com/courses/commint', {
-      cursId: cursId,
-      text:izohref.current.value
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem("token"),
-      },
-    })
-    .then((response) => {
-      
-    })
-    .catch((error) => {
-      console.log('Xatolik yuz berdi: ', error);
-    });
+      .post('https://api.ilmlar.com/courses/commint', {
+        cursId: cursId,
+        text: izohref.current.value
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+
+      })
+      .catch((error) => {
+        console.log('Xatolik yuz berdi: ', error);
+      });
   }
   const izohref = useRef();
+  async function userphoto(id) {
+    await axios.get(`https://api.ilmlar.com/users/${id}`).then((res) => {
+      console.log(res.data.path);
+      return res.data.path
+    })
+  }
   return (
     <div className="Nav commit">
       <div
@@ -44,7 +52,13 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       </div>
       <h2>Izohlar</h2>
       {commints?.map((commint, index) => {
-        return <Commint commint={commint} key={index} />;
+        return <div className="d-block">
+          <div className="d-flex">
+            <p>{commint.text}</p>
+            <img width={"35px"} src={defaultimg} alt="" />
+          </div>
+
+        </div>
       })}
       <div className="writing_comment">
         <form
