@@ -2,61 +2,80 @@ import React, { useEffect, useRef, useState } from "react";
 import Commint from "../../components/comments/Comment";
 import prev from "../../imgs/prev.svg";
 import sent from "../../imgs/sent.svg";
-const cursId = (window.location.pathname.split('/').at(-1))
+
+const cursId = window.location.pathname.split("/").at(-1);
 import "./style.css";
 import axios from "axios";
-import defaultimg from "../../imgs/user-1.png"
+import defaultimg from "../../imgs/user-1.png";
 function deleteplatforma(url) {
   try {
     if (url?.includes("platforma")) {
-      url = url.split("/")
-      let res = ""
+      url = url.split("/");
+      let res = "";
       for (let i = 2; i < url.length; i++) {
-        res += "/" + url[i]
+        res += "/" + url[i];
       }
-      return (res)
+      return res;
+    } else {
+      return url;
     }
-    else { return url }
-
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
 function CommentsList({ modalDarslar, changeModalDars, commints }) {
-  console.log(commints);
-  const [Comments,setcomments]=useState(commints)
+  const izohref = useRef();
+  // console.log(commints);
+  const [Comments, setComments] = useState([]);
+  useEffect(() => {
+    setComments(commints);
+  }, [commints?.length]);
   const handleClick = () => {
     changeModalDars(false);
   };
   function sendIzoh(e) {
-    e.preventDefault()
-    console.log()
-    axios
-      .post('https://api.ilmlar.com/courses/commint', {
-        cursId: cursId,
-        text: izohref.current.value
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setcomments(res.data.Comments)
-        console.log(res.data.Comments);
-      })
-      .catch((error) => {
-        console.log('Xatolik yuz berdi: ', error);
-      });
+    e.preventDefault();
+    console.log();
+    if (izohref.current.value.trim() !== "") {
+      axios
+        .post(
+          "https://api.ilmlar.com/courses/commint",
+          {
+            cursId: cursId,
+            text: izohref.current.value.trim(),
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data.Comments) {
+            setComments(res.data.Comments);
+            console.log("Comments", Comments);
+          }
+        })
+        .catch((error) => {
+          console.log("Xatolik yuz berdi: ", error);
+        })
+        .finally(() => {
+          izohref.current.value = "";
+        });
+    } else {
+      izohref.current.value = "";
+    }
   }
-  const izohref = useRef();
+
   async function userphoto(id) {
     await axios.get(`https://api.ilmlar.com/users/${id}`).then((res) => {
       console.log(res.data.path);
-      return res.data.path
-    })
+      return res.data.path;
+    });
   }
+
   return (
     <div className="Nav commit">
       <div
@@ -70,27 +89,31 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       </div>
       <h2>Izohlar</h2>
       <div className="commints">
-      {Comments?.map((commint, index) => {
-        if(commint.username && commint.text)
-        return <div className="d-block">
-          <div className="d-flex">
-            <p className="commint-username">{commint.username}</p>
-            <p>{commint.text}</p>
-            {
-            commint.userPath ? <img
-            width={"35px"}
-            src={"https://api.ilmlar.com" + deleteplatforma(commint.userPath)}
-            alt=""
-          /> : <img
-          src={defaultimg}
-          alt=""
-        />
-            
-          }
-          </div>
-
-        </div>
-      })}
+        {Comments?.reverse()?.map((commint, index) => {
+          if (commint.username && commint.text && commint?.text != "")
+            return (
+              <div className="d-block">
+                <div className="comment_wrap">
+                  {commint.userPath ? (
+                    <img
+                      width={"35px"}
+                      src={
+                        "https://api.ilmlar.com" +
+                        deleteplatforma(commint.userPath)
+                      }
+                      alt=""
+                    />
+                  ) : (
+                    <img src={defaultimg} alt="" />
+                  )}
+                  <div className="comment_wrap_into">
+                    <p>{commint.text}</p>
+                    <p className="commint-username">{commint.username}</p>
+                  </div>
+                </div>
+              </div>
+            );
+        })}
       </div>
       <div className="writing_comment">
         <form

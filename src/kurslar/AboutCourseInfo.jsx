@@ -68,17 +68,17 @@ function AboutCourseInfo() {
   function deleteplatforma(url) {
     try {
       if (url?.includes("platforma")) {
-        url = url.split("/")
-        let res = ""
+        url = url.split("/");
+        let res = "";
         for (let i = 2; i < url.length; i++) {
-          res += "/" + url[i]
+          res += "/" + url[i];
         }
-        return (res)
+        return res;
+      } else {
+        return url;
       }
-      else { return url }
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   useEffect(() => {
@@ -121,7 +121,7 @@ function AboutCourseInfo() {
     <div className="main__course-buy">
       <div className="about-head">
         <div style={{ display: "flex" }}>
-          <button onClick={onBack} className="back-1" >
+          <button onClick={onBack} className="back-1">
             <ion-icon name="chevron-back-outline"></ion-icon>
           </button>
           <div style={{ width: "85%" }}>
@@ -162,13 +162,16 @@ function AboutCourseInfo() {
               <div
                 className="every__cource-title"
                 onClick={() => {
-                  navigate("/student/teacherinfo/" + deleteplatforma(teacher?._id));
+                  navigate(
+                    "/student/teacherinfo/" + deleteplatforma(teacher?._id)
+                  );
                 }}
               >
-
                 <img
-                  src={urlJoin("https://api.ilmlar.com/", `${deleteplatforma(teacher?.path)}`)}
-
+                  src={urlJoin(
+                    "https://api.ilmlar.com/",
+                    `${deleteplatforma(teacher?.path)}`
+                  )}
                   alt=""
                 />
                 <h3>{teacher?.fullname}</h3>
@@ -201,9 +204,6 @@ function AboutCourseInfo() {
             <div className="every__cource-name">
               <p>Kurs nomi: {kurs?.Kursname}</p>
             </div>
-            <div className="every__cource-about">
-              <p>Kurs haqida: {kurs?.Kursdesc}</p>
-            </div>
             <div className="every__cource-num">
               <p className="every__cource-para">
                 Kurs narxi: {kurs?.narxi} so'm
@@ -215,6 +215,10 @@ function AboutCourseInfo() {
                 Davomiyligi: {kurs?.muddati}oy
               </p>
             </div>
+            <div className="every__cource-about">
+              <p>Kurs haqida: {kurs?.Kursdesc}</p>
+            </div>
+
             <div className="every__course-buttons">
               <button
                 onClick={() => {
@@ -237,7 +241,7 @@ function AboutCourseInfo() {
         </div>
       </div>
       <div className="mobileForedit">
-        <CommentsList commints={kurs?.Comments} />
+        <CommentsList commints={kurs?.Comments.reverse()} />
       </div>
       <div className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
         <CommentsList
