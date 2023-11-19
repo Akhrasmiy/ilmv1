@@ -7,9 +7,14 @@ const cursId = window.location.pathname.split("/").at(-1);
 import "./style.css";
 import axios from "axios";
 import defaultimg from "../../imgs/user-1.png";
-function donteditreverse(env){
-  const salom=[...env]
-  return salom.reverse()
+
+function findCursById(cursList, cursId) {
+  for (let i = 0; i < cursList?.length; i++) {
+    if (cursList[i]?.cursId === cursId) {
+      return cursList[i];
+    }
+  }
+  return null;
 }
 function deleteplatforma(url) {
   try {
@@ -28,7 +33,8 @@ function deleteplatforma(url) {
   }
 }
 
-function CommentsList({ modalDarslar, changeModalDars, commints }) {
+function CommentsList({ modalDarslar, changeModalDars, commints  }) {
+  
   const izohref = useRef();
   const [Comments, setComments] = useState([]);
   useEffect(() => {
@@ -60,6 +66,9 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
             setComments(res.data.Comments);
             console.log("Comments", Comments);
           }
+          else{
+            alert("bu kursni sotib olmagansiz")
+          }
         })
         .catch((error) => {
           console.log("Xatolik yuz berdi: ", error);
@@ -78,6 +87,16 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       return res.data.path;
     });
   }
+  const [profile, setProfil] = useState({})
+  useEffect(() => {
+    axios.get("https://api.ilmlar.com/usersme", {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    }).then((res) => {
+      setProfil(res?.data)
+    })
+  }, [])
 
   return (
     <div className="Nav commit">
@@ -119,6 +138,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
             );
         })}
       </div>
+      {/* {(findCursById(profile?.mycurs,cursId))? */}
       <div className="writing_comment">
         <form
           action=""
@@ -132,7 +152,9 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
           </button>
         </form>
       </div>
+    {/* :""} */}
     </div>
+      
   );
 }
 

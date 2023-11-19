@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import Comminets from "../sidebarRouters/commentsList/CommentsList";
 import Darslar from "../sidebarRouters/Darslar";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import Obuna from "../sidebarRouters/Obuna";
 import Subs from "../sidebarRouters/Subs";
@@ -16,7 +16,8 @@ function TeacherInfo() {
   const [subs, setSubs] = useState([]);
   const [subsBool, setSubsBool] = useState(false);
   const [loader, setLoader] = useState(false);
-
+  
+  const navigate = useNavigate();
   function deleteplatforma(url) {
     try {
       if (url.includes("platforma")) {
@@ -122,7 +123,7 @@ function TeacherInfo() {
                   alt=""
                 />
                 <h2>{profile.fullname}</h2>
-                <p>{profile.obunachilar} ta obunachi</p>
+                <p>{profile?.obunachilar} ta obunachi</p>
                 {subsBool ? (
                   <button
                     onClick={() => {
@@ -162,7 +163,7 @@ function TeacherInfo() {
                   {teacherInfo.length != 0 ? (
                     teacherInfo.map((item, index) => {
                       return (
-                        <div key={item._id} className="courses_list">
+                        <div key={item._id} className="courses_list" onClick={()=>{ navigate("/student/kurs/" + item._id);}}>
                           <img
                             src={
                               "https://api.ilmlar.com" +

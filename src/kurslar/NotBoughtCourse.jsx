@@ -169,13 +169,13 @@ function NotBoughtCourse() {
         </div>
       </div>
       <div className="mobileForedit">
-        <CommentsList commints={kurs?.Commint} />
+        <CommentsList commints={kurs?.Comments} />
       </div>
       <div className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
         <CommentsList
           modalDarslar={modalDarslar}
           changeModalDars={changeModalDars}
-          commints={kurs?.Commint}
+          commints={kurs?.Comments}
         />
       </div>
     </div>
