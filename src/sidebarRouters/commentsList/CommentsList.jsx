@@ -7,6 +7,10 @@ const cursId = window.location.pathname.split("/").at(-1);
 import "./style.css";
 import axios from "axios";
 import defaultimg from "../../imgs/user-1.png";
+function donteditreverse(env){
+  const salom=[...env]
+  return salom.reverse()
+}
 function deleteplatforma(url) {
   try {
     if (url?.includes("platforma")) {
@@ -26,7 +30,6 @@ function deleteplatforma(url) {
 
 function CommentsList({ modalDarslar, changeModalDars, commints }) {
   const izohref = useRef();
-  // console.log(commints);
   const [Comments, setComments] = useState([]);
   useEffect(() => {
     setComments(commints);
@@ -90,7 +93,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       <h2>Izohlar</h2>
       <div className="commints">
 
-        {Comments?.reverse()?.map((commint, index) => {
+        {Comments?.map((commint, index) => {
           if (commint.username && commint.text && commint?.text != "")
             return (
               <div className="d-block">
@@ -115,28 +118,6 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
               </div>
             );
         })}
-
-      {commints?.map((commint, index) => {
-        if(commint.username && commint.text)
-        return <div className="d-block">
-          <div className="d-flex">
-            <p className="commint-username">{commint.username}</p>
-            <p>{commint.text}</p>
-            {
-            commint.userPath ? <img
-            width={"35px"}
-            src={"https://api.ilmlar.com" + deleteplatforma(commint.userPath)}
-            alt=""
-          /> : <img
-          src={defaultimg}
-          alt=""
-        />
-            
-          }
-          </div>
-
-        </div>
-      })}
       </div>
       <div className="writing_comment">
         <form
