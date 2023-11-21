@@ -10,7 +10,6 @@ import defaultimg from "../../imgs/user-1.png";
 
 function findCursById(cursList, cursId) {
   for (let i = 0; i < cursList?.length; i++) {
-    console.log("true");
     if (cursList[i]?.cursId === cursId) {
       return true;
     }
