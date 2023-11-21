@@ -10,11 +10,12 @@ import defaultimg from "../../imgs/user-1.png";
 
 function findCursById(cursList, cursId) {
   for (let i = 0; i < cursList?.length; i++) {
+    console.log("true");
     if (cursList[i]?.cursId === cursId) {
-      return cursList[i];
+      return true;
     }
   }
-  return null;
+  return false;
 }
 function deleteplatforma(url) {
   try {
@@ -138,7 +139,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints  }) {
             );
         })}
       </div>
-      {/* {(findCursById(profile?.mycurs,cursId))? */}
+      {(findCursById(profile?.mycurs,cursId))?
       <div className="writing_comment">
         <form
           action=""
@@ -152,7 +153,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints  }) {
           </button>
         </form>
       </div>
-    {/* :""} */}
+     :"" }
     </div>
       
   );
