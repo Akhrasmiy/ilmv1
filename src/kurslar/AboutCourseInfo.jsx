@@ -7,6 +7,14 @@ import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
 import urlJoin from "url-join";
+function findCursById(cursList, cursId) {
+  for (let i = 0; i < cursList?.length; i++) {
+    if (cursList[i]?.cursId === cursId) {
+      return true;
+    }
+  }
+  return false;
+}
 function AboutCourseInfo() {
   const [heart, setHeart] = useState(false);
   const [kurs, setKurs] = useState({});
@@ -118,6 +126,7 @@ function AboutCourseInfo() {
 
   return (
     <div className="main__course-buy">
+
       <div className="about-head">
         <div style={{ display: "flex" }}>
           <button onClick={onBack} className="back-1">
@@ -218,24 +227,41 @@ function AboutCourseInfo() {
               <p>Kurs haqida: {kurs?.Kursdesc}</p>
             </div>
 
-            <div className="every__course-buttons">
-              <button
-                onClick={() => {
-                  const isCursIdExists = profile?.mycurs?.some(
-                    (curs) => curs?.cursId === kursId
-                  );
-                  navigate("/student/kurs/olinganlar/" + kursId);
-                }}
-              >
-                Video darslar
-              </button>
 
-              <button
-                onClick={() => navigate("/student/notboughtcouse/" + kursId)}
-              >
-                Kursni olish
-              </button>
-            </div>
+            {(findCursById(profile?.mycurs, kursId)) ?
+              <div className="every__course-buttons">
+                <button
+                  onClick={() => {
+                    const isCursIdExists = profile?.mycurs?.some(
+                      (curs) => curs?.cursId === kursId
+                    );
+                    navigate("/student/kurs/olinganlar/" + kursId);
+                  }}
+                >
+                  davom etish
+                </button>
+              </div>
+              : <div className="every__course-buttons">
+                <button
+                  onClick={() => {
+                    const isCursIdExists = profile?.mycurs?.some(
+                      (curs) => curs?.cursId === kursId
+                    );
+                    navigate("/student/kurs/olinganlar/" + kursId);
+                  }}
+                >
+                  Video darslar
+                </button>
+
+                <button
+                  onClick={() => navigate("/student/notboughtcouse/" + kursId)}
+                >
+                  Kursni olish
+                </button>
+              </div>
+            }
+
+
           </div>
         </div>
       </div>
