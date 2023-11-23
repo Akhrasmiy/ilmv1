@@ -49,7 +49,7 @@ const Hero = () => {
             <br />
             oqilona usulini kashf eting.
           </p>
-          <div onClick={() => {LogIn()}} className="common_btn_wrap">
+          <div onClick={() => {LogIn()}} className="common_btn_wrap anim_button anim_button_float">
             <button className="common_btn">Boshlash</button>
             <img src={arrow} alt="" />
           </div>

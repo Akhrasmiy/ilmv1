@@ -118,14 +118,12 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
                 />
                 <div>
                   <p>
-                    {item.Kursname.length > 12
-                      ? item.Kursname.slice(0, 12) + "..."
+                    {item.Kursname.length > 30
+                      ? item.Kursname.slice(0, 30) + "..."
                       : item.Kursname}
                   </p>
                   <p>
-                    {item.Kursdesc.length > 15
-                      ? item.Kursdesc.slice(0, 15) + "..."
-                      : item.Kursdesc}
+                     {item.Kursdesc}
                   </p>
                 </div>
               </div>

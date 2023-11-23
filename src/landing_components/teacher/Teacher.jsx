@@ -26,7 +26,7 @@ const Teacher = () => {
             olishingiz mumkin.
           </p>
           
-          <div onClick={() => TeacherRegistration()} className="common_btn_wrap">
+          <div onClick={() => TeacherRegistration()} className="common_btn_wrap anim_button anim_button_float">
             <button className="common_btn">O’qituvchi</button>
             <img src={arrow} alt="" />
           </div>
