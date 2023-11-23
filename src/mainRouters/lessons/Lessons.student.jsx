@@ -59,7 +59,8 @@ function Lessons() {
               changeModal={changeModal}
               modal={modal}
               modalDarslar={modalDarslar}
-              type={"search"}
+              type={"search"} 
+              query={query}
               setquery={setquery}
             />
             <div className="main-content sidebar-main-wrap_all">

@@ -3,19 +3,10 @@ import Commint from "../../components/comments/Comment";
 import prev from "../../imgs/prev.svg";
 import sent from "../../imgs/sent.svg";
 
-const cursId = window.location.pathname.split("/").at(-1);
 import "./style.css";
 import axios from "axios";
 import defaultimg from "../../imgs/user-1.png";
 
-function findCursById(cursList, cursId) {
-  for (let i = 0; i < cursList?.length; i++) {
-    if (cursList[i]?.cursId === cursId) {
-      return true;
-    }
-  }
-  return false;
-}
 function deleteplatforma(url) {
   try {
     if (url?.includes("platforma")) {
@@ -33,19 +24,35 @@ function deleteplatforma(url) {
   }
 }
 
-function CommentsList({ modalDarslar, changeModalDars, commints  }) {
-  
+function CommentsList({ modalDarslar, changeModalDars, commints }) {
   const izohref = useRef();
   const [Comments, setComments] = useState([]);
+  const [isInput, setIsInput] = useState(false);
+  const [profile, setProfil] = useState({});
+  const [cursId, setCursId] = useState(
+    window.location.pathname.split("/").at(-1)
+  );
   useEffect(() => {
     setComments(commints);
-  }, [commints?.length]);
+    console.log("Comments:", Comments);
+  }, [])
   const handleClick = () => {
     changeModalDars(false);
   };
+  function findCursById(cursList, cursId) {
+    console.log(cursList, cursId);
+    for (let i = 0; i < cursList?.length; i++) {
+      if (cursList[i]?.cursId === cursId) {
+        setIsInput(true);
+
+        return 0;
+      }
+    }
+    setIsInput(false);
+    return 0;
+  }
   function sendIzoh(e) {
     e.preventDefault();
-    console.log();
     if (izohref.current.value.trim() !== "") {
       axios
         .post(
@@ -65,9 +72,8 @@ function CommentsList({ modalDarslar, changeModalDars, commints  }) {
           if (res.data.Comments) {
             setComments(res.data.Comments);
             console.log("Comments", Comments);
-          }
-          else{
-            alert("bu kursni sotib olmagansiz")
+          } else {
+            alert("bu kursni sotib olmagansiz");
           }
         })
         .catch((error) => {
@@ -87,16 +93,23 @@ function CommentsList({ modalDarslar, changeModalDars, commints  }) {
       return res.data.path;
     });
   }
-  const [profile, setProfil] = useState({})
   useEffect(() => {
-    axios.get("https://api.ilmlar.com/usersme", {
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    }).then((res) => {
-      setProfil(res?.data)
-    })
-  }, [])
+    axios
+      .get("https://api.ilmlar.com/usersme", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+          findCursById(res.data.mycurs, cursId);
+          setProfil(res.data.mycurs);
+      });
+  }, []);
+  useEffect(() => {
+    setComments(commints);
+    findCursById(profile, cursId);
+    setCursId(window.location.pathname.split("/").at(-1));
+  }, [window.location.pathname]);
 
   return (
     <div className="Nav commit">
@@ -111,7 +124,6 @@ function CommentsList({ modalDarslar, changeModalDars, commints  }) {
       </div>
       <h2>Izohlar</h2>
       <div className="commints">
-
         {Comments?.map((commint, index) => {
           if (commint.username && commint.text && commint?.text != "")
             return (
@@ -138,23 +150,25 @@ function CommentsList({ modalDarslar, changeModalDars, commints  }) {
             );
         })}
       </div>
-      {(findCursById(profile?.mycurs,cursId))?
-      <div className="writing_comment">
-        <form
-          action=""
-          onSubmit={(e) => {
-            sendIzoh(e);
-          }}
-        >
-          <input ref={izohref} type="text" placeholder="Izoh yozing..." />
-          <button type="submit">
-            <img src={sent} alt="" />
-          </button>
-        </form>
-      </div>
-     :""}
+      {/* {findCursById(profile?.mycurs, cursId) ? ( */}
+      {isInput ? (
+        <div className="writing_comment">
+          <form
+            action=""
+            onSubmit={(e) => {
+              sendIzoh(e);
+            }}
+          >
+            <input ref={izohref} type="text" placeholder="Izoh yozing..." />
+            <button type="submit">
+              <img src={sent} alt="" />
+            </button>
+          </form>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
-      
   );
 }
 

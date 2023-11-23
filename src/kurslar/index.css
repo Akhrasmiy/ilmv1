@@ -11,6 +11,15 @@
   align-items: center;
   cursor: pointer;
 }
+.vaqt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.vaqt p{
+  font-size: 18px;
+}
 .ant-progress-text{
   color: #fff !important;
   size: 20px;
@@ -176,9 +185,13 @@
 .main__course-buy .Nav {
   height: 100%;
 }
+.every__cource-bigImg {
+  width: 100%;
+  object-fit: fill;
+}
 @media only screen and (max-width: 1000px) {
   .every__cource-bigImg {
-    height: 270px;
+    width: 100%;
   }
 }
 

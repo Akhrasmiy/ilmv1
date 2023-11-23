@@ -7,6 +7,8 @@ import Obuna from "../sidebarRouters/Obuna";
 import Subs from "../sidebarRouters/Subs";
 import axios from "axios";
 import Loader from "../loader/Loader";
+import urlJoin from "url-join";
+import MobileHeader from "../components/mobileHeader/mobileHeader";
 
 function TeacherInfo() {
   const [profile, setProfil] = useState({});
@@ -16,19 +18,23 @@ function TeacherInfo() {
   const [subs, setSubs] = useState([]);
   const [subsBool, setSubsBool] = useState(false);
   const [loader, setLoader] = useState(false);
+  let [modal, setModal] = useState(false);
+  let [modalDarslar, setModalDarslar] = useState(false);
   
   const navigate = useNavigate();
   function deleteplatforma(url) {
+    console.log(url);
     try {
-      if (url.includes("platforma")) {
+      if (url?.includes("platforma")) {
         url = url.split("/");
         let res = "";
         for (let i = 2; i < url.length; i++) {
           res += "/" + url[i];
         }
         return res;
+      } else {
+        return url;
       }
-      return "/" + url;
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +48,9 @@ function TeacherInfo() {
   }, [teacherId]);
 
 
-
+  const changeModal = (value) => {
+    setModal(value);
+  };
   useEffect(() => {
     axios
       .get("https://api.ilmlar.com/usersme", {
@@ -107,10 +115,30 @@ function TeacherInfo() {
       })
       .catch((err) => console.log(err));
   }
-
+  const changeModalDars = (value) => {
+    setModalDarslar(value);
+  };
+  function onBack() {
+    navigate(-1);
+  }
   return (
     <>
       <div className="main-page">
+      <div className="teacherhead">
+          <button onClick={onBack} className="back-1">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          <div style={{ width: "85%" }}>
+            <MobileHeader
+              changeModalDars={changeModalDars}
+              changeModal={changeModal}
+              modal={modal}
+              modalDarslar={modalDarslar}
+              type={"O'qituvchi haqida"}
+              wherey="teach"
+            />
+          </div>
+        </div>
         <div className="w100 main_lesson mobile_none">
           <div className="fife main-content extra_class">
             {loader ? (
@@ -119,7 +147,7 @@ function TeacherInfo() {
               <div className="my_subs">
                 <img
                   className="teacher_img"
-                  src={"https://api.ilmlar.com" +profile.path}
+                  src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(profile.path)}`)}
                   alt=""
                 />
                 <h2>{profile.fullname}</h2>
@@ -145,7 +173,10 @@ function TeacherInfo() {
                 )}
 
                 <div className="my_subs_desc1">
-                  <p>{profile.bio}</p>
+                  <p>Mutaxasis: {profile.mutahasislik}</p>
+                </div>
+                <div className="my_subs_desc1">
+                  <p>Bio: {profile.bio}</p>
                 </div>
                 <div className="my_subs_desc2">
                   <p>Joylashuv: {profile.joylashuv}</p>
@@ -165,14 +196,11 @@ function TeacherInfo() {
                       return (
                         <div key={item._id} className="courses_list" onClick={()=>{ navigate("/student/kurs/" + item._id);}}>
                           <img
-                            src={
-                              "https://api.ilmlar.com" +
-                              deleteplatforma(item.obloshka)
-                            }
+                            src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(item.obloshka)}`)}
                             alt=""
                           />
                           <div className="teacherinfo_courses" style={{position:"relative"}}>
-                            <h5 style={{paddingLeft:"10px"}}>{item.Kursname}</h5>
+                            <b style={{textAlign: "start"}}>{item.Kursname}</b>
                             <br />
                             <p>{item.Kursdesc} </p> 
                           </div>
@@ -187,11 +215,28 @@ function TeacherInfo() {
             )}
           </div>
         </div>
+        
         <div className="darslar_wrapper Nav">
           <h3>Mening obunalarim</h3>
           <div className="line"></div>
           <Subs />
         </div>
+        <div className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
+        <div className="darslar_wrapper Nav">
+          <div style={{display:"flex",height:"70px", alignItems:"center", position:"relative"}}> 
+          <button style={{marginLeft:'20px', backgroundColor: "#3F315D"}} onClick={()=>{
+            setModalDarslar(false)
+          }} className="back-1">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          <h3> Mening obunalarim</h3>
+
+          </div>
+          <div className="line"></div>
+          <Subs />
+        </div>
+        
+      </div>
       </div>
     </>
   );
