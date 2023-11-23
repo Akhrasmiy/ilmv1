@@ -11,6 +11,10 @@
   align-items: center;
   cursor: pointer;
 }
+.ant-progress-text{
+  color: #fff !important;
+  size: 20px;
+}
 .back-1 ion-icon {
   color: #fff;
   font-size: 30px;
