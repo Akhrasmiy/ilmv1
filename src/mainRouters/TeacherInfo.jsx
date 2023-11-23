@@ -221,7 +221,7 @@ function TeacherInfo() {
           <div className="line"></div>
           <Subs />
         </div>
-        <div className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
+        <div style={{padding:"10px"}} className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
         <div className="darslar_wrapper Nav">
           <div style={{display:"flex",height:"70px", alignItems:"center", position:"relative"}}> 
           <button style={{marginLeft:'20px', backgroundColor: "#3F315D"}} onClick={()=>{

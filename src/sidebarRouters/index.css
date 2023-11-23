@@ -109,7 +109,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 .carts-wrapper {
-  padding-bottom: 10px;
+  padding: 10px;
 }
 .darslar-cart {
   display: flex;
