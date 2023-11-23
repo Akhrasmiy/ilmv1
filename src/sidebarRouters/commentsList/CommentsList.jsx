@@ -152,7 +152,7 @@ function CommentsList({ modalDarslar, changeModalDars, commints  }) {
           </button>
         </form>
       </div>
-     :"" }
+     :""}
     </div>
       
   );
