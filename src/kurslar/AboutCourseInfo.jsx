@@ -7,12 +7,12 @@ import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
 import urlJoin from "url-join";
-import {Progress,Space} from 'antd'
+import { Progress, Space } from 'antd'
 function findCursById(cursList, cursId) {
   for (let i = 0; i < cursList?.length; i++) {
     if (cursList[i]?.cursId === cursId) {
-      console.log(true);
-      return true;
+      return (cursList[i].qachongacha);
+      
     }
   }
   console.log(false);
@@ -20,6 +20,14 @@ function findCursById(cursList, cursId) {
 }
 function AboutCourseInfo() {
   const [heart, setHeart] = useState(false);
+  const [hisoblanuvchi_vaqt, sethisoblanuvchi_vaqt] = useState({
+    oy:0,
+    kun:0,
+    soat:0,
+    minut:0,
+    secund:0
+  });
+  
   const [kurs, setKurs] = useState({});
   const [price, setPrice] = useState(false);
   const [teacher, setTeacher] = useState({});
@@ -28,6 +36,7 @@ function AboutCourseInfo() {
   const [saved, setSaved] = useState(false);
   const navigate = useNavigate();
   const [profile, setProfil] = useState({});
+  const [vaqt, setvaqt] = useState(0);
   function savekurs(id) {
     axios
       .post(
@@ -125,11 +134,22 @@ function AboutCourseInfo() {
   function onBack() {
     navigate(-1);
   }
-  async function salom(){
-    const muddati=await findCursById(profile.mycurs,kursId).muddati
-    console.log(muddati/(kurs.muddati*30*24*3600*1000));
-  }
-  salom()
+  useEffect(() => {
+    const muddati = findCursById(profile.mycurs, kursId)
+    
+    setvaqt(muddati*1000);
+    hisoblanuvchi_vaqt.oy=(vaqt-Date.now())/(1000*60*60*24*30)
+    hisoblanuvchi_vaqt.oy=Math.floor(hisoblanuvchi_vaqt.oy)
+    hisoblanuvchi_vaqt.kun=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000)/(1000*60*60*24))
+    hisoblanuvchi_vaqt.kun=Math.floor(hisoblanuvchi_vaqt.kun)
+    hisoblanuvchi_vaqt.soat=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000)/(1000*60*60))
+    hisoblanuvchi_vaqt.soat=Math.floor(hisoblanuvchi_vaqt.soat)
+    hisoblanuvchi_vaqt.minut=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000)/(1000*60))
+    hisoblanuvchi_vaqt.minut=Math.floor(hisoblanuvchi_vaqt.minut)
+    hisoblanuvchi_vaqt.secund=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000-hisoblanuvchi_vaqt.minut*60*1000)/(1000))
+    hisoblanuvchi_vaqt.secund=Math.floor(hisoblanuvchi_vaqt.secund)
+    console.log(vaqt,hisoblanuvchi_vaqt);
+  }, [profile, kurs])
 
   return (
     <div className="main__course-buy">
@@ -216,69 +236,67 @@ function AboutCourseInfo() {
                 )}
               </div>
             </div>
-            
+
 
 
             {(findCursById(profile?.mycurs, kursId)) ?
               <div>
-              <div className="every__cource-name">
-                <p>Kurs nomi: {kurs?.Kursname}</p>
+                <div className="every__cource-name">
+                  <p>Kurs nomi: {kurs?.Kursname}</p>
+                </div>
+                <div>
+                  <Progress percent={Math.floor((vaqt-Date.now())/(kurs.muddati*30*24*3600*1000)*100)||0} size={[, 20]} trailColor="rgba(0,0,0,0.3)" status="active" strokeColor={'#00E03F'} ></Progress>
+                </div>
+                <div className="vaqt">{hisoblanuvchi_vaqt.oy} oy:{hisoblanuvchi_vaqt.kun} kun</div>
+                <div className="every__course-buttons">
+                  <button
+                    onClick={() => {
+                      navigate("/student/kurs/olinganlar/" + kursId);
+                    }}
+                  >
+                    davom etish
+                  </button>
+                </div>
               </div>
-              <div>
-                <Progress  percent={67} size={[,20]} trailColor="rgba(0,0,0,0.3)" status="active"  strokeColor={'#00E03F'} ></Progress>
-              </div>
-              <div className="every__course-buttons">
-                <button
-                  onClick={() => {
-                    const isCursIdExists = profile?.mycurs?.some(
-                      (curs) => curs?.cursId === kursId
-                    );
-                    navigate("/student/kurs/olinganlar/" + kursId);
-                  }}
-                >
-                  davom etish
-                </button>
-              </div>
-            </div>
               : <div>
-              <div className="every__cource-name">
-                <p>Kurs nomi: {kurs?.Kursname}</p>
-              </div>
-              <div className="every__cource-num">
-                <p className="every__cource-para">
-                  Kurs narxi: {kurs?.narxi} so'm
-                </p>
-                <p className="every__cource-para">
-                  Olingan: {kurs?.subs?.length || kurs?.subs}
-                </p>
-                <p className="every__cource-para">
-                  Davomiyligi: {kurs?.muddati}oy
-                </p>
-              </div>
-              <div className="every__cource-about">
-                <p>Kurs haqida: {kurs?.Kursdesc}</p>
-              </div>
-              <div className="every__course-buttons">
-                <button
-                  onClick={() => {
-                    const isCursIdExists = profile?.mycurs?.some(
-                      (curs) => curs?.cursId === kursId
-                    );
-                    navigate("/student/kurs/olinganlar/" + kursId);
-                  }}
-                >
-                  Video darslar
-                </button>
+                <div className="every__cource-name">
+                  <p>Kurs nomi: {kurs?.Kursname}</p>
+                </div>
+                <div className="every__cource-num">
+                  <p className="every__cource-para">
+                    Kurs narxi: {kurs?.narxi} so'm
+                  </p>
+                  <p className="every__cource-para">
+                    Olingan: {kurs?.subs?.length || kurs?.subs}
+                  </p>
+                  <p className="every__cource-para">
+                    Davomiyligi: {kurs?.muddati}oy
+                  </p>
+                </div>
+                <div className="every__cource-about">
+                  <p>Kurs haqida: {kurs?.Kursdesc}</p>
+                </div>
+                <div className="every__course-buttons">
+                  <button
+                    onClick={() => {
+                      const isCursIdExists = profile?.mycurs?.some(
+                        (curs) => curs?.cursId === kursId
+                      );
+                      navigate("/student/kurs/olinganlar/" + kursId);
+                    }}
+                  >
+                    Video darslar
+                  </button>
 
-                <button
-                  onClick={() => navigate("/student/notboughtcouse/" + kursId)}
-                >
-                  Kursni olish
-                </button>
+                  <button
+                    onClick={() => navigate("/student/notboughtcouse/" + kursId)}
+                  >
+                    Kursni olish
+                  </button>
+                </div>
               </div>
-            </div>
-              
-              
+
+
             }
 
 
