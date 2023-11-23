@@ -133,23 +133,24 @@ function AboutCourseInfo() {
   }, []);
   function onBack() {
     navigate(-1);
-  }
+  } 
+  const hozir=Date.now()
   useEffect(() => {
     const muddati = findCursById(profile.mycurs, kursId)
     
     setvaqt(muddati*1000);
-    hisoblanuvchi_vaqt.oy=(vaqt-Date.now())/(1000*60*60*24*30)
+    hisoblanuvchi_vaqt.oy=(vaqt-hozir)/(1000*60*60*24*30)
     hisoblanuvchi_vaqt.oy=Math.floor(hisoblanuvchi_vaqt.oy)
-    hisoblanuvchi_vaqt.kun=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000)/(1000*60*60*24))
+    hisoblanuvchi_vaqt.kun=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000)/(1000*60*60*24))
     hisoblanuvchi_vaqt.kun=Math.floor(hisoblanuvchi_vaqt.kun)
-    hisoblanuvchi_vaqt.soat=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000)/(1000*60*60))
+    hisoblanuvchi_vaqt.soat=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000)/(1000*60*60))
     hisoblanuvchi_vaqt.soat=Math.floor(hisoblanuvchi_vaqt.soat)
-    hisoblanuvchi_vaqt.minut=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000)/(1000*60))
+    hisoblanuvchi_vaqt.minut=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000)/(1000*60))
     hisoblanuvchi_vaqt.minut=Math.floor(hisoblanuvchi_vaqt.minut)
-    hisoblanuvchi_vaqt.secund=((vaqt-Date.now()-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000-hisoblanuvchi_vaqt.minut*60*1000)/(1000))
+    hisoblanuvchi_vaqt.secund=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000-hisoblanuvchi_vaqt.minut*60*1000)/(1000))
     hisoblanuvchi_vaqt.secund=Math.floor(hisoblanuvchi_vaqt.secund)
     console.log(vaqt,hisoblanuvchi_vaqt);
-  }, [profile, kurs])
+  }, [profile, kurs,hozir])
 
   return (
     <div className="main__course-buy">
@@ -247,7 +248,7 @@ function AboutCourseInfo() {
                 <div>
                   <Progress percent={Math.floor((vaqt-Date.now())/(kurs.muddati*30*24*3600*1000)*100)||0} size={[, 20]} trailColor="rgba(0,0,0,0.3)" status="active" strokeColor={'#00E03F'} ></Progress>
                 </div>
-                <div className="vaqt">{hisoblanuvchi_vaqt.oy} oy:{hisoblanuvchi_vaqt.kun} kun</div>
+                <div className="vaqt">{hisoblanuvchi_vaqt.oy>0?hisoblanuvchi_vaqt.oy:0} oy:{hisoblanuvchi_vaqt.kun} kun:{hisoblanuvchi_vaqt.soat} soat:{hisoblanuvchi_vaqt.minut} minut:{hisoblanuvchi_vaqt.secund} secund</div>
                 <div className="every__course-buttons">
                   <button
                     onClick={() => {
