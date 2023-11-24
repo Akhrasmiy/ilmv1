@@ -64,9 +64,6 @@
   color: #ffffff;
 }
 @media  only screen and (max-width:540px) {
-  .profile-content {
-      height: 79vh;
-  }
   .profile-content h1 {
     font-size: 25px;
     line-height: 39px;

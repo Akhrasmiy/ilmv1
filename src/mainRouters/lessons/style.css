@@ -5,6 +5,11 @@
   transform: translateX(-50%);
 }
 
+@media only screen and (min-width: 540px){
+  .main-contentt{
+    height: 80vh !important;
+  } 
+}
 @keyframes mobileBurger {
   0% {
     transform: translateX(0);

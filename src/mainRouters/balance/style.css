@@ -23,6 +23,11 @@
   width: 100%;
   padding-bottom: 20px;
 }
+.main-content {
+  display: block;
+  overflow-y: scroll;
+  height: 90vh;
+}
 @media only screen and (max-width: 540px) {
   .main-content {
     display: block;
