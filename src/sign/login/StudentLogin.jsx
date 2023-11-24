@@ -12,8 +12,8 @@ const StudentLogin = () => {
   const onBack = () => {
     navigate(-1);
   };
-  const handlechange= () =>{
-    usernameRef.current.value=usernameRef.current.value.toLowerCase().trim()
+  const handlechange = () => {
+    usernameRef.current.value = usernameRef.current.value.toLowerCase().trim()
   }
   const onHandler = (e) => {
     e.preventDefault();
@@ -21,11 +21,11 @@ const StudentLogin = () => {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
-    
+
     axios
       .post("https://api.ilmlar.com/users/login", obj)
       .then((res) => {
-        
+
         if (res.status === 200) {
           localStorage.setItem("token", res.data.token);
           navigate("/student/");
@@ -41,13 +41,13 @@ const StudentLogin = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
         console.log(err);
       });
   };
   return (
     <div className="app-content student-app-content">
-       <ToastContainer />
+      <ToastContainer />
       <div className="sign_wrap">
         <button onClick={onBack} className="back">
           <ion-icon name="chevron-back-outline"></ion-icon>
