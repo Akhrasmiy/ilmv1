@@ -27,7 +27,9 @@
   .main-content {
     display: block;
     overflow-y: scroll;
-    height: 79vh;
+  }
+  .w100{
+    max-height: 100vh !important;
   }
   .hisoblar {
     padding-left: 120px 20px;
