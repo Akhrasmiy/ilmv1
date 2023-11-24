@@ -2,7 +2,7 @@
   padding: 0 10px;
   background-color: #5b4784;
   border-radius: 50px;
-  height: 89.4vh;
+  height: 100vh;
 }
 
 .main-page {
@@ -12,11 +12,17 @@
 
 .sidebar-student-main-wrap {
   overflow-y: scroll;
-  max-height: 79vh;
+  max-height: 100vh;
 }
 .sidebar-main-wrap_all {
   overflow-y: scroll;
-  max-height: 79vh;
+  max-height: 100vh;
+}
+.teacherinfo_courses{
+  padding: 9px;
+}
+.teacherhead{
+  display: none;
 }
 @media only screen and (max-width: 540px) {
   .main-content {
@@ -24,6 +30,13 @@
     background-color: #5b4784;
     border-radius: 50px;
     height: 90vh ;
+  }
+  .main-page {
+    display: block !important;
+    gap: 19px;
+  }
+  .teacherhead{
+    display: flex;
   }
   .main-page {
     display: block;
@@ -38,13 +51,13 @@
   }
   .courses_list {
     width: 100%;
-    padding: 7px;
     display: flex;
     height: 161px;
     background-color: #40325d;
 
     margin-bottom: 10px;
   }
+ 
   .courses_list img {
     width: 40% !important;
     border-radius: 0 !important;
@@ -126,7 +139,7 @@
 .my_subs_desc1,
 .my_subs_desc2 {
   text-align: start;
-  padding: 0 108px;
+  padding: 0 20px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -161,13 +174,13 @@
 }
 .courses_list {
   width: 100%;
-  padding: 7px;
   display: flex;
   height: 161px;
   background-color: #40325d;
   border-radius: 50px;
   margin-bottom: 10px;
 }
+
 .courses_list img {
   height: 100%;
   width: 250px;

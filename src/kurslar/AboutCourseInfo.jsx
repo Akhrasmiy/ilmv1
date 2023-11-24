@@ -7,12 +7,11 @@ import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
 import urlJoin from "url-join";
-import { Progress, Space } from 'antd'
+import { Progress, Space } from "antd";
 function findCursById(cursList, cursId) {
   for (let i = 0; i < cursList?.length; i++) {
     if (cursList[i]?.cursId === cursId) {
-      return (cursList[i].qachongacha);
-      
+      return cursList[i].qachongacha;
     }
   }
   console.log(false);
@@ -21,13 +20,13 @@ function findCursById(cursList, cursId) {
 function AboutCourseInfo() {
   const [heart, setHeart] = useState(false);
   const [hisoblanuvchi_vaqt, sethisoblanuvchi_vaqt] = useState({
-    oy:0,
-    kun:0,
-    soat:0,
-    minut:0,
-    secund:0
+    oy: 0,
+    kun: 0,
+    soat: 0,
+    minut: 0,
+    secund: 0,
   });
-  
+
   const [kurs, setKurs] = useState({});
   const [price, setPrice] = useState(false);
   const [teacher, setTeacher] = useState({});
@@ -133,28 +132,47 @@ function AboutCourseInfo() {
   }, []);
   function onBack() {
     navigate(-1);
-  } 
-  const hozir=Date.now()
+  }
+  const hozir = Date.now();
   useEffect(() => {
-    const muddati = findCursById(profile.mycurs, kursId)
-    
-    setvaqt(muddati*1000);
-    hisoblanuvchi_vaqt.oy=(vaqt-hozir)/(1000*60*60*24*30)
-    hisoblanuvchi_vaqt.oy=Math.floor(hisoblanuvchi_vaqt.oy)
-    hisoblanuvchi_vaqt.kun=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000)/(1000*60*60*24))
-    hisoblanuvchi_vaqt.kun=Math.floor(hisoblanuvchi_vaqt.kun)
-    hisoblanuvchi_vaqt.soat=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000)/(1000*60*60))
-    hisoblanuvchi_vaqt.soat=Math.floor(hisoblanuvchi_vaqt.soat)
-    hisoblanuvchi_vaqt.minut=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000)/(1000*60))
-    hisoblanuvchi_vaqt.minut=Math.floor(hisoblanuvchi_vaqt.minut)
-    hisoblanuvchi_vaqt.secund=((vaqt-hozir-hisoblanuvchi_vaqt.oy*30*24*60*60*1000-hisoblanuvchi_vaqt.kun*24*60*60*1000-hisoblanuvchi_vaqt.soat*60*60*1000-hisoblanuvchi_vaqt.minut*60*1000)/(1000))
-    hisoblanuvchi_vaqt.secund=Math.floor(hisoblanuvchi_vaqt.secund)
-    console.log(vaqt,hisoblanuvchi_vaqt);
-  }, [profile, kurs,hozir])
+    const muddati = findCursById(profile.mycurs, kursId);
+
+    setvaqt(muddati * 1000);
+    hisoblanuvchi_vaqt.oy = (vaqt - hozir) / (1000 * 60 * 60 * 24 * 30);
+    hisoblanuvchi_vaqt.oy = Math.floor(hisoblanuvchi_vaqt.oy);
+    hisoblanuvchi_vaqt.kun =
+      (vaqt - hozir - hisoblanuvchi_vaqt.oy * 30 * 24 * 60 * 60 * 1000) /
+      (1000 * 60 * 60 * 24);
+    hisoblanuvchi_vaqt.kun = Math.floor(hisoblanuvchi_vaqt.kun);
+    hisoblanuvchi_vaqt.soat =
+      (vaqt -
+        hozir -
+        hisoblanuvchi_vaqt.oy * 30 * 24 * 60 * 60 * 1000 -
+        hisoblanuvchi_vaqt.kun * 24 * 60 * 60 * 1000) /
+      (1000 * 60 * 60);
+    hisoblanuvchi_vaqt.soat = Math.floor(hisoblanuvchi_vaqt.soat);
+    hisoblanuvchi_vaqt.minut =
+      (vaqt -
+        hozir -
+        hisoblanuvchi_vaqt.oy * 30 * 24 * 60 * 60 * 1000 -
+        hisoblanuvchi_vaqt.kun * 24 * 60 * 60 * 1000 -
+        hisoblanuvchi_vaqt.soat * 60 * 60 * 1000) /
+      (1000 * 60);
+    hisoblanuvchi_vaqt.minut = Math.floor(hisoblanuvchi_vaqt.minut);
+    hisoblanuvchi_vaqt.secund =
+      (vaqt -
+        hozir -
+        hisoblanuvchi_vaqt.oy * 30 * 24 * 60 * 60 * 1000 -
+        hisoblanuvchi_vaqt.kun * 24 * 60 * 60 * 1000 -
+        hisoblanuvchi_vaqt.soat * 60 * 60 * 1000 -
+        hisoblanuvchi_vaqt.minut * 60 * 1000) /
+      1000;
+    hisoblanuvchi_vaqt.secund = Math.floor(hisoblanuvchi_vaqt.secund);
+    console.log(vaqt, hisoblanuvchi_vaqt);
+  }, [profile, kurs, hozir]);
 
   return (
     <div className="main__course-buy">
-
       <div className="about-head">
         <div style={{ display: "flex" }}>
           <button onClick={onBack} className="back-1">
@@ -183,15 +201,18 @@ function AboutCourseInfo() {
               : "sidebar-main-wrap mobile_none"
           }
         >
-          <div
+          <div>
+            {kurs.treeler==""?<img
+              className="every__cource-bigImg"
+              src={urlJoin("https://api.ilmlar.com/", `${kurs?.obloshka}`)}
+              alt=""
+            />:<video controls autoPlay muted disablePictureInPicture
+            
+            controlsList="nodownload"
             className="every__cource-bigImg"
-            style={{
-              backgroundImage: `url(${urlJoin(
-                "https://api.ilmlar.com/",
-                `${kurs?.obloshka}`
-              )})`,
-            }}
-          ></div>
+            src={urlJoin("https://api.ilmlar.com/", `${kurs?.treeler}`)}
+          ></video>}
+          </div>
 
           <div className="every__cource-desc">
             <div className="every__cource-header">
@@ -238,17 +259,34 @@ function AboutCourseInfo() {
               </div>
             </div>
 
-
-
-            {(findCursById(profile?.mycurs, kursId)) ?
+            {findCursById(profile?.mycurs, kursId) ? (
               <div>
                 <div className="every__cource-name">
                   <p>Kurs nomi: {kurs?.Kursname}</p>
                 </div>
                 <div>
-                  <Progress percent={Math.floor((vaqt-Date.now())/(kurs.muddati*30*24*3600*1000)*100)||0} size={[, 20]} trailColor="rgba(0,0,0,0.3)" status="active" strokeColor={'#00E03F'} ></Progress>
+                  <Progress
+                    percent={
+                      Math.floor(
+                        ((vaqt - Date.now()) /
+                          (kurs.muddati * 30 * 24 * 3600 * 1000)) *
+                          100
+                      ) || 0
+                    }
+                    size={[, 20]}
+                    trailColor="rgba(0,0,0,0.3)"
+                    status="active"
+                    strokeColor={"#00E03F"}
+                  ></Progress>
                 </div>
-                <div className="vaqt">{hisoblanuvchi_vaqt.oy>0?hisoblanuvchi_vaqt.oy:0} oy:{hisoblanuvchi_vaqt.kun} kun:{hisoblanuvchi_vaqt.soat} soat:{hisoblanuvchi_vaqt.minut} minut:{hisoblanuvchi_vaqt.secund} secund</div>
+                <div className="vaqt">
+                  <p>
+                    {hisoblanuvchi_vaqt.oy > 0 ? hisoblanuvchi_vaqt.oy : 0} oy{" "}
+                    {hisoblanuvchi_vaqt.kun} kun {hisoblanuvchi_vaqt.soat} soat{" "}
+                    {hisoblanuvchi_vaqt.minut} minut {hisoblanuvchi_vaqt.secund}{" "}
+                    soniya
+                  </p>
+                </div>
                 <div className="every__course-buttons">
                   <button
                     onClick={() => {
@@ -259,7 +297,8 @@ function AboutCourseInfo() {
                   </button>
                 </div>
               </div>
-              : <div>
+            ) : (
+              <div>
                 <div className="every__cource-name">
                   <p>Kurs nomi: {kurs?.Kursname}</p>
                 </div>
@@ -290,17 +329,15 @@ function AboutCourseInfo() {
                   </button>
 
                   <button
-                    onClick={() => navigate("/student/notboughtcouse/" + kursId)}
+                    onClick={() =>
+                      navigate("/student/notboughtcouse/" + kursId)
+                    }
                   >
                     Kursni olish
                   </button>
                 </div>
               </div>
-
-
-            }
-
-
+            )}
           </div>
         </div>
       </div>

@@ -9,6 +9,8 @@ function MobileHeader({
   modal,
   modalDarslar,
   type,
+  
+  query,
   where,
   wherey,
   setquery,
@@ -30,6 +32,7 @@ function MobileHeader({
       <div className="search-div">
           <input
             ref={searchRef}
+            defaultValue={query}
             className={type == "search" ? "search-main" : "d-none"}
             placeholder="search..."
           />
