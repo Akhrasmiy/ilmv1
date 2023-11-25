@@ -9,6 +9,9 @@
   .main-contentt{
     height: 80vh !important;
   } 
+  .w100{
+    width: 44vh;
+  }
 }
 @keyframes mobileBurger {
   0% {

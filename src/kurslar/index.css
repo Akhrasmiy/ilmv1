@@ -104,6 +104,12 @@
   margin-bottom: 8px;
 }
 
+@media only screen and (min-width: 540px){
+  
+  .w100{
+    width: 44vw;
+  }
+}
 .every__cource-nav {
   display: flex;
   gap: 24px;
@@ -243,7 +249,7 @@
   }
 }
 
-@media only screen and (max-width: 5400px) {
+@media only screen and (max-width: 540px) {
   .every__cource-bigImg {
     height: 230px;
   }
