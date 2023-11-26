@@ -32,7 +32,7 @@ const StudentRegistration = () => {
     setemail(emailRef.current.value)
     console.log(formData);
     axios
-      .post("https://lapi.ilmlar.com/users/register/", formData)
+      .post("https://api.ilmlar.com/users/register/", formData)
       .then((response) => {
         console.log(response.data);
         setverifycode(true)
