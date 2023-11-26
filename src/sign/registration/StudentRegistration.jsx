@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style.css";
 
 const StudentRegistration = () => {
+  const [verifycode, setverifycode] = useState(false)
+  const [email, setemail] = useState("")
   const nameRef = useRef();
+  const emailcodeRef = useRef();
   const surnameRef = useRef();
   const usernameRef = useRef();
   const emailRef = useRef();
@@ -16,8 +19,8 @@ const StudentRegistration = () => {
   const onBack = () => {
     navigate(-1);
   };
-  const handlechange= () =>{
-    usernameRef.current.value=usernameRef.current.value.toLowerCase().trim()
+  const handlechange = () => {
+    usernameRef.current.value = usernameRef.current.value.toLowerCase().trim()
   }
   const onHandler = (e) => {
     e.preventDefault();
@@ -26,18 +29,29 @@ const StudentRegistration = () => {
     formData.append("password", passwordRef.current.value);
     formData.append("email", emailRef.current.value);
     formData.append("fullname", `${nameRef.current.value} ${surnameRef.current.value}`);
-    
+    setemail(emailRef.current.value)
     console.log(formData);
     axios
-      .post("https://api.ilmlar.com/users/register/", formData)
+      .post("https://lapi.ilmlar.com/users/register/", formData)
       .then((response) => {
         console.log(response.data);
-        navigate("/login");
+        setverifycode(true)
       })
       .catch((error) => {
         console.error(error);
       });
   };
+  const onverify = (e) => {
+    e.preventDefault();
+    console.log({
+      email: email,
+      code: emailcodeRef.current.value
+    })
+    axios.post("https://api.ilmlar.com/users/register/verify", {
+      email: email,
+      code: emailcodeRef.current.value
+    })
+  }
 
   return (
     <div className="app-content">
@@ -54,9 +68,14 @@ const StudentRegistration = () => {
           <input ref={passwordRef} type="password" placeholder="parol" required />
           <input ref={passwordRepeatRef} type="password" placeholder="parolni qayta yozing" required />
           <div className="register-mobile__forBtn">
-          <button type="submit">Ro'yxatdan o'tish</button>
+            <button type="submit">Ro'yxatdan o'tish</button>
           </div>
-          
+
+        </form>
+        <form action=""  className={`${verifycode?"activecode":"noactivecode"}`} onSubmit={(e) => onverify(e)}>
+
+          <input ref={emailcodeRef} type="number" placeholder="code" required />
+          <button type="submit">ruyhatdan otish</button>
         </form>
         <Link className="alright_note" to={"/login"}>alright, do you have an account?</Link>
       </div>

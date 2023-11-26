@@ -138,6 +138,9 @@ input {
 .sign_form input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #453663 inset;
 }
+.noactivecode{
+  display: none;
+}
 
 /* input:autofill {
 background-color: #3706f4;

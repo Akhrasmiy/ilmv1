@@ -1,9 +1,13 @@
 import axios from "axios";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style.css";
 
 const TeacherRegistration = () => {
+
+  const [verifycode, setverifycode] = useState(false)
+  const [email, setemail] = useState("")
+  const emailcodeRef = useRef();
   const nameRef = useRef();
   const surnameRef = useRef();
   const usernameRef = useRef();
@@ -12,8 +16,8 @@ const TeacherRegistration = () => {
   const passwordRepeatRef = useRef();
   const fileRef = useRef();
   const navigate = useNavigate();
-  const handlechange= () =>{
-    usernameRef.current.value=usernameRef.current.value.toLowerCase().trim()
+  const handlechange = () => {
+    usernameRef.current.value = usernameRef.current.value.toLowerCase().trim()
   }
   const onBack = () => {
     navigate(-1);
@@ -30,20 +34,31 @@ const TeacherRegistration = () => {
       "fullname",
       `${nameRef.current.value} ${surnameRef.current.value}`
     );
+    setemail(emailRef.current.value)
 
     axios
       .post("https://api.ilmlar.com/teacher/register/", formData)
       .then((response) => {
         // Handle successful registration
         console.log(response.data);
-        navigate("/teacherlogin");
+        setverifycode(response.data.email)
       })
       .catch((error) => {
         // Handle registration error
         console.error(error);
       });
   };
-
+  const onverify = (e) => {
+    e.preventDefault();
+    console.log({
+      email: email,
+      code: emailcodeRef.current.value
+    })
+    axios.post("https://api.ilmlar.com/teacher/register/verify", {
+      email: email,
+      code: emailcodeRef.current.value
+    })
+  }
   return (
     <div className="app-content">
       <div className="sign_wrap">
@@ -63,15 +78,15 @@ const TeacherRegistration = () => {
           />
           <input ref={emailRef} type="email" placeholder="email" required />
           {/* <div className="input_registr_file"> */}
-            <input
-              ref={fileRef}
-              className="input_registr_file"
-              type="file"
-              placeholder="profilephoto"
-              required
-            />
-            {/* <p>rasm tanlang</p> */}
-            {/* <ion-icon name="camera-outline"></ion-icon> */}
+          <input
+            ref={fileRef}
+            className="input_registr_file"
+            type="file"
+            placeholder="profilephoto"
+            required
+          />
+          {/* <p>rasm tanlang</p> */}
+          {/* <ion-icon name="camera-outline"></ion-icon> */}
           {/* </div> */}
 
           <input
@@ -88,9 +103,12 @@ const TeacherRegistration = () => {
           />
           <button type="submit">Ro'yxatdan o'tish</button>
         </form>
-        <Link className="alright_note" to={"/teacherlogin"}>
-          alright, do you have an account?
-        </Link>
+        <form action="" className={`${verifycode ? "activecode" : "noactivecode"}`} onSubmit={(e) => onverify(e)}>
+
+          <input ref={emailcodeRef} type="number" placeholder="code" required />
+          <button type="submit">ruyhatdan otish</button>
+        </form>
+        
       </div>
     </div>
   );
