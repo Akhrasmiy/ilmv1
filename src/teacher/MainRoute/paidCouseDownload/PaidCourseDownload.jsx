@@ -199,6 +199,7 @@ function FreeCourseDownload() {
                       onChange={handleInputvChange}
                       ref={coursevideoRef}
                       type="file"
+                      
                       placeholder="Muqova uchun rasm"
                       accept="video/*"
                     />
@@ -206,6 +207,8 @@ function FreeCourseDownload() {
                       <div style={{ height: "100%" }}>
                         <vedio
                           src={video}
+                          muted
+                          autoplay
                           alt="selected"
                           style={{
                             width: "100%",

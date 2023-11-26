@@ -8,6 +8,9 @@
   border-bottom: 1px solid #fff;
   padding: 10px 0;
 }
+.noactivevideo{
+  opacity: 0.6;
+}
 .teacher_all_video_navbar_one img{
   width: 20px;
 }

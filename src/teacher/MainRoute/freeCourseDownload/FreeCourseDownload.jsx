@@ -204,6 +204,7 @@ function FreeCourseDownload() {
                       <div style={{ height: "100%" }}>
                         <video
                         autoPlay
+                        muted
                           src={video}
                           style={{
                             width: "100%",

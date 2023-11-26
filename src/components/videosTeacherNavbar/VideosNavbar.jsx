@@ -5,6 +5,7 @@ import or2 from "../../imgs/or2.svg";
 import './style.css';
 function VideosNavbar(props) {
   const {
+    courseIndex,
     courseData,
     handleVideoSelection,
     handleCourseIndex,
@@ -16,7 +17,6 @@ function VideosNavbar(props) {
   const handleClick = () => {
     changeModal(false);
   };
-
   return (
     <div
       className={
@@ -32,14 +32,14 @@ function VideosNavbar(props) {
         <div>
           {courseData.map((course, index) => (
             <div
-            className="teacher_all_video_navbar_one"
+              className="teacher_all_video_navbar_one"
               key={index}
               onClick={() => {
                 handleVideoSelection(course);
                 handleCourseIndex(index + 1);
               }}
             >
-              <p>{index + 1}-dars. {course.nomi}</p>
+              <p className={`${courseIndex==index+1 ? "activevideo" : "noactivevideo"}`}>{index + 1}-dars. {course.nomi}</p>
               {
                 course.orni ? "" : <img src={or2} alt="" />
               }

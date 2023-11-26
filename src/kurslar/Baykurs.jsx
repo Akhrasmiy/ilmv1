@@ -91,6 +91,7 @@ function Baykurs() {
             handleVideoSelection={handleVideoSelection}
             handleCourseIndex={handleCourseIndex}
             changeModal={changeModal}
+            courseIndex={courseIndex}
             modal={modal}
           />
         </div>
