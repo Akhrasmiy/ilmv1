@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style.css";
+import { ToastContainer, toast } from 'react-toastify';
 
 const TeacherRegistration = () => {
 
@@ -26,7 +27,6 @@ const TeacherRegistration = () => {
   const onHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", fileRef.current.files[0]);
     formData.append("username", usernameRef.current.value);
     formData.append("password", passwordRef.current.value);
     formData.append("email", emailRef.current.value);
@@ -40,6 +40,16 @@ const TeacherRegistration = () => {
       .post("https://api.ilmlar.com/teacher/register/", formData)
       .then((response) => {
         // Handle successful registration
+        toast.info(`${emailRef.current.value}ga kod yuborildi. Tasdiqlash kodni kiriting`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         console.log(response.data);
         setverifycode(response.data.email)
       })
@@ -62,6 +72,8 @@ const TeacherRegistration = () => {
   return (
     <div className="app-content">
       <div className="sign_wrap">
+      <ToastContainer />
+
         <h3 className="registr_title">O'qituvchi sifatida ro'yxatdan o'tish</h3>
         <button onClick={onBack} className="back">
           <ion-icon name="chevron-back-outline"></ion-icon>
@@ -78,13 +90,6 @@ const TeacherRegistration = () => {
           />
           <input ref={emailRef} type="email" placeholder="email" required />
           {/* <div className="input_registr_file"> */}
-          <input
-            ref={fileRef}
-            className="input_registr_file"
-            type="file"
-            placeholder="profilephoto"
-            required
-          />
           {/* <p>rasm tanlang</p> */}
           {/* <ion-icon name="camera-outline"></ion-icon> */}
           {/* </div> */}
@@ -101,12 +106,12 @@ const TeacherRegistration = () => {
             placeholder="parolni qayta yozing"
             required
           />
-          <button type="submit">Ro'yxatdan o'tish</button>
+          <button type="submit" className={`${verifycode ? "d-none" : ""} verify_form`}>Davom etish</button>
         </form>
-        <form action="" className={`${verifycode ? "activecode" : "noactivecode"}`} onSubmit={(e) => onverify(e)}>
+        <form action="" className={`${verifycode ? "activecode" : "noactivecode"} verify_form`} onSubmit={(e) => onverify(e)}>
 
           <input ref={emailcodeRef} type="number" placeholder="code" required />
-          <button type="submit">ruyhatdan otish</button>
+          <button type="submit">Ro'yxatdan o'tish</button>
         </form>
         
       </div>

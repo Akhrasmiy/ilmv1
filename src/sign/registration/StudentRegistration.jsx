@@ -40,7 +40,7 @@ const StudentRegistration = () => {
       .post("https://api.ilmlar.com/users/register/", formData)
       .then((response) => {
         console.log(response.data);
-        toast.info(`${email}ga kod yuborildi. O'sha kodni kiriting`, {
+        toast.info(`${emailRef.current.value}ga kod yuborildi. Tasdiqlash kodni kiriting`, {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -101,7 +101,7 @@ const StudentRegistration = () => {
           />
           <div className="register-mobile__forBtn">
             <button 
-          className={`${verifycode ? "d-none" : ""} verify_form`} type="submit">davom etish</button>
+          className={`${verifycode ? "d-none" : ""} verify_form`} type="submit">Davom etish</button>
           </div>
         </form>
         <form
