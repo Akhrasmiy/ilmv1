@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import opacha from "../../imgs/user-logo.png"
+import defaultuser from '../../imgs/user-1.png'
 import "./style.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -33,7 +34,10 @@ function TeachUserprofile() {
   return (
     <div>
       <div className='userprofile' style={{ textAlign: "center", paddingTop: 15 }}>
-        <img src={"https://api.ilmlar.com" + deleteplatforma(profile.path)} alt="" />
+        {
+          profile?.path ? <img src={"https://api.ilmlar.com" + deleteplatforma(profile?.path)} alt="" /> : <img src={defaultuser} alt="" />
+        }
+
         <h2>{profile.fullname}</h2>
       </div>
     </div>
