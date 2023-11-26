@@ -34,7 +34,7 @@ const StudentLogin = () => {
       .catch((err) => {
         toast.error('Username yoki parol xato', {
           position: "top-right",
-          autoClose: 3000,
+          autoClose: 8000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
