@@ -13,6 +13,8 @@ function FreeCourseDownload() {
   const courseNameRef = useRef();
   const courseDescRef = useRef();
   const courseImgRef = useRef();
+  const coursevideoRef = useRef();
+
   const priceRef = useRef();
   const courseMuddatiRef = useRef();
   const descriptionInputRef = useRef();
@@ -83,6 +85,7 @@ function FreeCourseDownload() {
   const onSendForm = () => {
     const formData = new FormData();
     formData.append("obloshka", courseImgRef.current.files[0]);
+    formData.append("treeler", coursevideoRef.current.files[0]);
     formData.append("name", courseNameRef.current.value);
     formData.append("desc", courseDescRef.current.value);
     formData.append("muddati", courseMuddatiRef.current.value);
@@ -119,6 +122,7 @@ function FreeCourseDownload() {
   };
 
   const [image, setImage] = useState("");
+  const [video, setvideo] = useState("");
 
   const handleInputChange = (event) => {
     const file = event.target.files[0];
@@ -126,6 +130,14 @@ function FreeCourseDownload() {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImage(reader.result);
+    };
+  };
+  const handleInputvChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setvideo(reader.result);
     };
   };
   const handlechangenarx =()=>{
@@ -171,6 +183,29 @@ function FreeCourseDownload() {
                       <div style={{ height: "100%" }}>
                         <img
                           src={image}
+                          alt="selected"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className={styles.input_file}>
+                    {!video && <p>treeler bu ixtiyoriy</p>}
+                    <input
+                      onChange={handleInputvChange}
+                      ref={coursevideoRef}
+                      type="file"
+                      placeholder="Muqova uchun rasm"
+                      accept="video/*"
+                    />
+                    {video && (
+                      <div style={{ height: "100%" }}>
+                        <vedio
+                          src={video}
                           alt="selected"
                           style={{
                             width: "100%",

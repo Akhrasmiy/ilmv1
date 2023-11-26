@@ -12,6 +12,7 @@ function FreeCourseDownload() {
   const courseNameRef = useRef();
   const courseDescRef = useRef();
   const courseImgRef = useRef();
+  const coursevideoRef = useRef();
   const courseMuddatiRef = useRef();
   const descriptionInputRef = useRef();
   const isopenRef = useRef();
@@ -32,7 +33,7 @@ function FreeCourseDownload() {
       const title = titleInputRef.current.value;
       const description = descriptionInputRef.current.value;
       const file = fileInputRef.current.files[0];
-      const isopen=isopenRef.current.value
+      const isopen = isopenRef.current.value
       if (!title) {
         toast("Iltimos, video nomini kiriting");
         return 0;
@@ -83,6 +84,9 @@ function FreeCourseDownload() {
   const onSendForm = () => {
     const formData = new FormData();
     formData.append("obloshka", courseImgRef.current.files[0]);
+    if( coursevideoRef.current.files[0]){
+      formData.append("treeler", coursevideoRef.current.files[0]);
+    }
     formData.append("name", courseNameRef.current.value);
     formData.append("desc", courseDescRef.current.value);
     formData.append("narxi", 0);
@@ -120,6 +124,7 @@ function FreeCourseDownload() {
   };
 
   const [image, setImage] = useState("");
+  const [video, setvideo] = useState("");
 
   const handleInputChange = (event) => {
     const file = event.target.files[0];
@@ -127,6 +132,14 @@ function FreeCourseDownload() {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImage(reader.result);
+    };
+  };
+   const handleInputvChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setvideo(reader.result);
     };
   };
 
@@ -176,6 +189,30 @@ function FreeCourseDownload() {
                         />
                       </div>
                     )}
+
+                  </div>
+                  <div className={styles.input_file}>
+                    {!video && <p>Treeler kiritish ixtiyoriy</p>}
+                    <input
+                      onChange={handleInputvChange}
+                      ref={coursevideoRef}
+                      type="file"
+                      placeholder="Treeler kiritish ixtiyoriy"
+                      accept="video/*"
+                    />
+                    {video && (
+                      <div style={{ height: "100%" }}>
+                        <video
+                        autoPlay
+                          src={video}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                          }}
+                        />
+                      </div>
+                    )}
+
                   </div>
                   <div className={styles.extra_div}>
                     <div className={styles.input_wrap}>
@@ -242,13 +279,13 @@ function FreeCourseDownload() {
                         </span></label> */}
 
                         <select name="" ref={isopenRef} id="">
-                          
-                        <option value="false"><span class="material-symbols-outlined">
-                          yopiq
-                        </span></option>
-                        <option value="true"><span class="material-symbols-outlined">
-                          ochiq
-                        </span></option>
+
+                          <option value="false"><span class="material-symbols-outlined">
+                            yopiq
+                          </span></option>
+                          <option value="true"><span class="material-symbols-outlined">
+                            ochiq
+                          </span></option>
                         </select>
                         <div className={styles.plus_minus}>
                           <button
