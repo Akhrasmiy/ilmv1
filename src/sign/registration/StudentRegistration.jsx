@@ -65,6 +65,10 @@ const StudentRegistration = () => {
     axios.post("https://api.ilmlar.com/users/register/verify", {
       email: email,
       code: emailcodeRef.current.value,
+    }).then((res)=>{
+      if(res.data._id){
+        navigate("/login")
+      }
     });
   };
 

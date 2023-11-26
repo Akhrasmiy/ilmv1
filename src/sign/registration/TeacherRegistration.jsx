@@ -67,6 +67,10 @@ const TeacherRegistration = () => {
     axios.post("https://api.ilmlar.com/teacher/register/verify", {
       email: email,
       code: emailcodeRef.current.value
+    }).then((res)=>{
+      if(res.data._id){
+        navigate("/teacherlogin")
+      }
     })
   }
   return (
