@@ -15,11 +15,11 @@ const Select = () => {
         </button>
         <div className="select_div">
           <Link className="select_link" to="/registration">
-            O'quvchi sifatida ro'yhatdan o'tish
+            O'quvchi sifatida ro'yxatdan o'tish
           </Link>
           <br />
           <Link className="select_link" to="/teacherregistration">
-            O'qituvchi sifatida ro'yhatdan o'tish
+            O'qituvchi sifatida ro'yxatdan o'tish
           </Link>
         </div>
       </div>

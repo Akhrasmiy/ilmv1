@@ -20,6 +20,13 @@ function Lessons() {
       setCourses(res.data);
     });
   }, [query]);
+  function onMore(){
+    // setLoader(true);
+    axios.get("https://api.ilmlar.com/courses/?q=" + query).then((res) => {
+      // setLoader(false);
+      setCourses([...courses,...res.data]);
+    });
+  }
   let [modal, setModal] = useState(false);
   let [modalDarslar, setModalDarslar] = useState(false);
   function clickModal() {
@@ -69,6 +76,7 @@ function Lessons() {
                   return <Cart cart={cart} key={index} />;
                 })}
               </div>
+              <button className="more_btn" onClick={() => {onMore()}}>Ko'proq ko'rish</button>
             </div>
           </div>
           <Navvedio />

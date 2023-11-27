@@ -1,3 +1,51 @@
+.bought_lessons{
+  display: flex;
+  gap: 6px;
+  background-color: #3a2c5b;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  height: 90px;
+}
+.carts-wrapper{
+  max-height: 85vh;
+  overflow: scroll;
+  border-radius: 30px;
+}
+.carts-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.bought_lessons img{
+  width: 114px;
+  height: 90px;
+  border-radius: 20px 0px 0px 20px;
+}
+.bought_lessons .text_info p{
+  font-size: 14px;
+  display: -webkit-box;
+  line-height: 20px;
+  max-width: 250px;
+  margin: 8px 5px 5px 0;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bought_lessons .text_info strong{
+  font-size: 13px;
+  font-weight: 400;
+  display: -webkit-box;
+  line-height: 20px;
+  max-width: 250px;
+  margin: 5px 5px 5px 0;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0.8;
+}
+.bought_lessons .text_info strong.big_style{
+  font-size: 16px;
+}
+
 .sidebar-main-content {
   padding: 0 5px;
   padding-top: 21px;
@@ -28,7 +76,7 @@
   padding: 15px 16px 16px 15px;
 }
 .commit h2 {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -50,7 +98,9 @@
 }
 .users_subs {
   padding: 11px 5px;
+  padding-bottom: 0;
 }
+
 .users_subs-buttons {
   display: flex;
   justify-content: center;
@@ -58,7 +108,7 @@
 }
 .users_subs-buttons a {
   padding: 5px 26px;
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -93,24 +143,38 @@
   border-radius: 50%;
 }
 .obunalar-cart div p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   color: #ffffff;
 }
+.scroll_paragraph_div p{
+  display: -webkit-box;
+  max-width: 235px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .obunalar-cart div span {
-  font-family: "Inter";
+  font-family: sans-serif;
+  padding-bottom: 2px;
   font-style: normal;
   font-weight: 400;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 13px;
   color: rgba(255, 255, 255, 0.5);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-.carts-wrapper {
-  padding: 10px;
-}
+
 .darslar-cart {
   display: flex;
   gap: 6px;
@@ -133,19 +197,29 @@
   border-radius: 20px 0px 0px 20px;
 }
 .darslar-cart div p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
-  padding: 3px 0;
+  margin: 3px 0;
   line-height: 15px;
   color: #ffffff;
 }
 .darslar-cart div p:first-child {
   font-weight: 700;
+  margin-bottom: 8px;
   font-size: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
 }
 .darslar-cart div p:last-child {
   font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .sidebar-main-wrap {
   overflow-y: scroll;
@@ -171,11 +245,11 @@
   margin-bottom: 17px;
 }
 .mobile__header h2 {
-  max-width: 250px;
+  max-width: 235px;
   width: 100%;
   display: flex;
   justify-content: center;
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;

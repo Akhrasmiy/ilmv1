@@ -40,7 +40,7 @@ const SelectDownloadCourse = () => {
           changeModal={changeModal}
           modal={modal}
           modalDarslar={modalDarslar}
-          type={"search"}
+          type={"Kurs yuklash"}
           where="teacher"
         />
       </div>

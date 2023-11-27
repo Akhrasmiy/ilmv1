@@ -74,16 +74,16 @@ function Baystudy({ modalDarslar, changeModalDars, topic }) {
         <div className="sidebar-bought-course">
           {teacherData &&
             teacherData.map((item, index) => (
-              <div className="darslar-cart cursor_bought_class">
+              <div className="cursor_bought_class bought_lessons">
                 <img
                   src={
                     "https://api.ilmlar.com" + deleteplatforma(item.obloshka)
                   }
                   alt=""
                 />
-                <div>
+                <div className="text_info">
                   <p>{item?.Kursname}</p>
-                  <strong>{item?.price}</strong>
+                  <strong className="big_style">{item?.narxi} so'm</strong>
                 </div>
               </div>
             ))}

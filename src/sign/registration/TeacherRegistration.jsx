@@ -93,10 +93,7 @@ const TeacherRegistration = () => {
             onChange={handlechange}
           />
           <input ref={emailRef} type="email" placeholder="email" required />
-          {/* <div className="input_registr_file"> */}
-          {/* <p>rasm tanlang</p> */}
-          {/* <ion-icon name="camera-outline"></ion-icon> */}
-          {/* </div> */}
+        
 
           <input
             ref={passwordRef}
@@ -117,7 +114,9 @@ const TeacherRegistration = () => {
           <input ref={emailcodeRef} type="number" placeholder="code" required />
           <button type="submit">Ro'yxatdan o'tish</button>
         </form>
-        
+        <Link className="alright_note" to={"/teacherlogin"}>
+          Oldin ro'yxatdan o'tganmisiz?
+        </Link>
       </div>
     </div>
   );

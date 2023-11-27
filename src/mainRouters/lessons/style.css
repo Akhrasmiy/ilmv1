@@ -4,7 +4,18 @@
   right: 50%;
   transform: translateX(-50%);
 }
-
+.more_btn{
+  display: block;
+  margin: 20px auto;
+  padding: 10px 30px;
+  font-size: 18px;
+  border-radius: 20px;
+  outline: none;
+  background-color: #3E305C;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
 @media only screen and (min-width: 540px){
   .main-contentt{
     height: 80vh !important;
@@ -36,7 +47,7 @@
 .search-main {
   width: 100%;
   padding: 5px 12px;
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;

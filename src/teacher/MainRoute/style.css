@@ -16,7 +16,7 @@
 .search-main {
   width: 100%;
   padding: 15px 28px;
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -114,9 +114,7 @@
     width: 100%;
     border-radius: 70px;
   }
-  .teacher_hisoblar {
-    padding-left: 80px;
-  }
+ 
   .main_profile_container img {
     margin-top: 0px;
   }

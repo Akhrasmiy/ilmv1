@@ -34,7 +34,7 @@ function MobileHeader({
             ref={searchRef}
             defaultValue={query}
             className={type == "search" ? "search-main" : "d-none"}
-            placeholder="search..."
+            placeholder="Qidiruv..."
           />
           <div
             className={type == "search" ? "search-img-box" : "d-none"}

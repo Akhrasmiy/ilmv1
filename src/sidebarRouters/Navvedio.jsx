@@ -103,29 +103,25 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
         <div className="sidebar-bought-course">
           {teacherData.map((item, index) => (
             <div
-              className="cursor_class"
+              className="cursor_class bought_lessons"
               key={index}
               onClick={() => {
                 navigate("/student/kurs/" + item._id);
               }}
             >
-              <div className="darslar-cart">
                 <img
                   src={
                     "https://api.ilmlar.com" + deleteplatforma(item.obloshka)
                   }
                   alt=""
                 />
-                <div>
+                <div className="text_info">
                   <p>
-                    {item.Kursname.length > 30
-                      ? item.Kursname.slice(0, 30) + "..."
-                      : item.Kursname}
+                    {item?.Kursname}
                   </p>
-                  <p>
-                     {item.Kursdesc}
-                  </p>
-                </div>
+                  <strong>
+                     {item?.Kursdesc}
+                  </strong>
               </div>
             </div>
           ))}
@@ -136,31 +132,26 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
           {save.map((item, index) => (
             <div
               key={index}
+              className="cursor_class bought_lessons"
               onClick={() => {
                 navigate("/student/kurs/" + item._id);
               }}
             >
-              <div className="darslar-cart">
                 <img
                   src={
                     "https://api.ilmlar.com" + deleteplatforma(item.obloshka)
                   }
                   alt=""
                 />
-                <div>
+                <div className="text_info">
                   <p>
-                    {item.Kursname.length > 12
-                      ? item.Kursname.slice(0, 12) + "..."
-                      : item.Kursname}
+                    {item?.Kursname}
                   </p>
-                  <p>
-                    {item.Kursdesc.length > 15
-                      ? item.Kursdesc.slice(0, 15) + "..."
-                      : item.Kursdesc}
-                  </p>
-                </div>
+                  <strong>
+                     {item?.Kursdesc}
+                  </strong>
               </div>
-            </div>
+              </div>
           ))}
         </div>
       </div>

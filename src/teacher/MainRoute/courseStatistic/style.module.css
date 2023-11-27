@@ -38,7 +38,7 @@
   padding: 11px 23px 31px 23px;
 }
 .img_card_desc h3 {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -46,7 +46,7 @@
   color: #ffffff;
 }
 .img_card_desc p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -61,7 +61,7 @@
 }
 
 .course_statictic_desc h2 {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 26px;
@@ -70,7 +70,7 @@
   margin-bottom: 35px;
 }
 .course_statictic_desc p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;

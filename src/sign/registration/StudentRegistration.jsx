@@ -117,7 +117,7 @@ const StudentRegistration = () => {
           <button type="submit">Ro'yxatdan o'tish</button>
         </form>
         <Link className="alright_note" to={"/login"}>
-          alright, do you have an account?
+          Oldin ro'yxatdan o'tganmisiz?
         </Link>
       </div>
     </div>

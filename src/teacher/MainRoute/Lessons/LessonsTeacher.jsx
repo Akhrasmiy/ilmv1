@@ -66,7 +66,7 @@ function LessonsTeacher(props) {
             changeModal={changeModal}
             modal={modal}
             modalDarslar={modalDarslar}
-            type={"search"}
+            type={"Darslar"}
             where="teacher"
           />
         </div>

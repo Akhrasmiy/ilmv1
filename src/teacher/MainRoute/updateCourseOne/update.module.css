@@ -24,7 +24,7 @@
 }
 .kurs_yuklash h1 {
   text-align: center;
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -51,7 +51,7 @@
   background-color: #40325d;
 }
 .input_file p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -74,7 +74,7 @@
   padding: 10px 20px;
   color: #fff;
   outline: none;
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -91,7 +91,7 @@
   margin-bottom: 20px;
 }
 .input_wrap label {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -122,7 +122,7 @@
   background-color: #40325d;
 }
 .video_download p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -156,7 +156,7 @@
   color: #fff;
 }
 .video_download p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -171,7 +171,7 @@
 }
 
 .amount {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -179,7 +179,7 @@
   color: #ffffff;
 }
 .btn {
-  font-family: "Inter";
+  font-family: sans-serif;
   outline: none;
   font-style: normal;
   font-weight: 400;

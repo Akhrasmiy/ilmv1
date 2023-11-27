@@ -70,7 +70,7 @@ function TeacherProfile() {
           changeModal={changeModal}
           modal={modal}
           modalDarslar={modalDarslar}
-          type={"search"}
+          type={"Profile"}
           where="teacher"
         />
       </div>
@@ -79,13 +79,13 @@ function TeacherProfile() {
           {
             profile?.path ? <img src={"https://api.ilmlar.com" + deleteplatforma(profile?.path)} alt="" /> : <img src={defaultuser} alt="" />
           }
-          <h2>{profile.fullname}</h2>
-          <h4>{profile.obunachilar} obunachi</h4>
+          <h2>{profile?.fullname}</h2>
+          <h4>{profile?.obunachilar?.length} ta obunachi</h4>
           <div className={styles.profile_teacher_desc}>
             <p>Mutaxassislik: {profile.mutahasislik}</p>
-            <p>BIO: {profile.bio}</p>
+            <p>BIO: {profile?.bio}</p>
             <label className={styles.location}>
-              Joylashuv: {profile.joylashuv}
+              Joylashuv: {profile?.joylashuv}
             </label>
           </div>
 

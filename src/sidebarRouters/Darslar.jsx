@@ -1,6 +1,8 @@
 import React, { memo, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./index.css";
+
 const Darslar = () => {
   const navigate = useNavigate();
 
@@ -58,21 +60,18 @@ const Darslar = () => {
   return (
     <div className="carts-wrapper">
       {teacherData.map((item, index) => (
-        <div
-          key={item.id}
-          className="darslar-cart"
-          onClick={() => {
-            navigate("/student/kurs/" + item._id);
-          }}
-        >
-          <img
-            src={"https://api.ilmlar.com" + deleteplatforma(item.obloshka)}
-            alt=""
-          />
-          <div className="scroll_paragraph_div">
-            <p>{item.Kursdesc.length > 110 ? item.Kursdesc.split(0, 110) + "..." : item.Kursdesc}</p>
-          </div>
+        <div className="cursor_bought_class bought_lessons">
+        <img
+          src={
+            "https://api.ilmlar.com" + deleteplatforma(item.obloshka)
+          }
+          alt=""
+        />
+        <div className="text_info">
+          <p>{item?.Kursname}</p>
+          <strong>{item?.Kursdesc}</strong>
         </div>
+      </div>
       ))}
     </div>
   );

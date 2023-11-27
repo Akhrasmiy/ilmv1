@@ -151,7 +151,7 @@ function TeacherInfo() {
                   alt=""
                 />
                 <h2>{profile.fullname}</h2>
-                <p>{profile?.obunachilar} ta obunachi</p>
+                <p>{profile?.obunachilar?.length} ta obunachi</p>
                 {subsBool ? (
                   <button
                     onClick={() => {

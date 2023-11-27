@@ -45,7 +45,7 @@
   gap: 12px;
 }
 .every__cource-title h3 {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -77,7 +77,7 @@
   height: 29px;
 }
 .every__cource-name p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -86,7 +86,7 @@
   margin-bottom: 18px;
 }
 .every__cource-about p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -95,7 +95,7 @@
   margin-bottom: 15px;
 }
 .every__cource-num p {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -114,7 +114,7 @@
   gap: 66px;
 }
 .every__course-buttons button {
-  font-family: "Inter";
+  font-family: sans-serif;
   font-style: normal;
   border-radius: 20px;
   background-color: #372B4F;
