@@ -4,6 +4,7 @@ import "./courseInfo.css";
 import VideosNavbar from "../../../components/videosTeacherNavbar/VideosNavbar";
 
 import styles from "./courseInfo.module.css";
+import "./CourseInfo.css"
 import video_player from "../../../imgs/video_player.png";
 import VideoInformation from "../../components/videoInformation/VideoInformation";
 import axios from "axios";
@@ -83,7 +84,7 @@ function CourseInfo() {
   return (
     <div className="app-content">
       <div className="course_info">
-        <button onClick={onBack} className="back">
+        <button onClick={onBack} className="back1">
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         {/* <div className="videos_navbar video_information_scroll">
@@ -100,13 +101,16 @@ function CourseInfo() {
               </li>
             ))}
           </ul>
+           className={`${courseIndex==index+1 ? "activevideo" : "noactivevideo"}`}
         </div> */}
         <div className={modal ? "def2 modal-navbar" : "def2 yoq"}>
+          
           <VideosNavbar
             courseData={courseData}
             handleVideoSelection={handleVideoSelection}
             handleCourseIndex={handleCourseIndex}
             changeModal={changeModal}
+            courseIndex={courseIndex}
             modal={modal}
           />
         </div>

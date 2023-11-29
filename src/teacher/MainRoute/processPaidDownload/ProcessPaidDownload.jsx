@@ -14,7 +14,7 @@ const ProcessFreeDownload = () => {
             <button onClick={onBack} className="back">
               <ion-icon name="chevron-back-outline"></ion-icon>
             </button>
-            <h2>Pullik kurs yuklash</h2>
+            <h2>Kurs yuklash</h2>
             <form className="process_free_form">
               <div className="free_input_wrap">
                 <label htmlFor="name">Video dars nomi</label>

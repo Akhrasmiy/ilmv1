@@ -9,6 +9,7 @@ import axios from "axios";
 import Loader from "../loader/Loader";
 import urlJoin from "url-join";
 import MobileHeader from "../components/mobileHeader/mobileHeader";
+import defaultuser from "../imgs/user-1.png"
 
 function TeacherInfo() {
   const [profile, setProfil] = useState({});
@@ -145,11 +146,9 @@ function TeacherInfo() {
               <Loader />
             ) : (
               <div className="my_subs">
-                <img
-                  className="teacher_img"
-                  src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(profile.path)}`)}
-                  alt=""
-                />
+                {
+                  profile.path ? <img  className="teacher_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(profile.path)}`)} alt="" /> : <img className="teacher_img" src={defaultuser}></img>
+                }
                 <h2>{profile.fullname}</h2>
                 <p>{profile?.obunachilar?.length} ta obunachi</p>
                 {subsBool ? (

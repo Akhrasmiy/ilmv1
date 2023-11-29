@@ -5,11 +5,14 @@ import { useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "./style.css";
+import { Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
+
 
 function FreeCourseDownload() {
   const modalRef = useRef();
   const titleInputRef = useRef();
-  const isopenRef=useRef()
+  const isopenRef = useRef()
   const courseNameRef = useRef();
   const courseDescRef = useRef();
   const courseImgRef = useRef();
@@ -21,7 +24,8 @@ function FreeCourseDownload() {
   const fileInputRef = useRef();
   const [videoLessons, setVideoLessons] = useState([{ id: 1 }]);
   const [narx, setnarx] = useState(0);
- 
+  const [upload, setupload] = useState(0);
+
   const [videoDataArray, setVideoDataArray] = useState([]);
   const navigate = useNavigate();
   const onBack = () => {
@@ -33,7 +37,7 @@ function FreeCourseDownload() {
       const title = titleInputRef.current.value;
       const description = descriptionInputRef.current.value;
       const file = fileInputRef.current.files[0];
-      const isopen=isopenRef.current.value
+      const isopen = isopenRef.current.value
 
       if (!title) {
         toast("Iltimos, video nomini kiriting");
@@ -83,13 +87,14 @@ function FreeCourseDownload() {
     modalRef.current.style.display = "flex";
   };
   const onSendForm = () => {
+    setupload(1)
     const formData = new FormData();
     formData.append("obloshka", courseImgRef.current.files[0]);
     formData.append("treeler", coursevideoRef.current.files[0]);
     formData.append("name", courseNameRef.current.value);
     formData.append("desc", courseDescRef.current.value);
     formData.append("muddati", courseMuddatiRef.current.value);
-    formData.append("narxi", priceRef.current.value*1.25);
+    formData.append("narxi", priceRef.current.value * 1.25);
 
     for (let i = 0; i < videoDataArray.length; i++) {
       const videoData = videoDataArray[i];
@@ -117,6 +122,7 @@ function FreeCourseDownload() {
         console.log(res);
       })
       .catch((error) => {
+        setupload(2)
         console.error(error);
       });
   };
@@ -140,8 +146,8 @@ function FreeCourseDownload() {
       setvideo(reader.result);
     };
   };
-  const handlechangenarx =()=>{
-    if(priceRef?.current?.value){
+  const handlechangenarx = () => {
+    if (priceRef?.current?.value) {
       setnarx(priceRef.current.value)
     }
   }
@@ -155,7 +161,7 @@ function FreeCourseDownload() {
             <button onClick={onBack} className={styles.back}>
               <ion-icon name="chevron-back-outline"></ion-icon>
             </button>
-            <h1>Pullik kurs yuklash</h1>
+            <h1>Kurs yuklash</h1>
             <form
               onSubmit={(e) => onHandleForm(e)}
               className={styles.kurs_yuklash_form}
@@ -169,57 +175,31 @@ function FreeCourseDownload() {
                 <textarea ref={courseDescRef}></textarea>
               </div>
               <div className={styles.upload_div}>
-                <div className={styles.muqova_wrapper}>
-                  <div className={styles.input_file}>
-                    {!image && <p>Muqova uchun rasm</p>}
-                    <input
-                      onChange={handleInputChange}
-                      ref={courseImgRef}
-                      type="file"
-                      placeholder="Muqova uchun rasm"
-                      accept="image/*"
-                    />
-                    {image && (
-                      <div style={{ height: "100%" }}>
-                        <img
-                          src={image}
-                          alt="selected"
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                          }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                  <div className={styles.input_file}>
-                    {!video && <p>treeler bu ixtiyoriy</p>}
-                    <input
-                      onChange={handleInputvChange}
-                      ref={coursevideoRef}
-                      type="file"
-                      
-                      placeholder="Muqova uchun rasm"
-                      accept="video/*"
-                    />
-                    {video && (
-                      <div style={{ height: "100%" }}>
-                        <vedio
-                          src={video}
-                          muted
-                          autoplay
-                          alt="selected"
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                          }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                  <div className={styles.extra_div} style={{display:"block"}}>
+                <div className={styles.upload_imgtreeler}>
+                  <div>
+                    <div className={styles.input_file}>
+                      {!image && <p>Muqova uchun rasm</p>}
+                      <input
+                        onChange={handleInputChange}
+                        ref={courseImgRef}
+                        type="file"
+                        placeholder="Muqova uchun rasm"
+                        accept="image/*"
+                      />
+                      {image && (
+                        <div style={{ height: "100%" }}>
+                          <img
+                            src={image}
+                            alt="selected"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
                     <div className={styles.input_wrap}>
                       <p htmlFor="amount" className={styles.amount}>
                         Davomiylik
@@ -231,23 +211,68 @@ function FreeCourseDownload() {
                         id=""
                       >
                         <option value="1">1 oy</option>
-                        <option value="3">3 oy</option>
-                        <option value="6">6 oy</option>
-                        <option value="9">9 oy</option>
-                        <option value="12">12 oy</option>
-                        <option value="forewer">for ever</option>
+                        <option value="3">2 oy</option>
+                        <option value="6">3 oy</option>
+                        <option value="9">4 oy</option>
+                        <option value="1">5 oy</option>
+                        <option value="3">6 oy</option>
+                        <option value="6">7 oy</option>
+                        <option value="9">8 oy</option>
+                        <option value="12">9 oy</option>
+                        <option value="1">10 oy</option>
+                        <option value="3">11 oy</option>
+                        <option value="6">12 oy</option>
+                        <option value="forewer">umrbod</option>
                       </select>
                     </div>
-                    <div className={styles.input_wrap} style={{width:"150px"}}>
-                    <p htmlFor="amount" className={styles.amount}>
-                        Narxi 
-                      </p>
-                      
-                      <input type="number" onChange={handlechangenarx} style={{minWidth:"100px"}} ref={priceRef} />
+                  </div>
+                  <div>
+                    <div className={styles.input_file}>
+                      {!video && <p>treeler bu ixtiyoriy</p>}
+                      <input
+                        onChange={handleInputvChange}
+                        ref={coursevideoRef}
+                        type="file"
+
+                        placeholder="Muqova uchun rasm"
+                        accept="video/*"
+                      />
+                      {video && (
+                        <div style={{ height: "100%" }}>
+                          <vedio
+                            src={video}
+                            muted
+                            autoplay
+                            alt="selected"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.input_wrap} style={{ width: "150px" }}>
                       <p htmlFor="amount" className={styles.amount}>
-                        sotuv narxi: {narx*1.25} SO`M
+                        Narxi
+                      </p>
+
+                      <input type="number" onChange={handlechangenarx} step="0.1" style={{ minWidth: "100px" }} ref={priceRef} />
+                      <p htmlFor="amount" className={styles.amount}>
+                        sotuv narxi: {narx * 1.25} SO`M
                       </p>
                     </div>
+                  </div>
+                </div>
+                <div className={styles.muqova_wrapper}>
+                  <div style={{ display: "flex" }}>
+
+
+                  </div>
+                  <div className={styles.extra_div} style={{ display: "block" }}>
+
+
                   </div>
                 </div>
                 <div className={styles.videos}>
@@ -277,14 +302,14 @@ function FreeCourseDownload() {
                           ref={fileInputRef}
                         />
                         <select name="" ref={isopenRef} id="">
-                          
+
                           <option value="false"><span class="material-symbols-outlined">
                             yopiq
                           </span></option>
                           <option value="true"><span class="material-symbols-outlined">
                             ochiq
                           </span></option>
-                          </select>
+                        </select>
                         <div className={styles.plus_minus}>
                           <button
                             type="button"
@@ -316,7 +341,7 @@ function FreeCourseDownload() {
       </div>
 
       <div ref={modalRef} className={styles.free_modal}>
-        <div className={styles.free_modal_content}>
+        {upload == 0 ? <div className={styles.free_modal_content}>
           <p>Bu kursni haqiqatdan yuklamoqchimisiz?</p>
           <div className={styles.free_modal_wrap}>
             <button onClick={() => (modalRef.current.style.display = "none")}>
@@ -324,7 +349,24 @@ function FreeCourseDownload() {
             </button>
             <button onClick={() => onSendForm()}>HA</button>
           </div>
-        </div>
+        </div> : ""}
+        {upload == 1 ? <div className={styles.free_modal_content}>
+          <p>Yuklanmoqda <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} /></p>
+        </div> : ""}
+        {upload == 2 ? <div className={styles.free_modal_content}>
+          <p>Xatolik yuz berdi</p>
+          <div className={styles.free_modal_wrap}>
+            <button onClick={() => {
+              modalRef.current.style.display = "none"
+              setupload(0)
+            }}>
+              Orqaga
+            </button>
+            <button style={{display:"none"}}></button>
+
+          </div>
+        </div> : ""}
+
       </div>
     </>
   );

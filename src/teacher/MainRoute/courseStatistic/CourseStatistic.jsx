@@ -53,11 +53,14 @@ const CourseStatistic = () => {
             </div>
             <div className={styles.course_statictic_desc}>
               <h2>Kurs statistikasi</h2>
-              <p>Yuklangan vaqt: 4, April, 2022</p>
-              <p>Narxi: {courses.narxi} UZS</p>
-              <p>Kurs davomiyligi: 2 oy</p>
-              <p>Kurs o'qilish jarayonida:{courses.subs?.length}</p>
-              <p>Kurs daromadi: {courses.narxi*courses.subs?.length*0.8}</p>
+              {
+                courses.created_at ? <p>Yaratilgan vaqt: {String(courses?.created_at).split("T")[0].split("-")[2] || "aniq emas"} - {String(courses?.created_at).split("T")[0].split("-")[1] || ""} - {String(courses?.created_at).split("T")[0].split("-")[0] || "0"}</p>:
+                ""
+              }
+              <p>Narxi: {courses.narxi * 0.8} so'm</p>
+              <p>Kurs davomiyligi: {courses?.muddati} oy</p>
+              <p>Kurs o'qilish jarayonida:{courses?.subs?.length}</p>
+              <p>Kurs daromadi: {courses?.profit}</p>
             </div>
           </div>
         </div>

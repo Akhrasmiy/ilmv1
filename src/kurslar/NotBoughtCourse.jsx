@@ -6,6 +6,7 @@ import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
 import urlJoin from "url-join";
+import defaultuser from "../imgs/user-1.png"
 function NotBoughtCourse() {
   function savekurs(id) {
     axios
@@ -136,12 +137,9 @@ function NotBoughtCourse() {
                   navigate("/student/teacherinfo/" + teacher?._id);
                 }}
               >
-                <img
-                  src={
-                    "https://api.ilmlar.com" + deleteplatforma(teacher?.path)
-                  }
-                  alt=""
-                />
+                {
+                  teacher.path ? <img className="small_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(teacher.path)}`)} alt="" /> : <img src={defaultuser}></img>
+                }
                 <h3>{teacher?.fullname}</h3>
               </div>
             </div>
