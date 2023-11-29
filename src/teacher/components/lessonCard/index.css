@@ -36,6 +36,7 @@
 }
 .cart__content_info{
   cursor: pointer;
+  width: 250px;
 }
 .cart__content_info h3 {
   font-style: normal;
@@ -43,6 +44,10 @@
   font-size: 14px;
   line-height: 17px;
   margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .cart__content_info p{
   font-style: normal;
@@ -50,4 +55,8 @@
   font-size: 12px;
   line-height: 17px;
   margin-bottom: 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
