@@ -145,7 +145,7 @@ function TeacherInfo() {
             {loader ? (
               <Loader />
             ) : (
-              
+
               <div className="my_subs">
                 {
                   profile.path ? <img  className="teacher_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(profile.path)}`)} alt="" /> : <img className="teacher_img" src={defaultuser}></img>
@@ -154,6 +154,7 @@ function TeacherInfo() {
                 <p>{profile?.obunachilar?.length} ta obunachi</p>
                 {subsBool ? (
                   <button
+                  
                     onClick={() => {
                       setSubsBool(false);
                       saveObuna(teacherId);
