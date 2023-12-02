@@ -37,6 +37,7 @@ import NotBoughtCourse from "./kurslar/NotBoughtCourse";
 import SelectLogin from "./select/SelectLogin";
 
 function App() {
+  console.log("ishladi");
   return (
     <>
       <Routes>
