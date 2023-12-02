@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import defaultuser from "../imgs/user-1.png"
+import urlJoin from "url-join";
 const Subs = () => {
   const navigate = useNavigate();
   function deleteplatforma(url) {
