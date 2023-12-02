@@ -77,7 +77,6 @@ function FreeCourseDownload() {
     );
     setVideoDataArray(updatedVideoDataArray);
   };
-  console.log(videoDataArray);
   const handleVideoLessonUpload = () => {
     navigate("/teacher/processfreedownload");
   };
@@ -119,7 +118,6 @@ function FreeCourseDownload() {
         if (res.status === 200) {
           navigate("/free/success");
         }
-        console.log(res);
       })
       .catch((error) => {
         setupload(2)

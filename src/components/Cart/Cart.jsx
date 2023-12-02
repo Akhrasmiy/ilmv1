@@ -23,7 +23,6 @@ const Cart = (props) => {
       console.log(error)
     }
   } 
-  // console.log(props?.cart?.obloshka);
   const [teacher,setTeacher]=useState({});
 
   useEffect(()=>{

@@ -24,7 +24,6 @@ function TeacherInfo() {
   
   const navigate = useNavigate();
   function deleteplatforma(url) {
-    console.log(url);
     try {
       if (url?.includes("platforma")) {
         url = url.split("/");
@@ -112,7 +111,6 @@ function TeacherInfo() {
         }
       )
       .then((res) => {
-        console.log(res);
       })
       .catch((err) => console.log(err));
   }

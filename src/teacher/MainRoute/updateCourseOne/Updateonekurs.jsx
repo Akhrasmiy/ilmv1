@@ -69,7 +69,6 @@ function TeachUpdateonekurs() {
     );
     setVideoDataArray(updatedVideoDataArray);
   };
-  console.log(videoDataArray);
   const handleVideoLessonUpload = () => {
     navigate("/teacher/processfreedownload");
   };
@@ -101,7 +100,6 @@ function TeachUpdateonekurs() {
           }
         })
       .then((res) => {
-        console.log(res.data);
         if (res.status === 201) {
           toast.success('Member updated successfully.');
 
@@ -126,7 +124,6 @@ function TeachUpdateonekurs() {
       .then((res) => {
         setdata(res.data);
 
-        console.log(videoINFO)
       })
       .catch((error) => {
         console.error(error);
@@ -150,7 +147,6 @@ function TeachUpdateonekurs() {
       setImage(reader.result);
     };
   };
-  console.log(data)
   const handlechangenarx = () => {
     if (priceRef?.current?.value) {
       setnarx(priceRef.current.value)
@@ -244,7 +240,6 @@ function TeachUpdateonekurs() {
                           defaultValue={lesson.nomi}
                           onBlur={(e) => {
                             names[index] = e.target.value
-                            console.log(names)
                           }}
                           type="text"
                           placeholder="Enter video title"
@@ -255,7 +250,6 @@ function TeachUpdateonekurs() {
                           type="text"
                           onBlur={(e) => {
                             desc[index] = e.target.value
-                            console.log(desc)
                           }}
                           defaultValue={lesson.desc}
                           placeholder="Enter video description"

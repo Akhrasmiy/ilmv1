@@ -8,7 +8,6 @@ import StudentNavbar from "../../../navbar/student/StudentNavbar";
 import TeacherNavbar from "../../../navbar/teacher/TeacherNavbar";
 function LessonsTeacher(props) {
   const where=props.where
-  console.log(where)
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
@@ -31,9 +30,7 @@ function LessonsTeacher(props) {
     setModal(value);
   };
   function clickDarslarModal() {
-    console.log("darslarModal", modalDarslar);
     setModalDarslar(!modalDarslar);
-    console.log("darslarModal", modalDarslar);
   }
   const changeModalDars = (value) => {
     setModalDarslar(value);

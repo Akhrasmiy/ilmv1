@@ -39,7 +39,6 @@ const StudentRegistration = () => {
     axios
       .post("https://api.ilmlar.com/users/register/", formData)
       .then((response) => {
-        console.log(response.data);
         toast.info(`${emailRef.current.value}ga kod yuborildi. Tasdiqlash kodni kiriting`, {
           position: "top-right",
           autoClose: 3000,
@@ -58,7 +57,7 @@ const StudentRegistration = () => {
   };
   const onverify = (e) => {
     e.preventDefault();
-    console.log({
+    ({
       email: email,
       code: emailcodeRef.current.value,
     });

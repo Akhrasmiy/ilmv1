@@ -50,7 +50,6 @@ const TeacherRegistration = () => {
           progress: undefined,
           theme: "light",
         });
-        console.log(response.data);
         setverifycode(response.data.email)
       })
       .catch((error) => {
@@ -60,10 +59,6 @@ const TeacherRegistration = () => {
   };
   const onverify = (e) => {
     e.preventDefault();
-    console.log({
-      email: email,
-      code: emailcodeRef.current.value
-    })
     axios.post("https://api.ilmlar.com/teacher/register/verify", {
       email: email,
       code: emailcodeRef.current.value

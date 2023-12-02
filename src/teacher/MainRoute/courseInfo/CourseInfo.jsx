@@ -18,7 +18,6 @@ function deleteplatforma(url) {
       // console.log(s);
       return s; // Remove the first 3 segments of the URL
     }
-    console.log(url);
     return url;
   } catch (error) {
     console.log(error);
@@ -43,9 +42,7 @@ function CourseInfo() {
     setModal(value);
   };
   function clickDarslarModal() {
-    console.log("darslarModal", modalDarslar);
     setModalDarslar(!modalDarslar);
-    console.log("darslarModal", modalDarslar);
   }
   const changeModalDars = (value) => {
     setModalDarslar(value);

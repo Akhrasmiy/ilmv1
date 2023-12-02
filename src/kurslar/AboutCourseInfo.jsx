@@ -16,7 +16,6 @@ function findCursById(cursList, cursId) {
       return cursList[i].qachongacha;
     }
   }
-  console.log(false);
   return false;
 }
 function AboutCourseInfo() {
@@ -52,7 +51,6 @@ function AboutCourseInfo() {
         }
       )
       .then((res) => {
-        console.log(res);
       })
       .catch((err) => console.log(err));
   }
@@ -170,7 +168,6 @@ function AboutCourseInfo() {
         hisoblanuvchi_vaqt.minut * 60 * 1000) /
       1000;
     hisoblanuvchi_vaqt.secund = Math.floor(hisoblanuvchi_vaqt.secund);
-    console.log(vaqt, hisoblanuvchi_vaqt);
   }, [profile, kurs, hozir]);
 
   return (

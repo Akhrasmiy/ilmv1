@@ -86,7 +86,6 @@ function NotBoughtCourse() {
         }
       )
       .then((response) => {
-        console.log(response.data);
         if (response.data !== "hisobingizni toldiring") {
           navigate("/student/kurs/olinganlar/" + kursId);
         } else {

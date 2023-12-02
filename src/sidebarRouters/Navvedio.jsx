@@ -40,7 +40,6 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setProfil(res.data);
       });
   }, []);
