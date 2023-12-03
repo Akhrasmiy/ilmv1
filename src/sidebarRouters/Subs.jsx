@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import defaultuser from "../imgs/user-1.png"
+import urlJoin from "url-join";
 const Subs = () => {
   const navigate = useNavigate();
   function deleteplatforma(url) {
@@ -58,12 +60,11 @@ const Subs = () => {
           onClick={() => {
             navigate("/student/teacherinfo/" + item._id);
           }}
-          
+
         >
-          <img
-            src={"https://api.ilmlar.com" + deleteplatforma(item.path)}
-            alt=""
-          />
+          {
+            item.path ? <img className="teacher_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(item.path)}`)} alt="" /> : <img className="teacher_img" src={defaultuser}></img>
+          }
           <div>
             <p>{item?.fullname}</p>
             <span>{item?.mutahasislik}</span>

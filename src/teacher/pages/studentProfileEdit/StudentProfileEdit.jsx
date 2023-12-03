@@ -50,7 +50,6 @@ const StudentProfileEdit = () => {
     formData.append("fullname", `${firstnameref.current.value} ${lastnameref.current.value}`);
     formData.append("username", usernameRef.current.value);
     formData.append("file", userimgRef.current.files[0]);
-    console.log(formData);
     axios
       .put("https://api.ilmlar.com/users/", formData, {
         headers: {
@@ -59,7 +58,6 @@ const StudentProfileEdit = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         navigate("/student/profile");
       })
       .catch((error) => console.log(error));

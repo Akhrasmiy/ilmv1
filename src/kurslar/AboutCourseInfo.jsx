@@ -7,6 +7,8 @@ import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
 import urlJoin from "url-join";
+import defaultuser from "../imgs/user-1.png"
+
 import { Progress, Space } from "antd";
 function findCursById(cursList, cursId) {
   for (let i = 0; i < cursList?.length; i++) {
@@ -14,7 +16,6 @@ function findCursById(cursList, cursId) {
       return cursList[i].qachongacha;
     }
   }
-  console.log(false);
   return false;
 }
 function AboutCourseInfo() {
@@ -50,7 +51,6 @@ function AboutCourseInfo() {
         }
       )
       .then((res) => {
-        console.log(res);
       })
       .catch((err) => console.log(err));
   }
@@ -168,7 +168,6 @@ function AboutCourseInfo() {
         hisoblanuvchi_vaqt.minut * 60 * 1000) /
       1000;
     hisoblanuvchi_vaqt.secund = Math.floor(hisoblanuvchi_vaqt.secund);
-    console.log(vaqt, hisoblanuvchi_vaqt);
   }, [profile, kurs, hozir]);
 
   return (
@@ -202,16 +201,16 @@ function AboutCourseInfo() {
           }
         >
           <div>
-            {kurs.treeler==""?<img
+            {kurs.treeler == "" ? <img
               className="every__cource-bigImg"
               src={urlJoin("https://api.ilmlar.com/", `${kurs?.obloshka}`)}
               alt=""
-            />:<video controls autoPlay muted disablePictureInPicture
-            
-            controlsList="nodownload"
-            className="every__cource-bigImg"
-            src={urlJoin("https://api.ilmlar.com/", `${kurs?.treeler}`)}
-          ></video>}
+            /> : <video controls autoPlay muted disablePictureInPicture
+
+              controlsList="nodownload"
+              className="every__cource-bigImg"
+              src={urlJoin("https://api.ilmlar.com/", `${kurs?.treeler}`)}
+            ></video>}
           </div>
 
           <div className="every__cource-desc">
@@ -224,13 +223,9 @@ function AboutCourseInfo() {
                   );
                 }}
               >
-                <img
-                  src={urlJoin(
-                    "https://api.ilmlar.com/",
-                    `${deleteplatforma(teacher?.path)}`
-                  )}
-                  alt=""
-                />
+                {
+                  teacher.path ? <img className="small_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(teacher.path)}`)} alt="" /> : <img src={defaultuser}></img>
+                }
                 <h3>{teacher?.fullname}</h3>
               </div>
               <div className="every__cource-nav">
@@ -270,7 +265,7 @@ function AboutCourseInfo() {
                       Math.floor(
                         ((vaqt - Date.now()) /
                           (kurs.muddati * 30 * 24 * 3600 * 1000)) *
-                          100
+                        100
                       ) || 0
                     }
                     size={[, 20]}

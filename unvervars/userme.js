@@ -6,6 +6,5 @@ export function userme(){
         Authorization: localStorage.getItem("token")
     }
 }).then((res) => {
-    // console.log(res.data)
     return (res.data)
 })}

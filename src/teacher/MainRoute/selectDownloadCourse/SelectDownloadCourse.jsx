@@ -14,9 +14,7 @@ const SelectDownloadCourse = () => {
     setModal(value);
   };
   function clickDarslarModal() {
-    console.log("darslarModal", modalDarslar);
     setModalDarslar(!modalDarslar);
-    console.log("darslarModal", modalDarslar);
   }
   const changeModalDars = (value) => {
     setModalDarslar(value);
@@ -46,8 +44,8 @@ const SelectDownloadCourse = () => {
       </div>
       <div className="teacherHomePage main_profile_container sidebar-wrap teacher-main-sidebar">
         <div className={styles.buttons}  >
-          <NavLink to="/kurs/free">Tekin kurs yuklash</NavLink>
-          <NavLink to="/kurs/money">Pullik kurs yuklash</NavLink>
+          {/* <NavLink to="/kurs/free">Tekin kurs yuklash</NavLink> */}
+          <NavLink to="/kurs/money">Kurs yuklash</NavLink>
         </div>
       </div>
     </>

@@ -44,7 +44,6 @@ function AboutCourseInfo() {
         setSavedCourse(res?.data?.savecurss);
       });
   }, []);
-  console.log(savedCourse);
   useEffect(() => {
     for (let i = 0; i < savedCourse.length; i++) {
       if (savedCourse[i] == kursId) {

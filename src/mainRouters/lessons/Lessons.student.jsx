@@ -36,9 +36,7 @@ function Lessons() {
     setModal(value);
   };
   function clickDarslarModal() {
-    console.log("darslarModal", modalDarslar);
     setModalDarslar(!modalDarslar);
-    console.log("darslarModal", modalDarslar);
   }
   const changeModalDars = (value) => {
     setModalDarslar(value);

@@ -34,13 +34,11 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
   );
   useEffect(() => {
     setComments(commints);
-    console.log("Comments:", Comments);
   }, [])
   const handleClick = () => {
     changeModalDars(false);
   };
   function findCursById(cursList, cursId) {
-    console.log(cursList, cursId);
     for (let i = 0; i < cursList?.length; i++) {
       if (cursList[i]?.cursId === cursId) {
         setIsInput(true);
@@ -71,7 +69,6 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
         .then((res) => {
           if (res.data.Comments) {
             setComments(res.data.Comments);
-            console.log("Comments", Comments);
           } else {
             alert("bu kursni sotib olmagansiz");
           }
@@ -89,7 +86,6 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
 
   async function userphoto(id) {
     await axios.get(`https://api.ilmlar.com/users/${id}`).then((res) => {
-      console.log(res.data.path);
       return res.data.path;
     });
   }

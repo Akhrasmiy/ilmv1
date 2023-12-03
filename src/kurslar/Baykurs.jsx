@@ -13,10 +13,8 @@ function deleteplatforma(url) {
     if (url.includes("platforma")) {
       const parts = url.split("/");
       const s = parts.slice(2).join("/");
-      // console.log(s);
       return s; // Remove the first 3 segments of the URL
     }
-    console.log(url);
     return url;
   } catch (error) {
     console.log(error);
@@ -42,9 +40,7 @@ function Baykurs() {
     setModal(value);
   };
   function clickDarslarModal() {
-    console.log("darslarModal", modalDarslar);
     setModalDarslar(!modalDarslar);
-    console.log("darslarModal", modalDarslar);
   }
   const changeModalDars = (value) => {
     setModalDarslar(value);

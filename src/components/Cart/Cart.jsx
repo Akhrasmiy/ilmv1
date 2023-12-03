@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import defaultuser from "../../imgs/user-1.png"
 import "./style.css";
 import axios from "axios";
 import urlJoin from "url-join";
@@ -23,7 +23,6 @@ const Cart = (props) => {
       console.log(error)
     }
   } 
-  // console.log(props?.cart?.obloshka);
   const [teacher,setTeacher]=useState({});
 
   useEffect(()=>{
@@ -44,7 +43,10 @@ const Cart = (props) => {
           <h3>{props?.cart?.Kursname?.length < 45 ? props?.cart?.Kursname : props?.cart?.Kursname?.split(0, 43) + "..."}</h3>
           <p>{props?.cart?.Kursdesc}</p>
           <div className="desc">
-            <img className="small_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma( teacher.path)}`)} alt="" />
+            {
+              teacher.path?<img className="small_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma( teacher.path)}`)} alt="" />:<img src={defaultuser}></img>
+            }
+            
             <span>{teacher?.fullname?.length < 30 ? teacher?.fullname : teacher.fullname?.split(0, 28) + "..."}</span>
           </div>
         </div>

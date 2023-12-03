@@ -8,7 +8,14 @@
   background: linear-gradient(#564282, #826a91);
   border-radius: 50px;
 }
+input[type='number'] {
+  -moz-appearance:textfield;
+}
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 .w100 {
   width: 44vw;
   max-height: 90vh;

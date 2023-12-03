@@ -28,7 +28,6 @@ function StudentNavbar({ changeModal, modal }) {
       balanceRef?.current?.classList?.remove("active");
       profileRef?.current?.classList?.add("active");
     }
-    console.log(window.location.pathname)
   }, [window.location.pathname]);
   useEffect(()=>{
     if(window.location.pathname === "/student" || window.location.pathname === "/student/" || window.location.pathname === "/student/hisoblar"||window.location.pathname === "/student/profile/subs"||window.location.pathname ==="/student/profile/darslar"){

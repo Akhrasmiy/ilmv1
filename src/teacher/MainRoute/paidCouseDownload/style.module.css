@@ -160,6 +160,10 @@
   gap: 12px;
   margin-bottom: 10px;
 }
+.upload_imgtreeler {
+  display: flex;
+  gap: 15px;
+}
 .videos {
   width: 89%;
   display: flex;
@@ -372,7 +376,7 @@
   align-items: center;
   gap: 10px;
 }
-.muqova_wrapper{
+.muqova_wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -414,7 +418,7 @@
   }
 }
 @media only screen and (max-width: 1000px) {
-  .muqova_wrapper{
+  .muqova_wrapper {
     flex-direction: row;
   }
   .upload_div {

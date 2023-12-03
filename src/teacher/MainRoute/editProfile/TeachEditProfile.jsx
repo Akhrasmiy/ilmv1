@@ -59,7 +59,6 @@ const TeachEditProfile = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         navigate("/teacher/profile");
       })
       .catch((error) => console.log(error));

@@ -1,7 +1,6 @@
 import React from 'react'
 import "./style.css";
 function Comment(props) {
-  console.log(props?.commint?.text);
   return (
     <div className='commit__div'>
       efwed

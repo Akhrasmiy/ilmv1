@@ -4,6 +4,7 @@ import "./courseInfo.css";
 import VideosNavbar from "../../../components/videosTeacherNavbar/VideosNavbar";
 
 import styles from "./courseInfo.module.css";
+import "./CourseInfo.css"
 import video_player from "../../../imgs/video_player.png";
 import VideoInformation from "../../components/videoInformation/VideoInformation";
 import axios from "axios";
@@ -17,7 +18,6 @@ function deleteplatforma(url) {
       // console.log(s);
       return s; // Remove the first 3 segments of the URL
     }
-    console.log(url);
     return url;
   } catch (error) {
     console.log(error);
@@ -42,9 +42,7 @@ function CourseInfo() {
     setModal(value);
   };
   function clickDarslarModal() {
-    console.log("darslarModal", modalDarslar);
     setModalDarslar(!modalDarslar);
-    console.log("darslarModal", modalDarslar);
   }
   const changeModalDars = (value) => {
     setModalDarslar(value);
@@ -83,7 +81,7 @@ function CourseInfo() {
   return (
     <div className="app-content">
       <div className="course_info">
-        <button onClick={onBack} className="back">
+        <button onClick={onBack} className="back1">
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         {/* <div className="videos_navbar video_information_scroll">
@@ -100,13 +98,16 @@ function CourseInfo() {
               </li>
             ))}
           </ul>
+           className={`${courseIndex==index+1 ? "activevideo" : "noactivevideo"}`}
         </div> */}
         <div className={modal ? "def2 modal-navbar" : "def2 yoq"}>
+          
           <VideosNavbar
             courseData={courseData}
             handleVideoSelection={handleVideoSelection}
             handleCourseIndex={handleCourseIndex}
             changeModal={changeModal}
+            courseIndex={courseIndex}
             modal={modal}
           />
         </div>
