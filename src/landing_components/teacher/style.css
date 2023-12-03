@@ -26,6 +26,7 @@
 .landing_teacher_imgs img {
   width: 100%;
   height: 100%;
+  border-radius: 20px;
 }
 .landing_teacher_imgs img:nth-child(1) {
   grid-area: one;
