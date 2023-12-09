@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import "./index.css";
 import homeSidebar1 from "../imgs/sidebar1.png";
 import homeSidebar2 from "../imgs/sidebar2.png";
@@ -32,7 +32,9 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
   const [profile, setProfil] = useState({});
   const [teacherData, setTeacherData] = useState([]);
   const [save, setSave] = useState([]);
+  console.log(profile);
   useEffect(() => {
+    console.log("ishladi 1");
     axios
       .get("https://api.ilmlar.com/usersme", {
         headers: {
@@ -44,6 +46,7 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
       });
   }, []);
   useEffect(() => {
+    console.log("ishladi 2");
     const fetchTeachers = async () => {
       const fetchedTeacherData = [];
       for (let i = 0; i < profile.mycurs.length; i++) {
@@ -108,19 +111,13 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
                 navigate("/student/kurs/" + item._id);
               }}
             >
-                <img
-                  src={
-                    "https://api.ilmlar.com" + deleteplatforma(item.obloshka)
-                  }
-                  alt=""
-                />
-                <div className="text_info">
-                  <p>
-                    {item?.Kursname}
-                  </p>
-                  <strong>
-                     {item?.Kursdesc}
-                  </strong>
+              <img
+                src={"https://api.ilmlar.com" + deleteplatforma(item.obloshka)}
+                alt=""
+              />
+              <div className="text_info">
+                <p>{item?.Kursname}</p>
+                <strong>{item?.Kursdesc}</strong>
               </div>
             </div>
           ))}
@@ -136,21 +133,15 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
                 navigate("/student/kurs/" + item._id);
               }}
             >
-                <img
-                  src={
-                    "https://api.ilmlar.com" + deleteplatforma(item.obloshka)
-                  }
-                  alt=""
-                />
-                <div className="text_info">
-                  <p>
-                    {item?.Kursname}
-                  </p>
-                  <strong>
-                     {item?.Kursdesc}
-                  </strong>
+              <img
+                src={"https://api.ilmlar.com" + deleteplatforma(item.obloshka)}
+                alt=""
+              />
+              <div className="text_info">
+                <p>{item?.Kursname}</p>
+                <strong>{item?.Kursdesc}</strong>
               </div>
-              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -158,4 +149,4 @@ function Navvedio({ modalDarslar, changeModalDars, topic }) {
   );
 }
 
-export default Navvedio;
+export default memo(Navvedio);

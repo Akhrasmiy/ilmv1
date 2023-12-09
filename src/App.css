@@ -9,7 +9,7 @@
   border-radius: 50px;
 }
 input[type='number'] {
-  -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
@@ -27,7 +27,13 @@ input::-webkit-inner-spin-button {
   display: flex;
   gap: 19px;
 }
+.video_information div:first-child{
+  height: 360px;
+}
 @media only screen and (max-width: 540px){
+  .video_information div:first-child{
+    height: 100%;
+  }
   .w100{
     max-height: 100vh;
   }

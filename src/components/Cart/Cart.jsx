@@ -17,7 +17,7 @@ const Cart = (props) => {
         }
         return (res)
       }
-      else { return url }
+      else { return url}
   
     } catch (error) {
       console.log(error)
@@ -36,7 +36,7 @@ const Cart = (props) => {
         navigate("/student/kurs/" + kursId);
       }}
     >
-      <div className="main-cart">
+      <div className="main-cart" style={{cursor: "pointer"}}>
       
         <img src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(props?.cart?.obloshka)}`)} alt="" />
         <div className="cart-desc_wrap">

@@ -9,6 +9,7 @@ import video_player from "../../../imgs/video_player.png";
 import VideoInformation from "../../components/videoInformation/VideoInformation";
 import axios from "axios";
 import MobileHeader from "../../../components/mobileHeader/mobileHeader";
+import ReactPlayer from "react-player";
 
 function deleteplatforma(url) {
   try {
@@ -84,24 +85,7 @@ function CourseInfo() {
         <button onClick={onBack} className="back1">
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
-        {/* <div className="videos_navbar video_information_scroll">
-          <ul className="videos_navbar">
-            {courseData.map((course, index) => (
-              <li
-                key={index}
-                onClick={() => {
-                  setSelectedVideo(course);
-                  setCourseIndex(index + 1);
-                }}
-              >
-                {index + 1}-dars. {course.nomi}
-              </li>
-            ))}
-          </ul>
-           className={`${courseIndex==index+1 ? "activevideo" : "noactivevideo"}`}
-        </div> */}
         <div className={modal ? "def2 modal-navbar" : "def2 yoq"}>
-          
           <VideosNavbar
             courseData={courseData}
             handleVideoSelection={handleVideoSelection}
@@ -135,8 +119,18 @@ function CourseInfo() {
             
           </div>
           <div className="video_information video_information_scroll">
-            <div className="img_div">
-              <video
+          <ReactPlayer
+              playing={true}
+              url={`https://api.ilmlar.com/${deleteplatforma(
+                selectedVideo.orni
+              )}`}
+              alt="Video"
+              width="100%"
+              muted={true}
+              controls
+              config={{ file: { attributes: { controlsList: "nodownload" } } }}
+            />
+              {/* <video
                 src={`https://api.ilmlar.com/${deleteplatforma(
                   selectedVideo.orni
                 )}`}
@@ -145,8 +139,8 @@ function CourseInfo() {
                 playbackRate={3}
                 controls
                 controlsList="nodownload"
-              />
-            </div>
+              /> */}
+           
             <div className="video_information_content">
               <h3>
                 {courseIndex} - dars. {selectedVideo.nomi}

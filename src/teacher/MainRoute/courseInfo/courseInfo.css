@@ -11,8 +11,7 @@
   position: absolute;
   top: -23px;
   left: 0;
-
-  background-color: #48386a;
+  background-color: #574382;
   border: none;
   outline: none;
   width: 40px;
@@ -93,20 +92,10 @@
   min-height: 85vh;
   border-radius: 50px;
 }
-.video_information .img_div {
-  border-radius: 50px 50px 0px 0px;
-  /* width: 100%; */
-  height: 435px;
-  /* height:; */
-  /* max-height: 435px;
-  height: 100%; */
-  background-color: #2e2442;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  object-position: center;
-  object-fit: contain;
+.video_information video{
+  background-color: #453862;
 }
+
 .img_div video {
   width: 100%;
   height: 100%;
@@ -132,7 +121,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 18px;
   color: #ffffff;
 }
 .video_information_scroll {

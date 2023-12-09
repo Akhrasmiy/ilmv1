@@ -38,7 +38,7 @@ function TeachUserprofile() {
           profile?.path ? <img src={"https://api.ilmlar.com" + deleteplatforma(profile?.path)} alt="" /> : <img src={defaultuser} alt="" />
         }
 
-        <h2>{profile.fullname}</h2>
+        <h2 style={{marginTop: "15px"}}>{profile.fullname}</h2>
       </div>
     </div>
   )

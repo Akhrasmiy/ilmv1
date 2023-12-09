@@ -6,7 +6,8 @@ import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
 import urlJoin from "url-join";
-import defaultuser from "../imgs/user-1.png"
+import defaultuser from "../imgs/user-1.png";
+import { notification } from "antd";
 function NotBoughtCourse() {
   function savekurs(id) {
     axios
@@ -74,6 +75,16 @@ function NotBoughtCourse() {
       });
   }, []);
   const navigate = useNavigate();
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type, placement) => {
+    api[type]({
+      message: "Hisobingizni to'ldiring",
+      description:
+        "Hisobingizni to'ldirmasdan turib bu kursni ko'rish imkoniyati yo'q",
+        placement,
+    });
+  };
+
   function kursOlish(kursId) {
     axios
       .post(
@@ -89,7 +100,8 @@ function NotBoughtCourse() {
         if (response.data !== "hisobingizni toldiring") {
           navigate("/student/kurs/olinganlar/" + kursId);
         } else {
-          alert("hisongizni toldring");
+          openNotificationWithIcon('warning', "top");
+          // alert("hisongizni toldring");
         }
       })
       .catch((error) => {
@@ -98,6 +110,7 @@ function NotBoughtCourse() {
   }
   return (
     <div className="main__course-buy">
+      {contextHolder}
       <div className="about-head">
         <MobileHeader
           changeModalDars={changeModalDars}
@@ -136,9 +149,18 @@ function NotBoughtCourse() {
                   navigate("/student/teacherinfo/" + teacher?._id);
                 }}
               >
-                {
-                  teacher.path ? <img className="small_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(teacher.path)}`)} alt="" /> : <img src={defaultuser}></img>
-                }
+                {teacher.path ? (
+                  <img
+                    className="small_img"
+                    src={urlJoin(
+                      "https://api.ilmlar.com",
+                      `${deleteplatforma(teacher.path)}`
+                    )}
+                    alt=""
+                  />
+                ) : (
+                  <img src={defaultuser}></img>
+                )}
                 <h3>{teacher?.fullname}</h3>
               </div>
             </div>

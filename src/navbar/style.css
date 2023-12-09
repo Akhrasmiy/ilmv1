@@ -86,7 +86,11 @@
 }
 .teacher-navbar ul li {
     position: relative;
+    cursor: pointer;
     padding: 8px 12px;
+}
+.student_nav_main li{
+    cursor: pointer;
 }
 .teacher_nav_main li.active,
 .student_nav_main li.active {

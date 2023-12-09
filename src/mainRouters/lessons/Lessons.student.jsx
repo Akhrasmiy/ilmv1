@@ -9,7 +9,6 @@ import axios from "axios";
 import Loader from "../../loader/Loader";
 
 function Lessons() {
-  
   const [courses, setCourses] = useState([]);
   const [loader, setLoader] = useState(false);
   const [query, setquery] = useState("");
@@ -20,11 +19,11 @@ function Lessons() {
       setCourses(res.data);
     });
   }, [query]);
-  function onMore(){
+  function onMore() {
     // setLoader(true);
     axios.get("https://api.ilmlar.com/courses/?q=" + query).then((res) => {
       // setLoader(false);
-      setCourses([...courses,...res.data]);
+      setCourses([...courses, ...res.data]);
     });
   }
   let [modal, setModal] = useState(false);
@@ -64,7 +63,7 @@ function Lessons() {
               changeModal={changeModal}
               modal={modal}
               modalDarslar={modalDarslar}
-              type={"search"} 
+              type={"search"}
               query={query}
               setquery={setquery}
             />
@@ -74,7 +73,14 @@ function Lessons() {
                   return <Cart cart={cart} key={index} />;
                 })}
               </div>
-              <button className="more_btn" onClick={() => {onMore()}}>Ko'proq ko'rish</button>
+              <button
+                className="more_btn"
+                onClick={() => {
+                  onMore();
+                }}
+              >
+                Ko'proq ko'rish
+              </button>
             </div>
           </div>
           <Navvedio />

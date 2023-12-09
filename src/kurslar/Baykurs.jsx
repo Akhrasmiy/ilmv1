@@ -7,6 +7,8 @@ import or3 from "../imgs/or3.svg";
 import styles from "./courseInfo.module.css";
 import axios from "axios";
 import MobileHeader from "../components/mobileHeader/mobileHeader";
+import ReactPlayer from "react-player";
+import Loader from "../loader/Loader";
 
 function deleteplatforma(url) {
   try {
@@ -73,14 +75,10 @@ function Baykurs() {
   };
   return (
     <div className="app-content">
-      <div onClick={() => onBack()} className="btn_wrap">
-        <button className="back">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-        </button>
-      </div>
-
       <div className="course_info">
-        
+        <button onClick={() => onBack()} className="lesson_btn_wrap">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
         <div className={modal ? "def2 modal-navbar" : "def2 yoq"}>
           <VideosNavbar
             courseData={courseData}
@@ -112,24 +110,18 @@ function Baykurs() {
             </div>
           </div>
           <div className="video_information video_information_scroll">
-            <div className="img_div">
-              {selectedVideo.orni ? (
-                <video
-                  src={`https://api.ilmlar.com/${deleteplatforma(
-                    selectedVideo.orni
-                  )}`}
-                  alt=""
-                  disablePictureInPicture
-                  playbackRate={3}
-                  controls
-                  controlsList="nodownload"
-                />
-              ) : (
-                <div>
-                  <img src={or3} alt="" />
-                </div>
-              )}
-            </div>
+            <ReactPlayer
+              playing={true}
+              url={`https://api.ilmlar.com/${deleteplatforma(
+                selectedVideo.orni
+              )}`}
+              alt="Video"
+              width="100%"
+              muted={true}
+              controls
+              fallback={<img src={or3} alt="" />}
+              config={{ file: { attributes: { controlsList: "nodownload" } } }}
+            />
             <div className="video_information_content">
               <h3>
                 {courseIndex} - dars. {selectedVideo.nomi}

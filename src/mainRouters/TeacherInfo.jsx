@@ -193,15 +193,14 @@ function TeacherInfo() {
                   {teacherInfo.length != 0 ? (
                     teacherInfo.map((item, index) => {
                       return (
-                        <div key={item._id} className="courses_list" onClick={()=>{ navigate("/student/kurs/" + item._id);}}>
+                        <div style={{cursor: "pointer"}} key={item._id} className="courses_list" onClick={()=>{ navigate("/student/kurs/" + item._id);}}>
                           <img
                             src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(item.obloshka)}`)}
                             alt=""
                           />
                           <div className="teacherinfo_courses" style={{position:"relative"}}>
-                            <b style={{textAlign: "start"}}>{item.Kursname}</b>
-                            <br />
-                            <p>{item.Kursdesc} </p> 
+                            <b>{item.Kursname}</b>
+                            <p>{item.Kursdesc}</p> 
                           </div>
                         </div>
                       );

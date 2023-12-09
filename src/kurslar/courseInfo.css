@@ -1,3 +1,22 @@
+.lesson_btn_wrap{
+  position: absolute;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #5A4683;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  top: -15px;
+}
+.lesson_btn_wrap ion-icon{
+  color: #fff;
+  font-size: 27px;
+}
 @keyframes mobileBurger {
   0% {
     transform: translateX(0);
@@ -22,7 +41,7 @@
   display: flex;
   gap: 20px;
   position: relative;
-  padding-top: 3vh;
+  padding-top: 5vh;
 }
 .back {
   position: absolute;
@@ -76,36 +95,19 @@
   min-height: 85vh;
   border-radius: 50px;
 }
-.video_information .img_div {
-  border-radius: 50px 50px 0px 0px;
-  /* width: 100%; */
-  height: 435px;
-  /* height:; */
-  /* max-height: 435px;
-  height: 100%; */
-  background-color: #2e2442;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  object-position: center;
-  object-fit: contain;
+
+.video_information video{
+  background-color: #453862;
 }
+
 .img_div video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50px 50px 0px 0px;
+}
 
-}
-.img_div div {
-  width: 100%;
-  min-height: 300px;
-  object-fit: cover;
-  border-radius: 50px 50px 0px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .video_information_content {
   padding: 0 28px 28px 28px;
 }
@@ -161,6 +163,12 @@
 }
 
 @media only screen and (max-width:540px){
+  .course_info{
+    padding-top: 2.6vh;
+  }
+  .lesson_btn_wrap{
+    display: none;
+  }
   .btn_wrap{
     display: none;
   }

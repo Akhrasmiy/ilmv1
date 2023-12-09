@@ -110,7 +110,8 @@ button {
 }
 .app-content {
   padding: 34px 39px;
-  min-height: 100vh;
+  box-sizing: border-box;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -154,7 +155,7 @@ button {
     display: flex;
   }
   .app-content {
-    padding: 10px 10px;
+    padding: 10px;
   }
   .teacherHomePage {
     width: 100%;

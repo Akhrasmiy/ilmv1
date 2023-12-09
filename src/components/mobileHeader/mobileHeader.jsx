@@ -9,7 +9,6 @@ function MobileHeader({
   modal,
   modalDarslar,
   type,
-  
   query,
   where,
   wherey,
@@ -29,19 +28,22 @@ function MobileHeader({
           <img src={mobileBurger} alt="burger" />
         </div>
       </div>
-      <div className="search-div">
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        setquery(searchRef.current.value)
+      }} className="search-div">
           <input
             ref={searchRef}
             defaultValue={query}
             className={type == "search" ? "search-main" : "d-none"}
             placeholder="Qidiruv..."
           />
-          <div
+          <button
+          type="submit"
             className={type == "search" ? "search-img-box" : "d-none"}
-            onClick={()=>{setquery(searchRef.current.value)}}
           >
             <img src={search} alt="" />
-          </div>
+          </button>
           <button
             type="submit"
             
@@ -49,7 +51,7 @@ function MobileHeader({
           >
             {type}
           </button>
-      </div>
+      </form>
       <div
         className={where ? "burger d-none" : "burger"}
         onClick={handleClickDarslar}

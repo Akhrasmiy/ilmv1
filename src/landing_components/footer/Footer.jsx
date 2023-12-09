@@ -25,6 +25,7 @@ const Footer = () => {
         <div className="landing_footer_number">
           <p>Murojat uchun:</p>
           <p>Tel : +998 94 335 05 31</p>
+          <p>Email : infoilmlar@gmail.com</p>
         </div>
       </div>
       <p className="landing_footer_bottom"><span>ilmlar.com</span> yangi avlod ta’lim platformasi. {new Date().getFullYear()}</p>

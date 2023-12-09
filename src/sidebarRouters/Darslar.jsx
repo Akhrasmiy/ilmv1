@@ -8,6 +8,7 @@ const Darslar = () => {
 
   const [profile, setProfil] = useState({});
   const [teacherData, setTeacherData] = useState([]);
+  console.log("teacherdata", teacherData);
   function deleteplatforma(url) {
     try {
       if (url.includes("platforma")) {
@@ -60,7 +61,7 @@ const Darslar = () => {
   return (
     <div className="carts-wrapper">
       {teacherData.map((item, index) => (
-        <div className="cursor_bought_class bought_lessons">
+        <div onClick={() => {navigate("/student/kurs/" + item._id)}} className="cursor_bought_class bought_lessons">
         <img
           src={
             "https://api.ilmlar.com" + deleteplatforma(item.obloshka)

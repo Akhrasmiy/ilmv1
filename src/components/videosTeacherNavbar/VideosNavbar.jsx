@@ -39,7 +39,7 @@ function VideosNavbar(props) {
                 handleCourseIndex(index + 1);
               }}
             >
-              <p className={`${courseIndex==index+1 ? "activevideo" : "noactivevideo"}`}>{index + 1}-dars. {course.nomi}</p>
+              <p className={`${courseIndex==index+1 ? "activevideo" : "noactivevideo"} videos_navbar_text`}>{index + 1}-dars. {course.nomi}</p>
               {
                 course.orni ? "" : <img src={or2} alt="" />
               }

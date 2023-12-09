@@ -1,10 +1,13 @@
 .success_free_btn {
   font-family: sans-serif;
+  position: absolute;
+  bottom: 70px;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 29px;
-  padding: 4px 88px;
+  width: 220px;
+  padding: 10px 20px;
   border-radius: 30px;
   background-color: #48386a;
   outline: none;
@@ -25,7 +28,6 @@
   align-items: center;
 }
 .success_free_title{
-  margin-bottom: 100px;
   margin-top: 18px;
 }
 .process_wrap h2 {

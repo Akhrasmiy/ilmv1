@@ -79,7 +79,7 @@ const StudentProfileEdit = () => {
         </button>
         <div className={style.imgs_div}>
           {
-            profil?.path ? <img className={style.imgs_div_img} src={"https://api.ilmlar.com" + deleteplatforma(profil?.path)} alt="" /> : <img className={style.imgs_div_img} src={camera} alt="camera img" />
+            profil?.path ? <img className={style.imgs_div_img} src={"https://api.ilmlar.com" + deleteplatforma(profil?.path)} alt="" /> : <img className={style.imgs_div_img} src={user} alt="camera img" />
           }
           <div className={style.select_camera_wrap}>
 

@@ -68,7 +68,7 @@ function StudentNavbar({ changeModal, modal }) {
           <img src={t6} alt="" />
           <Link to="/student/profile/subs">profile</Link>
         </li></>
-          ):(<li onClick={() => {navigate(-1)}} ref={lessonsRef}>
+          ):(<li className="active" onClick={() => {navigate(-1)}} ref={lessonsRef}>
           <img className="navbar_back" src={or4} alt="" />
           <Link>orqaga</Link>
         </li>)

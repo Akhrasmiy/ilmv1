@@ -34,7 +34,7 @@ const StudentLogin = () => {
       .catch((err) => {
         toast.error('Username yoki parol xato', {
           position: "top-right",
-          autoClose: 8000,
+          autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -53,8 +53,8 @@ const StudentLogin = () => {
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         <form className="sign_form" onSubmit={(e) => onHandler(e)}>
-          <input ref={usernameRef} onChange={handlechange} type="text" placeholder="username" />
-          <input ref={passwordRef} type="password" placeholder="password" />
+          <input ref={usernameRef} required onChange={handlechange} type="text" placeholder="username" />
+          <input ref={passwordRef} required type="password" placeholder="password" />
           <button type="submit">Login</button>
         </form>
       </div>

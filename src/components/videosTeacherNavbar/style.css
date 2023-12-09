@@ -1,5 +1,5 @@
 .teacher_all_video_navbar{
-  padding: 32px 18px;
+  padding: 18px;
 }
 .teacher_all_video_navbar_one{
   cursor: pointer;
@@ -13,4 +13,10 @@
 }
 .teacher_all_video_navbar_one img{
   width: 20px;
+}
+.videos_navbar_text{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

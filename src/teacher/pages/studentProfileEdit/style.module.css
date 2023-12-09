@@ -27,8 +27,10 @@
 .img_file_input {
   width: 71px;
   height: 71px;
+  cursor: pointer;
   opacity: 0;
 }
+
 
 .select_camera_wrap img {
   width: 71px;
