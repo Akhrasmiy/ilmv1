@@ -84,19 +84,19 @@ function TeacherNavbar({ changeModal, modal }) {
         <TeachUserprofile />
       </div>
       <ul className="teacher_nav_main">
-        <li ref={lessonsRef}>
+        <li onClick={() => lessonsRef.current.classList.add("active")} ref={lessonsRef}>
           <img src={t1} alt="" />
           <Link to="/teacher/darslar">darslar</Link>
         </li>
-        <li ref={balanceRef}>
+        <li onClick={() => balanceRef.current.classList.add("active")} ref={balanceRef}>
           <img src={t2} alt="" />
           <Link to="/teacher/hisoblar">hisob balans</Link>
         </li>
-        <li ref={saveRef}>
+        <li onClick={() => saveRef.current.classList.add("active")} ref={saveRef}>
           <img src={t3} alt="" />
           <Link to="/teacher/kurs">kurs yuklash</Link>
         </li>
-        <li ref={profileRef}>
+        <li onClick={() => profileRef.current.classList.add("active")} ref={profileRef}>
           <img src={t6} alt="" />
           <Link to="/teacher/profile">profile</Link>
         </li>

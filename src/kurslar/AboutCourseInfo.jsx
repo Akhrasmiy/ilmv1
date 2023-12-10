@@ -7,7 +7,8 @@ import MobileHeader from "../components/mobileHeader/mobileHeader";
 import StudentNavbar from "../navbar/student/StudentNavbar";
 import axios from "axios";
 import urlJoin from "url-join";
-import defaultuser from "../imgs/user-1.png"
+import defaultuser from "../imgs/user-1.png";
+import default_lesson from "../imgs/default_lesson.png";
 
 import { Progress, Space } from "antd";
 function findCursById(cursList, cursId) {
@@ -50,8 +51,7 @@ function AboutCourseInfo() {
           },
         }
       )
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch((err) => console.log(err));
   }
 
@@ -201,22 +201,34 @@ function AboutCourseInfo() {
           }
         >
           <div>
-            {kurs.treeler == "" ? <img
+            {kurs.treeler == "" ? (
+              kurs?.obloshka ? 
+              <img
+                className="every__cource-bigImg"
+                src={urlJoin("https://api.ilmlar.com/", `${kurs?.obloshka}`)}
+                alt=""
+              /> : <img
               className="every__cource-bigImg"
-              src={urlJoin("https://api.ilmlar.com/", `${kurs?.obloshka}`)}
+              src={default_lesson}
               alt=""
-            /> : <video controls autoPlay muted disablePictureInPicture
-
-              controlsList="nodownload"
-              className="every__cource-bigImg"
-              src={urlJoin("https://api.ilmlar.com/", `${kurs?.treeler}`)}
-            ></video>}
+            />
+            ) : (
+              <video
+                controls
+                autoPlay
+                muted
+                disablePictureInPicture
+                controlsList="nodownload"
+                className="every__cource-bigImg"
+                src={urlJoin("https://api.ilmlar.com/", `${kurs?.treeler}`)}
+              ></video>
+            )}
           </div>
 
           <div className="every__cource-desc">
             <div className="every__cource-header">
               <div
-              style={{cursor: "pointer"}}
+                style={{ cursor: "pointer" }}
                 className="every__cource-title"
                 onClick={() => {
                   navigate(
@@ -224,9 +236,18 @@ function AboutCourseInfo() {
                   );
                 }}
               >
-                {
-                  teacher.path ? <img className="small_img" src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(teacher.path)}`)} alt="" /> : <img src={defaultuser}></img>
-                }
+                {teacher.path ? (
+                  <img
+                    className="small_img"
+                    src={urlJoin(
+                      "https://api.ilmlar.com",
+                      `${deleteplatforma(teacher.path)}`
+                    )}
+                    alt=""
+                  />
+                ) : (
+                  <img src={defaultuser}></img>
+                )}
                 <h3>{teacher?.fullname}</h3>
               </div>
               <div className="every__cource-nav">
@@ -266,7 +287,7 @@ function AboutCourseInfo() {
                       Math.floor(
                         ((vaqt - Date.now()) /
                           (kurs.muddati * 30 * 24 * 3600 * 1000)) *
-                        100
+                          100
                       ) || 0
                     }
                     size={[, 20]}
@@ -295,9 +316,6 @@ function AboutCourseInfo() {
               </div>
             ) : (
               <div>
-                <div className="every__cource-name">
-                  <p>Kurs nomi: {kurs?.Kursname}</p>
-                </div>
                 <div className="every__cource-num">
                   <p className="every__cource-para">
                     Kurs narxi: {kurs?.narxi} so'm
@@ -306,8 +324,11 @@ function AboutCourseInfo() {
                     Olingan: {kurs?.subs?.length || kurs?.subs}
                   </p>
                   <p className="every__cource-para">
-                    Davomiyligi: {kurs?.muddati}oy
+                    Davomiyligi: {kurs?.muddati} oy
                   </p>
+                </div>
+                <div className="every__cource-name">
+                  <p>Kurs nomi: {kurs?.Kursname}</p>
                 </div>
                 <div className="every__cource-about">
                   <p>Kurs haqida: {kurs?.Kursdesc}</p>

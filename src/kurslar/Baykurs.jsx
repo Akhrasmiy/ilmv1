@@ -128,7 +128,21 @@ function Baykurs() {
               muted={true}
               controls
               fallback={<img src={or3} alt="" />}
-              config={{ file: { attributes: { controlsList: "nodownload" } } }}
+              config={{
+                file: {
+                  attributes: { controlsList: 'nodownload' },
+                },
+              }}
+              onContextMenu={(e) => e.preventDefault()}
+              // config={{ 
+              //   file: { 
+              //     attributes: {
+              //       onContextMenu: e => e.preventDefault(),
+              //       controlsList: "nodownload"
+              //     } 
+              //   } 
+              // }}
+              // config={{ file: { attributes: { controlsList: "nodownload" } } }}
             />
             <div className="video_information_content">
               <h3>

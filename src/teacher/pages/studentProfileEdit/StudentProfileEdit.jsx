@@ -56,7 +56,7 @@ const StudentProfileEdit = () => {
         setProfile(res.data);
         console.log(res.data);
         navigate("/student/profile");
-        // location.reload();
+        location.reload();
       })
       .catch((error) => console.log(error));
   };
@@ -97,6 +97,7 @@ const StudentProfileEdit = () => {
               className={style.img_file_input}
               onChange={handleImageChange}
               ref={userimgRef}
+              accept="image/*"
             />
           </div>
         </div>

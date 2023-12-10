@@ -18,18 +18,18 @@ function StudentNavbar({ changeModal, modal }) {
     console.log(window.location.pathname);
     if (window.location.pathname === "/student" || window.location.pathname === "/student/") {
       lessonsRef.current?.classList?.add("active");
-      balanceRef?.current?.classList?.remove("active");
-      profileRef?.current?.classList?.remove("active");
+      balanceRef.current?.classList?.remove("active");
+      profileRef.current?.classList?.remove("active");
     } 
     if (window.location.pathname === "/student/hisoblar") {
-      lessonsRef?.current?.classList?.remove("active");
       balanceRef?.current?.classList?.add("active");
+      lessonsRef?.current?.classList?.remove("active");
       profileRef?.current?.classList?.remove("active");
     } 
     if (window.location.pathname === "/student/profile/subs") {
+      profileRef?.current?.classList?.add("active");
       lessonsRef?.current?.classList?.remove("active");
       balanceRef?.current?.classList?.remove("active");
-      profileRef?.current?.classList?.add("active");
     }
   }, [window.location.pathname]);
   useEffect(()=>{
@@ -59,15 +59,15 @@ function StudentNavbar({ changeModal, modal }) {
       <ul className="student_nav_main">
         {
           nav?(
-            <><li ref={lessonsRef}>
+            <><li onClick={() => lessonsRef.current.classList.add("active")} ref={lessonsRef}>
           <img src={t1} alt="" />
           <Link to="/student">darslar</Link>
         </li>
-        <li ref={balanceRef}>
+        <li onClick={() => balanceRef.current.classList.add("active")} ref={balanceRef}>
           <img src={t2} alt="" />
           <Link to="/student/hisoblar">hisob balans</Link>
         </li>
-        <li ref={profileRef}>
+        <li onClick={() => profileRef.current.classList.add("active")} ref={profileRef}>
           <img src={t6} alt="" />
           <Link to="/student/profile/subs">profile</Link>
         </li></>

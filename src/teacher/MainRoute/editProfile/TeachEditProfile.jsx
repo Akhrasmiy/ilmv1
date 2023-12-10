@@ -104,6 +104,7 @@ const TeachEditProfile = () => {
               className={styles.img_file_input}
               ref={userimgRef}
               onChange={handleImageChange}
+              accept="image/*"
             />
           </div>
         </div>
