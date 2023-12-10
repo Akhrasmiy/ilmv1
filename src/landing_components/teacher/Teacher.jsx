@@ -8,6 +8,7 @@ import teacher4 from "../imgs/teacher4.svg";
 import teacher5 from "../imgs/teacher5.svg";
 import extra_logo from "../imgs/extra_logo.svg";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Teacher = () => {
   const navigation = useNavigate();
@@ -33,11 +34,11 @@ const Teacher = () => {
           <img className="teacher_extra_logo" src={extra_logo} alt="" />
         </div>
         <div className="landing_teacher_imgs">
-          <img src={teacher1} alt="" />
-          <img src={teacher2} alt="" />
-          <img src={teacher3} alt="" />
-          <img src={teacher4} alt="" />
-          <img src={teacher5} alt="" />
+          <LazyLoadImage effect="blur" src={teacher1} alt="" />
+          <LazyLoadImage effect="blur" src={teacher2} alt="" />
+          <LazyLoadImage effect="blur" src={teacher3} alt="" />
+          <LazyLoadImage effect="blur" src={teacher4} alt="" />
+          <LazyLoadImage effect="blur" src={teacher5} alt="" />
         </div>
       </div>
     </section>

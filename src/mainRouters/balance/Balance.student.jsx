@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Baystudy from "../../sidebarRouters/boughtLessons/BoughtLessons";
 import "./style.css";
 import "../style.css";
 import MobileHeader from "../../components/mobileHeader/mobileHeader";
 import Navvedio from "../../sidebarRouters/Navvedio";
 import StudentNavbar from "../../navbar/student/StudentNavbar";
-import axios from "axios";
+import { profileContext } from "../../contexts/profileContext";
 let money = 650000;
 money = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 let hisobraqam = 1234567890123456;
 hisobraqam = hisobraqam.toString().replace(/\B(?=(\d{4})+(?!\d))/g, " ");
 function Balance() {
-  const [profile, setProfil] = useState({});
-  useEffect(() => {
-    axios
-      .get("https://api.ilmlar.com/usersme", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setProfil(res.data);
-      });
-  }, []);
+  const {profile} = useContext(profileContext);
+
   let [modal, setModal] = useState(false);
   let [modalDarslar, setModalDarslar] = useState(false);
   const changeModal = (value) => {
@@ -32,7 +22,7 @@ function Balance() {
   const changeModalDars = (value) => {
     setModalDarslar(value);
   };
-  
+
   return (
     <div className="main-page">
       <div className={modal ? "def modal-navbar" : "def yoq"}>

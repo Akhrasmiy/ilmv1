@@ -97,22 +97,22 @@
   padding-top: 100px;
   gap: 20px;
 }
-.hero_img_1 {
+.landing_hero_imgs span:first-child {
   grid-area: hero_one;
 }
-.hero_img_2 {
+.landing_hero_imgs span:nth-child(2){
   grid-area: hero_two;
 }
-.hero_img_3 {
+.landing_hero_imgs span:nth-child(3){
   grid-area: hero_three;
 }
-.hero_img_4 {
+.landing_hero_imgs span:nth-child(4){
   grid-area: hero_four;
 }
-.hero_img_5 {
+.landing_hero_imgs span:nth-child(5){
   grid-area: hero_five;
 }
-.hero_img_6 {
+.landing_hero_imgs span:nth-child(6){
   grid-area: hero_six;
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Cart from "../../components/Cart/Cart";
 import Navvedio from "../../sidebarRouters/Navvedio";
 import "./style.css";
@@ -12,6 +12,7 @@ function Lessons() {
   const [courses, setCourses] = useState([]);
   const [loader, setLoader] = useState(false);
   const [query, setquery] = useState("");
+
   useEffect(() => {
     setLoader(true);
     axios.get("https://api.ilmlar.com/courses/?q=" + query).then((res) => {
@@ -20,9 +21,7 @@ function Lessons() {
     });
   }, [query]);
   function onMore() {
-    // setLoader(true);
     axios.get("https://api.ilmlar.com/courses/?q=" + query).then((res) => {
-      // setLoader(false);
       setCourses([...courses, ...res.data]);
     });
   }
@@ -40,6 +39,7 @@ function Lessons() {
   const changeModalDars = (value) => {
     setModalDarslar(value);
   };
+
   return (
     <>
       {loader ? (

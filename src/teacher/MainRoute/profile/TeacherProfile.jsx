@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./style.module.css";
 
 import defaultuser from '../../../imgs/user-1.png'
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import MobileHeader from "../../../components/mobileHeader/mobileHeader";
 import TeacherNavbar from "../../../navbar/teacher/TeacherNavbar";
+import { useContext } from "react";
+import { teacherProfileContext } from "../../../contexts/teacherProfilContext";
 function deleteplatforma(url) {
   try {
     if (url.includes("platforma")) {
@@ -23,18 +24,8 @@ function deleteplatforma(url) {
 }
 function TeacherProfile() {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://api.ilmlar.com/teacherme/", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setProfile(res.data);
-      });
-  }, []);
+  const {teacherProfile} = useContext(teacherProfileContext);
+  
 
   let [modal, setModal] = useState(false);
   let [modalDarslar, setModalDarslar] = useState(false);
@@ -75,15 +66,15 @@ function TeacherProfile() {
       <div className="teacherHomePage main_profile_container sidebar-wrap teacher-main-sidebar">
         <div className={styles.teacher_profile_wrap}>
           {
-            profile?.path ? <img src={"https://api.ilmlar.com" + deleteplatforma(profile?.path)} alt="" /> : <img src={defaultuser} alt="" />
+            teacherProfile?.path ? <img src={"https://api.ilmlar.com" + deleteplatforma(teacherProfile?.path)} alt="" /> : <img src={defaultuser} alt="" />
           }
-          <h2>{profile?.fullname}</h2>
-          <h4>{profile?.obunachilar?.length} ta obunachi</h4>
+          <h2>{teacherProfile?.fullname}</h2>
+          <h4>{teacherProfile?.obunachilar?.length} ta obunachi</h4>
           <div className={styles.profile_teacher_desc}>
-            <p>Mutaxassislik: {profile.mutahasislik}</p>
-            <p>BIO: {profile?.bio}</p>
+            <p>Mutaxassislik: {teacherProfile?.mutahasislik}</p>
+            <p>BIO: {teacherProfile?.bio}</p>
             <label className={styles.location}>
-              Joylashuv: {profile?.joylashuv}
+              Joylashuv: {teacherProfile?.joylashuv}
             </label>
           </div>
 

@@ -144,6 +144,7 @@ function NotBoughtCourse() {
           <div className="every__cource-desc">
             <div className="every__cource-header">
               <div
+              style={{cursor: "pointer"}}
                 className="every__cource-title"
                 onClick={() => {
                   navigate("/student/teacherinfo/" + teacher?._id);

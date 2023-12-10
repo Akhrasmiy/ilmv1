@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./style.css";
+import { profileContext } from "../../contexts/profileContext";
 import defaultimg from "../../imgs/user-1.png"
-import axios from 'axios'
 function deleteplatforma(url) {
   try {
     if (url?.includes("platforma")) {
@@ -19,16 +19,8 @@ function deleteplatforma(url) {
   }
 }
 function Userprofile() {
-  const [profile, setProfil] = useState({})
-  useEffect(() => {
-    axios.get("https://api.ilmlar.com/usersme", {
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    }).then((res) => {
-      setProfil(res?.data)
-    })
-  }, [])
+  const {profile} = useContext(profileContext);
+
   return (
     <div>
       <div className='userprofile' style={{ textAlign: "center", paddingTop: 15 }}>

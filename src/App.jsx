@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Baykurs from "./kurslar/Baykurs";
 import Subs from "./sidebarRouters/Subs";
 import Darslar from "./sidebarRouters/Darslar";
@@ -25,7 +25,6 @@ import TeacherBalance from "./teacher/MainRoute/teacherBalance/TeacherBalance";
 import StudentProfileEdit from "./teacher/pages/studentProfileEdit/StudentProfileEdit";
 import CourseInfo from "./teacher/MainRoute/courseInfo/CourseInfo";
 import TeachUpdateonekurs from "./teacher/MainRoute/updateCourseOne/Updateonekurs";
-import TeachUpdatekurs from "./teacher/MainRoute/updateCourse/Updatekurs";
 import StudentLogin from "./sign/login/StudentLogin";
 import TeacherLogin from "./sign/login/TeacherLogin";
 import Select from "./select/Select";

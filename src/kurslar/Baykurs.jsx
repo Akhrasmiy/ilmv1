@@ -63,7 +63,12 @@ function Baykurs() {
         console.error(error);
       });
   }, [courseId]);
-
+  const next = () => {
+    if (courseData.length > courseIndex) {
+      setCourseIndex(courseIndex + 1);
+      setSelectedVideo(courseData[courseIndex]);
+    }
+  };
   const handleVideoSelection = (video) => {
     setSelectedVideo(video);
   };
@@ -77,7 +82,7 @@ function Baykurs() {
     <div className="app-content">
       <div className="course_info">
         <button onClick={() => onBack()} className="lesson_btn_wrap">
-            <ion-icon name="chevron-back-outline"></ion-icon>
+          <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         <div className={modal ? "def2 modal-navbar" : "def2 yoq"}>
           <VideosNavbar
@@ -115,6 +120,9 @@ function Baykurs() {
               url={`https://api.ilmlar.com/${deleteplatforma(
                 selectedVideo.orni
               )}`}
+              onEnded={() => {
+                next();
+              }}
               alt="Video"
               width="100%"
               muted={true}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Obuna from "../../sidebarRouters/Obuna";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
@@ -7,35 +7,26 @@ import MobileHeader from "../../components/mobileHeader/mobileHeader";
 import axios from "axios";
 import default_img from "../../imgs/user-1.png"
 import urlJoin from "url-join";
-function Profile() {
-  function deleteplatforma(url){
-    try {
-      if(url?.includes("platforma")){
-        url=url.split("/")
-        let res=""
-        for(let i=2;i<url.length;i++){
-          res+="/"+url[i]
-        }
-        return(res)
+import { profileContext } from "../../contexts/profileContext";
+function deleteplatforma(url){
+  try {
+    if(url?.includes("platforma")){
+      url=url.split("/")
+      let res=""
+      for(let i=2;i<url.length;i++){
+        res+="/"+url[i]
       }
-      return "/"+url
-    } catch (error) {
-      console.log(error)
+      return(res)
     }
+    return "/"+url;
+  } catch (error) {
+    console.log(error)
   }
+}
+function Profile() {
+  const {profile} = useContext(profileContext);
   const navigate = useNavigate();
-  const [profile, setProfil] = useState({});
-  useEffect(() => {
-    axios
-      .get("https://api.ilmlar.com/usersme", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setProfil(res.data);
-      });
-  }, []);
+
   let [modal, setModal] = useState(false);
   let [modalDarslar, setModalDarslar] = useState(false);
   const changeModal = (value) => {
@@ -87,7 +78,7 @@ function Profile() {
         <div className="profile-content">
           {
             profile?.path ? <img
-            src={"https://api.ilmlar.com" + deleteplatforma(profile.path)}
+            src={"https://api.ilmlar.com" + deleteplatforma(profile?.path)}
             alt=""
           /> : <img
           src={default_img}
@@ -95,10 +86,10 @@ function Profile() {
         />
             
           }
-          <h1>{profile.fullname}</h1>
+          <h1>{profile?.fullname}</h1>
           <div className="profile-content-para">
-            <p>Username: {profile.username}</p>
-            <p>Email: {profile.email}</p>
+            <p>Username: {profile?.username}</p>
+            <p>Email: {profile?.email}</p>
           </div>
           <div className="profile-buttons">
             <button onClick={() => navigate("/editprofil")}>
@@ -108,13 +99,13 @@ function Profile() {
           </div>
         </div>
       </div>
-      <Obuna me={profile.mycurs} />
+      <Obuna me={profile?.mycurs} />
       <div className={modalDarslar ? "defDars modalDarslar" : "defDars yoq"}>
         <Obuna
           modalDarslar={modalDarslar}
           changeModalDars={changeModalDars}
           topic="obuna"
-          me={profile.mycurs}
+          me={profile?.mycurs}
         />
       </div>
     </div>

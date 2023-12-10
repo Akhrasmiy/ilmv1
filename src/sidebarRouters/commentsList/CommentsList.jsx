@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import Commint from "../../components/comments/Comment";
 import prev from "../../imgs/prev.svg";
 import sent from "../../imgs/sent.svg";
-
 import "./style.css";
 import axios from "axios";
 import defaultimg from "../../imgs/user-1.png";
@@ -33,8 +31,9 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
     window.location.pathname.split("/").at(-1)
   );
   useEffect(() => {
+    console.log(commints);
     setComments(commints);
-  }, [])
+  }, [commints]);
   const handleClick = () => {
     changeModalDars(false);
   };
@@ -84,11 +83,6 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
     }
   }
 
-  async function userphoto(id) {
-    await axios.get(`https://api.ilmlar.com/users/${id}`).then((res) => {
-      return res.data.path;
-    });
-  }
   useEffect(() => {
     axios
       .get("https://api.ilmlar.com/usersme", {
@@ -97,8 +91,8 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
         },
       })
       .then((res) => {
-          findCursById(res.data.mycurs, cursId);
-          setProfil(res.data.mycurs);
+        findCursById(res.data.mycurs, cursId);
+        setProfil(res.data.mycurs);
       });
   }, []);
   useEffect(() => {
@@ -120,10 +114,10 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
       </div>
       <h2>Izohlar</h2>
       <div className="commints">
-        {Comments?.map((commint, index) => {
+        {Comments?.map((commint) => {
           if (commint.username && commint.text && commint?.text != "")
             return (
-              <div className="d-block">
+              <div key={commint._id} className="d-block">
                 <div className="comment_wrap">
                   {commint.userPath ? (
                     <img
@@ -146,7 +140,6 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
             );
         })}
       </div>
-      {/* {findCursById(profile?.mycurs, cursId) ? ( */}
       {isInput ? (
         <div className="writing_comment">
           <form

@@ -11,6 +11,7 @@ import hero5 from "../imgs/hero5.svg";
 import hero6 from "../imgs/hero6.svg";
 import two_img from "../imgs/two_img.svg";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -56,12 +57,12 @@ const Hero = () => {
           <img className="hero_two_img" src={two_img} alt="" />
         </div>
         <div className="landing_hero_imgs">
-          <img className="hero_img_1" src={hero1} alt="" />
-          <img className="hero_img_2" src={hero2} alt="" />
-          <img className="hero_img_3" src={hero3} alt="" />
-          <img className="hero_img_4" src={hero4} alt="" />
-          <img className="hero_img_5" src={hero5} alt="" />
-          <img className="hero_img_6" src={hero6} alt="" />
+          <LazyLoadImage effect="blur" src={hero1} alt="" />
+          <LazyLoadImage effect="blur" src={hero2} alt="" />
+          <LazyLoadImage effect="blur" src={hero3} alt="" />
+          <LazyLoadImage effect="blur" src={hero4} alt="" />
+          <LazyLoadImage effect="blur" src={hero5} alt="" />
+          <LazyLoadImage effect="blur" src={hero6} alt="" />
         </div>
       </div>
     </section>

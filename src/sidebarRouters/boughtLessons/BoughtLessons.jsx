@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import prev from "../../imgs/prev.svg";
 
-import axios from "axios";
+import { myCoursesContext } from "../../contexts/myCoursesContext";
 function deleteplatforma(url) {
   try {
     if (url.includes("platforma")) {
@@ -19,44 +19,11 @@ function deleteplatforma(url) {
   }
 }
 function Baystudy({ modalDarslar, changeModalDars, topic }) {
+  const { myCourses } = useContext(myCoursesContext);
   const handleClick = () => {
     changeModalDars(false);
   };
-  const [profile, setProfil] = useState({});
-  const [teacherData, setTeacherData] = useState([]);
-  const [save, setSave] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://api.ilmlar.com/usersme", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setProfil(res.data);
-      });
-  }, []);
-  useEffect(() => {
-    const fetchTeachers = async () => {
-      const fetchedTeacherData = [];
-      for (let i = 0; i < profile.mycurs.length; i++) {
-        const response = await axios.get(
-          "https://api.ilmlar.com/courses/" + profile.mycurs[i].cursId,
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-            },
-          }
-        );
-        fetchedTeacherData.push(response.data);
-      }
-      setTeacherData(fetchedTeacherData);
-    };
 
-    if (profile.teachers) {
-      fetchTeachers();
-    }
-  }, [profile]);
   return (
     <div className="Nav sidebar-main-content">
       <div
@@ -69,24 +36,21 @@ function Baystudy({ modalDarslar, changeModalDars, topic }) {
         <h3>{topic}</h3>
       </div>
       <div className="mobileForPadding">
-        <h2>Sotib olingan darslar - {teacherData?.length} ta</h2>
+        <h2>Sotib olingan darslar - {myCourses?.length} ta</h2>
         <div className="sidebar-line"></div>
         <div className="sidebar-bought-course">
-          {teacherData &&
-            teacherData.map((item, index) => (
-              <div className="cursor_bought_class bought_lessons">
-                <img
-                  src={
-                    "https://api.ilmlar.com" + deleteplatforma(item.obloshka)
-                  }
-                  alt=""
-                />
-                <div className="text_info">
-                  <p>{item?.Kursname}</p>
-                  <strong className="big_style">{item?.narxi} so'm</strong>
-                </div>
+          {myCourses?.map((item, index) => (
+            <div key={item._id} className="cursor_bought_class bought_lessons">
+              <img
+                src={"https://api.ilmlar.com" + deleteplatforma(item.obloshka)}
+                alt=""
+              />
+              <div className="text_info">
+                <p>{item?.Kursname}</p>
+                <strong className="big_style">{item?.narxi} so'm</strong>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -5,12 +5,13 @@ import green_round from "../imgs/green_round.svg";
 import two_img from "../imgs/two_img.svg";
 import blue_round from "../imgs/blue_round.svg";
 import red_round from "../imgs/red_round.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const About = () => {
   return (
     <section id="about" className="landing_about">
       <div className="landing_about_content">
         <div className="landing_about_img">
-          <img src={about_img} alt="" />
+          <LazyLoadImage effect="blur" src={about_img} alt="" />
           <img className="green_round" src={green_round} alt="" />
         </div>
         <div className="landing_about_desc">

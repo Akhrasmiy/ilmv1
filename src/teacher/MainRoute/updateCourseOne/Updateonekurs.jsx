@@ -1,17 +1,15 @@
-
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import "./style.css";
 
 function TeachUpdateonekurs() {
   const courseId = useParams().id;
   const modalRef = useRef();
   const titleInputRef = useRef();
-  const isopenRef = useRef()
+  const isopenRef = useRef();
   const courseNameRef = useRef();
   const courseDescRef = useRef();
   const courseImgRef = useRef();
@@ -33,7 +31,7 @@ function TeachUpdateonekurs() {
     try {
       const title = titleInputRef.current.value;
       const description = descriptionInputRef.current.value;
-      const isopen = isopenRef.current.value
+      const isopen = isopenRef.current.value;
 
       if (!title) {
         toast("Iltimos, video nomini kiriting");
@@ -49,7 +47,7 @@ function TeachUpdateonekurs() {
         id: newId - 1,
         title,
         description,
-        isopen
+        isopen,
       };
 
       setVideoDataArray((prevData) => [...prevData, videoData]);
@@ -78,30 +76,32 @@ function TeachUpdateonekurs() {
     modalRef.current.style.display = "flex";
   };
 
-  const names = []
-  const desc = []
-  const isopen = []
+  const names = [];
+  const desc = [];
+  const isopen = [];
   const onSendForm = async (e) => {
-
     await axios
-      .put(`https://api.ilmlar.com/courses/${courseId}`, {
-        "name": courseNameRef.current.value,
-        "desc": courseDescRef.current.value,
-        "muddati": courseMuddatiRef.current.value,
-        "narxi": priceRef.current.value * 1.25,
-        "vediosname": names,
-        "vediosdesc": desc,
-        "isopen":isopen
-      },
+      .put(
+        `https://api.ilmlar.com/courses/${courseId}`,
+        {
+          name: courseNameRef.current.value,
+          desc: courseDescRef.current.value,
+          muddati: courseMuddatiRef.current.value,
+          narxi: priceRef.current.value * 1.25,
+          vediosname: names,
+          vediosdesc: desc,
+          isopen: isopen,
+        },
         {
           headers: {
-            "Content-Type":"application/json",
-            "Authorization": localStorage.getItem("token")
-          }
-        })
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 201) {
-          toast.success('Member updated successfully.');
+          toast.success("Member updated successfully.");
 
           refreshUser(); // mutating the swr request
         }
@@ -123,20 +123,18 @@ function TeachUpdateonekurs() {
       )
       .then((res) => {
         setdata(res.data);
-
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [])
+  }, []);
   useEffect(() => {
     for (let i = 0; i < data?.vedios?.length; i++) {
-      names.push(data.vedios[i].nomi)
-      desc.push(data.vedios[i].desc)
-      isopen.push(data.vedios[i].isOpen)||isopen.push(false)
+      names.push(data.vedios[i].nomi);
+      desc.push(data.vedios[i].desc);
+      isopen.push(data.vedios[i].isOpen) || isopen.push(false);
     }
-  }, [data])
-
+  }, [data]);
 
   const [image, setImage] = useState("");
   const handleInputChange = (event) => {
@@ -149,9 +147,9 @@ function TeachUpdateonekurs() {
   };
   const handlechangenarx = () => {
     if (priceRef?.current?.value) {
-      setnarx(priceRef.current.value)
+      setnarx(priceRef.current.value);
     }
-  }
+  };
 
   return (
     <>
@@ -169,11 +167,18 @@ function TeachUpdateonekurs() {
             >
               <div className={styles.input_wrap}>
                 <label htmlFor="amount">Kurs nomi</label>
-                <input ref={courseNameRef} defaultValue={data.Kursname} type="text" />
+                <input
+                  ref={courseNameRef}
+                  defaultValue={data.Kursname}
+                  type="text"
+                />
               </div>
               <div className={styles.input_wrap}>
                 <label htmlFor="amount">Kurs haqida</label>
-                <textarea ref={courseDescRef} defaultValue={data.Kursdesc}  ></textarea>
+                <textarea
+                  ref={courseDescRef}
+                  defaultValue={data.Kursdesc}
+                ></textarea>
               </div>
               <div className={styles.upload_div}>
                 <div className={styles.muqova_wrapper}>
@@ -200,12 +205,16 @@ function TeachUpdateonekurs() {
                       </div>
                     )}
                   </div>
-                  <div className={styles.extra_div} style={{ display: "block" }}>
+                  <div
+                    className={styles.extra_div}
+                    style={{ display: "block" }}
+                  >
                     <div className={styles.input_wrap}>
                       <p htmlFor="amount" className={styles.amount}>
                         Davomiylik
                       </p>
-                      <select defaultValue={data.muddati}
+                      <select
+                        defaultValue={data.muddati}
                         ref={courseMuddatiRef}
                         className={styles.second}
                         name=""
@@ -219,12 +228,21 @@ function TeachUpdateonekurs() {
                         <option value="forewer">for ever</option>
                       </select>
                     </div>
-                    <div className={styles.input_wrap} style={{ width: "150px" }}>
+                    <div
+                      className={styles.input_wrap}
+                      style={{ width: "150px" }}
+                    >
                       <p htmlFor="amount" className={styles.amount}>
                         Narxi
                       </p>
 
-                      <input type="number" defaultValue={data.narxi} onChange={handlechangenarx} style={{ minWidth: "100px" }} ref={priceRef} />
+                      <input
+                        type="number"
+                        defaultValue={data.narxi}
+                        onChange={handlechangenarx}
+                        style={{ minWidth: "100px" }}
+                        ref={priceRef}
+                      />
                       <p htmlFor="amount" className={styles.amount}>
                         sotuv narxi: {narx * 1.25} SO`M
                       </p>
@@ -239,7 +257,7 @@ function TeachUpdateonekurs() {
                         <input
                           defaultValue={lesson.nomi}
                           onBlur={(e) => {
-                            names[index] = e.target.value
+                            names[index] = e.target.value;
                           }}
                           type="text"
                           placeholder="Enter video title"
@@ -249,7 +267,7 @@ function TeachUpdateonekurs() {
                         <input
                           type="text"
                           onBlur={(e) => {
-                            desc[index] = e.target.value
+                            desc[index] = e.target.value;
                           }}
                           defaultValue={lesson.desc}
                           placeholder="Enter video description"
@@ -258,21 +276,23 @@ function TeachUpdateonekurs() {
                         />
                       </div>
                       <div className={styles.free_video_button_wrapper}>
-
-
-                        <select name="" onBlur={(e) => {
-                            isopen[index] = e.target.value
-                          }} defaultValue={lesson.isOpen}  ref={isopenRef} id="">
-
-                          <option value={false}><span class="material-symbols-outlined">
-                            yopiq
-                          </span></option>
-                          <option value={true}><span class="material-symbols-outlined">
-                            ochiq
-                          </span></option>
+                        <select
+                          name=""
+                          onBlur={(e) => {
+                            isopen[index] = e.target.value;
+                          }}
+                          defaultValue={lesson.isOpen}
+                          ref={isopenRef}
+                          id=""
+                        >
+                          <option value={false}>
+                            <span class="material-symbols-outlined">yopiq</span>
+                          </option>
+                          <option value={true}>
+                            <span class="material-symbols-outlined">ochiq</span>
+                          </option>
                         </select>
-                        <div className={styles.plus_minus}>
-                        </div>
+                        <div className={styles.plus_minus}></div>
                       </div>
                     </div>
                   ))}
@@ -303,4 +323,3 @@ function TeachUpdateonekurs() {
 }
 
 export default TeachUpdateonekurs;
-

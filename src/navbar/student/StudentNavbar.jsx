@@ -15,26 +15,29 @@ function StudentNavbar({ changeModal, modal }) {
   const profileRef = useRef();
   let navigate = useNavigate();
   useEffect(() => {
+    console.log(window.location.pathname);
     if (window.location.pathname === "/student" || window.location.pathname === "/student/") {
-      lessonsRef?.current?.classList?.add("active");
+      lessonsRef.current?.classList?.add("active");
       balanceRef?.current?.classList?.remove("active");
       profileRef?.current?.classList?.remove("active");
-    } else if (window.location.pathname === "/student/hisoblar") {
+    } 
+    if (window.location.pathname === "/student/hisoblar") {
       lessonsRef?.current?.classList?.remove("active");
       balanceRef?.current?.classList?.add("active");
       profileRef?.current?.classList?.remove("active");
-    } else if (window.location.pathname === "/student/profile/subs") {
+    } 
+    if (window.location.pathname === "/student/profile/subs") {
       lessonsRef?.current?.classList?.remove("active");
       balanceRef?.current?.classList?.remove("active");
       profileRef?.current?.classList?.add("active");
     }
   }, [window.location.pathname]);
   useEffect(()=>{
-    if(window.location.pathname === "/student" || window.location.pathname === "/student/" || window.location.pathname === "/student/hisoblar"||window.location.pathname === "/student/profile/subs"||window.location.pathname ==="/student/profile/darslar"){
-      setNav(true)
+    if(window.location.pathname === "/student" || window.location.pathname === "/student/" || window.location.pathname === "/student/hisoblar"||window.location.pathname === "/student/profile/subs" || window.location.pathname === "/student/profile" || window.location.pathname ==="/student/profile/darslar"){
+      setNav(true);
     }
     else{
-      setNav(false)
+      setNav(false);
     }
   },[window.location.pathname])
   const handleClick = () => {

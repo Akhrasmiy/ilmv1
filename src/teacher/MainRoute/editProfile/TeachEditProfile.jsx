@@ -1,8 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import camera from "../../../imgs/camera.png";
+import user from "../../../imgs/user-1.png";
+import urlJoin from "url-join";
+import { teacherProfileContext } from "../../../contexts/teacherProfilContext";
 
 function deleteplatforma(url) {
   try {
@@ -21,9 +24,10 @@ function deleteplatforma(url) {
 }
 
 const TeachEditProfile = () => {
+  const {teacherProfile, setTeacherProfile} = useContext(teacherProfileContext);
+  const navigate = useNavigate();
+  
   const [image, setImage] = useState(null);
-  const [profile, setProfile] = useState([]);
-
   const fullnameRef = useRef(null);
   const mutahasislikRef = useRef(null);
   const bioRef = useRef(null);
@@ -31,8 +35,8 @@ const TeachEditProfile = () => {
   const boglashlinkRef = useRef(null);
   const usernameRef = useRef(null);
   const userimgRef = useRef(null);
+  console.log(userimgRef.current?.files[0]);
 
-  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -59,23 +63,13 @@ const TeachEditProfile = () => {
         },
       })
       .then((res) => {
+        console.log(res.data);
+        setTeacherProfile(res.data);
         navigate("/teacher/profile");
       })
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    axios
-      .get("https://api.ilmlar.com/teacherme/", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setProfile(res.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
 
   const onBack = () => {
     navigate(-1);
@@ -88,13 +82,21 @@ const TeachEditProfile = () => {
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         <div className={styles.imgs_div}>
-          <img
-            src={
-              image || "https://api.ilmlar.com" + deleteplatforma(profile.path)
-            }
-            className={styles.imgs_div_img}
-            alt=""
-          />
+        {image ? (
+            <img
+              className={styles.imgs_div_img}
+              src={image}
+              alt=""
+            />
+          ) : teacherProfile?.path ? (
+            <img
+              className={styles.imgs_div_img}
+              src={urlJoin("https://api.ilmlar.com", `${deleteplatforma(teacherProfile?.path)}`)}
+              alt=""
+            />
+          ) : (
+            <img className={styles.imgs_div_img} src={user} alt="camera img" />
+          )}
           <div className={styles.select_camera_wrap}>
             <img src={camera} alt="camera img" />
             <input
@@ -109,7 +111,7 @@ const TeachEditProfile = () => {
           <div className={styles.input_wrap}>
             <input
               ref={fullnameRef}
-              defaultValue={profile.fullname}
+              defaultValue={teacherProfile?.fullname}
               type="text"
               placeholder="ism-familiya "
             />
@@ -118,7 +120,7 @@ const TeachEditProfile = () => {
             <input
               ref={mutahasislikRef}
               type="text"
-              defaultValue={profile.mutahasislik}
+              defaultValue={teacherProfile?.mutahasislik}
               placeholder="mutaxassislik"
             />
           </div>
@@ -126,7 +128,7 @@ const TeachEditProfile = () => {
             <input
               ref={bioRef}
               type="text"
-              defaultValue={profile.bio}
+              defaultValue={teacherProfile?.bio}
               placeholder="bio"
             />
           </div>
@@ -135,7 +137,7 @@ const TeachEditProfile = () => {
             <input
               ref={joylashuvRef}
               type="text"
-              defaultValue={profile.joylashuv}
+              defaultValue={teacherProfile?.joylashuv}
               placeholder="joylashuv"
             />
           </div>
@@ -144,7 +146,7 @@ const TeachEditProfile = () => {
               ref={boglashlinkRef}
               type="text"
               placeholder="havola"
-              defaultValue={profile.boglashlink}
+              defaultValue={teacherProfile?.boglashlink}
             />
           </div>
           <div className={styles.input_wrap}>
@@ -152,7 +154,7 @@ const TeachEditProfile = () => {
               ref={usernameRef}
               type="text"
               placeholder="username"
-              defaultValue={profile.username}
+              defaultValue={teacherProfile?.username}
             />
           </div>
           <button type="submit">Saqlash</button>

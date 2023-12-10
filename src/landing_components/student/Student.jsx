@@ -9,6 +9,7 @@ import student5 from "../imgs/student5.svg";
 import big_square from "../imgs/big_square.svg";
 import extra_logo from "../imgs/extra_logo.svg";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Student = () => {
   const navigation = useNavigate();
@@ -20,11 +21,11 @@ const Student = () => {
       <img className="extra_logo" src={extra_logo} alt="" />
       <div className="landing_student_content">
         <div className="landing_student_imgs">
-          <img src={student1} alt="" />
-          <img src={student2} alt="" />
-          <img src={student3} alt="" />
-          <img src={student4} alt="" />
-          <img src={student5} alt="" />
+          <LazyLoadImage effect="blur" src={student1} alt="" />
+          <LazyLoadImage effect="blur" src={student2} alt="" />
+          <LazyLoadImage effect="blur" src={student3} alt="" />
+          <LazyLoadImage effect="blur" src={student4} alt="" />
+          <LazyLoadImage effect="blur" src={student5} alt="" />
         </div>
         <div className="landing_student_desc">
           <h2 className="common_title">O’quvchilar</h2>

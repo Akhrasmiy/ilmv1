@@ -16,15 +16,18 @@
   display: none;
 }
 .bought_lessons img{
-  width: 114px;
+  width: 35%;
   height: 90px;
   border-radius: 20px 0px 0px 20px;
+}
+.bought_lessons .text_info{
+  width: calc(100% - 35%);
+
 }
 .bought_lessons .text_info p{
   font-size: 14px;
   display: -webkit-box;
   line-height: 20px;
-  max-width: 250px;
   margin: 8px 5px 5px 0;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;

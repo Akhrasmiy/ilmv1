@@ -18,7 +18,8 @@
 }
 @media only screen and (min-width: 540px){
   .main-contentt{
-    height: 80vh !important;
+    height: calc(90vh - 70px) !important;
+    /* height: 80vh; */
   } 
   .w100{
     width: 44vh;

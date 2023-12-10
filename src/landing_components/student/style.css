@@ -38,19 +38,19 @@
   border-radius: 20px;
   height: 100%;
 }
-.landing_student_imgs img:nth-child(1) {
+.landing_student_imgs span:nth-child(1) {
   grid-area: one;
 }
-.landing_student_imgs img:nth-child(2) {
+.landing_student_imgs span:nth-child(2) {
   grid-area: two;
 }
-.landing_student_imgs img:nth-child(3) {
+.landing_student_imgs span:nth-child(3) {
   grid-area: three;
 }
-.landing_student_imgs img:nth-child(4) {
+.landing_student_imgs span:nth-child(4) {
   grid-area: four;
 }
-.landing_student_imgs img:nth-child(5) {
+.landing_student_imgs span:nth-child(5) {
   grid-area: five;
 }
 .landing_student_desc p {

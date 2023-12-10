@@ -4,10 +4,9 @@ import "../style.css";
 import LessonCard from "../../components/lessonCard/LessonCard";
 import axios from "axios";
 import MobileHeader from "../../../components/mobileHeader/mobileHeader";
-import StudentNavbar from "../../../navbar/student/StudentNavbar";
 import TeacherNavbar from "../../../navbar/teacher/TeacherNavbar";
 function LessonsTeacher(props) {
-  const where=props.where
+  const where = props.where;
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
@@ -38,17 +37,8 @@ function LessonsTeacher(props) {
 
   return (
     <>
-      {/* <header className="responsive_header">
-        <div className="menubar" onClick={() => setMenubar((prev) => !prev)}>
-          <ion-icon name="menu-outline"></ion-icon>
-        </div>
-        <div className="header_desc">
-          <p>Darslar</p>
-        </div>
-      </header> */}
       <div className="teacher edit_teacher">
         <div className={modal ? "def modal-navbar" : "def yoq"}>
-          {/* <StudentNavbar changeModal={changeModal} modal={modal} /> */}
           <TeacherNavbar changeModal={changeModal} modal={modal} />
         </div>
         <div
@@ -68,7 +58,7 @@ function LessonsTeacher(props) {
           />
         </div>
         <div className="main_teacher_content sidebar-main-wrap teacher-main-sidebar">
-          <div className="lessons_wrap grid-cols-3">
+          <div className="lessons_wrap sm:grid-cols-3">
             {courses.map((course, index) => {
               return <LessonCard where={where} cart={course} key={index} />;
             })}
