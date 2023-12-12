@@ -44,7 +44,7 @@ const Subs = () => {
           ) : (
             <img className="teacher_img" src={defaultuser}></img>
           )}
-          <div>
+          <div className="subs_info_wrap">
             <p>{item?.fullname}</p>
             <span>{item?.mutahasislik}</span>
           </div>

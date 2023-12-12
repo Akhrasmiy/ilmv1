@@ -11,6 +11,7 @@
 .main-page {
   display: flex;
   gap: 19px;
+  height: 100%;
 }
 
 .search-main {

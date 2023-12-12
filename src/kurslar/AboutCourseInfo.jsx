@@ -20,7 +20,6 @@ function findCursById(cursList, cursId) {
   return false;
 }
 function AboutCourseInfo() {
-  const [heart, setHeart] = useState(false);
   const [hisoblanuvchi_vaqt, sethisoblanuvchi_vaqt] = useState({
     oy: 0,
     kun: 0,
@@ -30,7 +29,6 @@ function AboutCourseInfo() {
   });
 
   const [kurs, setKurs] = useState({});
-  const [price, setPrice] = useState(false);
   const [teacher, setTeacher] = useState({});
   const { kursId } = useParams();
   const [savedCourse, setSavedCourse] = useState([]);
@@ -359,7 +357,7 @@ function AboutCourseInfo() {
         </div>
       </div>
       <div className="mobileForedit">
-        <CommentsList commints={kurs?.Comments} />
+        <CommentsList commints={kurs?.Comments ? kurs?.Comments : kurs?.Comment} />
       </div>
       <div className={modalDarslar ? "defDars modalDarslar aa" : "defDars yoq"}>
         <CommentsList

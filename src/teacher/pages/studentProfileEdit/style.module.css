@@ -2,21 +2,19 @@
   background-color: #5b4784;
   width: 60%;
   margin: 0 auto;
-  height: 90vh;
   box-shadow: 15px 15px 100px rgba(0, 0, 0, 0.3);
   border-radius: 50px;
   position: relative;
 }
 
 .imgs_div {
-  padding-top: 50px;
-  width: 501px;
+
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 13px;
-  padding-bottom: 22px;
+  padding-bottom: 30px;
 }
 .imgs_div_img {
   width: 180px;
@@ -27,6 +25,7 @@
 .img_file_input {
   width: 71px;
   height: 71px;
+  margin-bottom: 0 !important;
   cursor: pointer;
   opacity: 0;
 }
@@ -61,6 +60,11 @@
 .form {
   width: 50%;
   margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .form button {
   font-family: sans-serif;
@@ -146,8 +150,5 @@
   .form {
     width: 90%;
     margin: 0 auto;
-  }
-  .imgs_div {
-    padding-top: 70px;
   }
 }

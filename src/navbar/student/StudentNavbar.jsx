@@ -15,7 +15,6 @@ function StudentNavbar({ changeModal, modal }) {
   const profileRef = useRef();
   let navigate = useNavigate();
   useEffect(() => {
-    console.log(window.location.pathname);
     if (window.location.pathname === "/student" || window.location.pathname === "/student/") {
       lessonsRef.current?.classList?.add("active");
       balanceRef.current?.classList?.remove("active");

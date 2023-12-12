@@ -75,11 +75,11 @@ const StudentRegistration = () => {
     <div className="app-content">
       <div className="sign_wrap">
       <ToastContainer />
-        <h3 className="registr_title">O'quvchi sifatida ro'yxatdan o'tish</h3>
         <button onClick={onBack} className="back">
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         <form className="registr_form" onSubmit={(e) => onHandler(e)}>
+          <h3 className="registr_title">O'quvchi sifatida ro'yxatdan o'tish</h3>
           <input ref={nameRef} type="text" placeholder="ism" required />
           <input ref={surnameRef} type="text" placeholder="familiya" required />
           <input

@@ -119,7 +119,7 @@
   color: #ffffff;
 }
 .video_information_scroll {
-  max-height: 87vh;
+  max-height: 90vh;
   overflow-y: scroll;
 }
 .def2 {
@@ -152,7 +152,7 @@
 
 @media only screen and (max-width: 540px) {
   .video_information {
-    border-radius: 30px;
+    min-height: 90vh;
   }
   .course_info {
     width: 100%;

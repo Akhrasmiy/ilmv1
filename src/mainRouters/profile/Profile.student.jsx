@@ -63,8 +63,8 @@ function Profile() {
       <div
         className={
           modal || modalDarslar
-            ? "blur fife w100 main_lesson mobile_none"
-            : "fife w100 main_lesson mobile_none"
+            ? "blur w100 main_lesson mobile_none"
+            : "w100 main_lesson mobile_none"
         }
       >
         <MobileHeader

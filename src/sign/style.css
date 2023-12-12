@@ -17,16 +17,14 @@
   color: #fff;
   font-size: 27px;
 }
-.student-app-content{
-    padding-right: 24px !important;
-
+.student-app-content {
+  padding-right: 24px !important;
 }
 .sign_wrap {
   background-color: #5b4784;
   width: 70%;
   position: relative;
   margin: 0 auto;
-  height: 90vh;
   box-shadow: 15px 15px 100px rgba(0, 0, 0, 0.3);
   border-radius: 50px;
 }
@@ -72,17 +70,22 @@
 .registr_form {
   overflow-y: scroll;
   padding-bottom: 25px;
-  max-width: 402px;
+  max-width: 602px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
   margin: 0 auto;
 }
-.verify_form{
+.verify_form {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
 }
-.verify_form input{
+.verify_form input {
   font-family: sans-serif;
   padding: 0px 15px;
   padding-right: 0;
@@ -97,10 +100,10 @@
   outline: none;
   border-radius: 15px;
 }
-.d-none{
+.d-none {
   display: none;
 }
-.verify_form button{
+.verify_form button {
   padding: 5px 15px;
   font-family: sans-serif;
   font-style: normal;
@@ -110,11 +113,7 @@
   color: #ffffff;
   outline: none;
   border: none;
-  background: linear-gradient(
-    180deg,
-    #3706f4 4.65%,
-    rgba(55, 6, 244, 0) 181.36%
-  );
+  background: linear-gradient(180deg, #3706f4 4.65%, rgba(55, 6, 244, 0) 181.36%);
   border-radius: 15px;
 }
 .registr_title {
@@ -125,7 +124,6 @@
   font-size: 32px;
   line-height: 39px;
   text-align: center;
-  padding-top: 31px;
   padding-bottom: 31px;
   color: #ffffff;
 }
@@ -136,7 +134,7 @@
   font-size: 24px;
   line-height: 39px;
   color: #fff;
-  width: 100%;
+  width: 80%;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid #ffffff;
@@ -157,11 +155,7 @@
   color: #ffffff;
   outline: none;
   border: none;
-  background: linear-gradient(
-    180deg,
-    #3706f4 4.65%,
-    rgba(55, 6, 244, 0) 181.36%
-  );
+  background: linear-gradient(180deg, #3706f4 4.65%, rgba(55, 6, 244, 0) 181.36%);
   border-radius: 50px;
   width: 100%;
 }
@@ -179,25 +173,21 @@ input {
 .sign_form input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #453663 inset;
 }
-.noactivecode{
+.noactivecode {
   display: none;
 }
-
-
 
 @media only screen and (max-width: 720px) {
   .registr_title {
     font-size: 30px;
     line-height: 30px;
     padding-bottom: 23px;
-    padding-top: 40px;
     max-width: 400px;
     width: 100%;
   }
   .registr_form {
     padding-top: 0;
     max-width: 300px;
-    /* height: 63vh; */
   }
   .sign_wrap {
     display: flex;
@@ -214,7 +204,6 @@ input {
     justify-content: center;
   }
   .registr_form button {
-    /* margin: 0 auto; */
     max-width: 300px;
     margin-top: 7px;
     padding: 5px 35px;
@@ -229,21 +218,18 @@ input {
     max-width: 360px;
     font-size: 25px;
     line-height: 30px;
-    padding-top: 30px;
     max-width: 500px;
   }
-  .registr_form {
-    /* height: 100%; */
-  }
+
   .registr_form input {
     max-width: 280px;
     font-size: 18px;
     line-height: 20px;
   }
-  .sign_wrap{
+  .sign_wrap {
     padding-top: 10px;
   }
-  .back{
+  .back {
     margin-top: 10px !important;
     left: 15px !important;
   }
@@ -254,10 +240,7 @@ input {
 }
 @media only screen and (max-width: 530px) {
   .registr_title {
-    padding-left: 50px;
     max-width: 500px;
-    padding-bottom: 10px;
+    padding-bottom: 25px;
   }
- 
-
 }

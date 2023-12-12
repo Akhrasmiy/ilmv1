@@ -33,6 +33,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.subs_info_wrap p{
+  margin-bottom: 3px;
+}
 .bought_lessons .text_info strong{
   font-size: 13px;
   font-weight: 400;
@@ -229,7 +232,7 @@
   max-height: 90vh;
 }
 .sidebar-bought-course {
-  padding-bottom: 20px;
+  padding: 0 10px 10px 10px;
 }
 
 .mobile__header {

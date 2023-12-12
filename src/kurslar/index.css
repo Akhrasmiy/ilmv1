@@ -60,7 +60,7 @@
 }
 
 .every__cource-info {
-  height: 100vh;
+  height: 90vh;
   border-radius: 50px;
   background: #5b4784 !important;
 }
@@ -92,8 +92,6 @@
 
 .every__cource-desc {
   padding: 23px 30px 15px 23px;
-  /* background: #5b4784; */
-  /* box-shadow: 15px 15px 100px rgba(0, 0, 0, 0.3); */
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 }

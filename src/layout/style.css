@@ -16,6 +16,9 @@
   display: none;
   }
 @media only  screen and (max-width:540px){
+  .app-content{
+    gap: 0;
+  }
   .teacherHomePage{
     width: 100% !important;
   }

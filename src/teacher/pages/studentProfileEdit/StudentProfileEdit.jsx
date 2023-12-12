@@ -75,33 +75,34 @@ const StudentProfileEdit = () => {
         <button onClick={onBack} className={style.back}>
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
-        <div className={style.imgs_div}>
-          {image ? (
-            <img className={style.imgs_div_img} src={image} alt="" />
-          ) : profile?.path ? (
-            <img
-              className={style.imgs_div_img}
-              src={urlJoin(
-                "https://api.ilmlar.com",
-                `${deleteplatforma(profile?.path)}`
-              )}
-              alt=""
-            />
-          ) : (
-            <img className={style.imgs_div_img} src={user} alt="camera img" />
-          )}
-          <div className={style.select_camera_wrap}>
-            <img src={camera} alt="camera img" />
-            <input
-              type="file"
-              className={style.img_file_input}
-              onChange={handleImageChange}
-              ref={userimgRef}
-              accept="image/*"
-            />
-          </div>
-        </div>
+
         <form onSubmit={(e) => onHandleSubmit(e)} className={style.form}>
+          <div className={style.imgs_div}>
+            {image ? (
+              <img className={style.imgs_div_img} src={image} alt="" />
+            ) : profile?.path ? (
+              <img
+                className={style.imgs_div_img}
+                src={urlJoin(
+                  "https://api.ilmlar.com",
+                  `${deleteplatforma(profile?.path)}`
+                )}
+                alt=""
+              />
+            ) : (
+              <img className={style.imgs_div_img} src={user} alt="camera img" />
+            )}
+            <div className={style.select_camera_wrap}>
+              <img src={camera} alt="camera img" />
+              <input
+                type="file"
+                className={style.img_file_input}
+                onChange={handleImageChange}
+                ref={userimgRef}
+                accept="image/*"
+              />
+            </div>
+          </div>
           <input
             ref={firstnameref}
             defaultValue={profile?.fullname?.split(" ")[0] || ""}

@@ -182,6 +182,9 @@
   padding-left: 15px;
 }
 @media only screen and (max-width: 540px) {
+  /* .fife{
+    height: 90vh;
+  } */
   .main-content {
     padding: 0 10px;
     background-color: #5b4784;

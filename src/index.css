@@ -119,8 +119,8 @@ button {
   display: none;
 }
 @media only screen and (max-width: 540px) {
-  .fife {
-    height: 100vh;
+  .fife{
+    height: 90vh;
   }
   .w100 {
     max-height: 100vh;

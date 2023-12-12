@@ -31,7 +31,6 @@ function CommentsList({ modalDarslar, changeModalDars, commints }) {
     window.location.pathname.split("/").at(-1)
   );
   useEffect(() => {
-    console.log(commints);
     setComments(commints);
   }, [commints]);
   const handleClick = () => {
