@@ -78,20 +78,27 @@ const StudentProfileEdit = () => {
 
         <form onSubmit={(e) => onHandleSubmit(e)} className={style.form}>
           <div className={style.imgs_div}>
-            {image ? (
-              <img className={style.imgs_div_img} src={image} alt="" />
-            ) : profile?.path ? (
-              <img
-                className={style.imgs_div_img}
-                src={urlJoin(
-                  "https://api.ilmlar.com",
-                  `${deleteplatforma(profile?.path)}`
-                )}
-                alt=""
-              />
-            ) : (
-              <img className={style.imgs_div_img} src={user} alt="camera img" />
-            )}
+            <div className={style.imgs_div_img_wrap}>
+              {image ? (
+                <img className={style.imgs_div_img} src={image} alt="" />
+              ) : profile?.path ? (
+                <img
+                  className={style.imgs_div_img}
+                  src={urlJoin(
+                    "https://api.ilmlar.com",
+                    `${deleteplatforma(profile?.path)}`
+                  )}
+                  alt=""
+                />
+              ) : (
+                <img
+                  className={style.imgs_div_img}
+                  src={user}
+                  alt="camera img"
+                />
+              )}
+            </div>
+
             <div className={style.select_camera_wrap}>
               <img src={camera} alt="camera img" />
               <input

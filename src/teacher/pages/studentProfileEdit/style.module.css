@@ -8,15 +8,19 @@
 }
 
 .imgs_div {
-
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 13px;
   padding-bottom: 30px;
 }
-.imgs_div_img {
+.imgs_div_img_wrap{
+  /* flex-basis: 1;
+  flex-flow: 1; */
+  flex: 1;
+  /* width: 60%; */
+}
+.imgs_div_img_wrap .imgs_div_img {
   width: 180px;
   height: 180px;
   object-fit: cover;
@@ -29,7 +33,10 @@
   cursor: pointer;
   opacity: 0;
 }
-
+.select_camera_wrap{
+  width: 71px;
+  height: 71px;
+}
 .select_camera_wrap img {
   width: 71px;
   height: 71px;

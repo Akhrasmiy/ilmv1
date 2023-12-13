@@ -126,7 +126,7 @@ button {
     max-height: 100vh;
   }
   .global_wrap{
-    height: 100vh;
+    height: 100%;
   }
   .modal-navbar {
     height: 100%;

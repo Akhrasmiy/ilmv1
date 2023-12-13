@@ -26,6 +26,7 @@
   border-bottom-right-radius: 50px;
   overflow-y: scroll;
 }
+
 .teacherhead{
   display: none;
 }
@@ -169,13 +170,10 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: #ffffffc9;
   margin: 0;
   padding: 0;
-  /* padding: 10px 20px 27px 10px; */
-  /* text-indent: 10px; */
   text-align: start;
-  /* height: 95%; */
   overflow-y: scroll;
 }
 .courses_list div {

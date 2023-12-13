@@ -41,17 +41,26 @@
   font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 17px;
+  font-size: 15px;
+  line-height: 20px;
+  margin-bottom: 3px;
   color: #ffffff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .img_card_desc p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 36px;
-  color: #ffffff;
+  font-size: 13px;
+  line-height: 20px;
+  color: #ffffffa3;
 }
 
 .img_card img {
@@ -92,7 +101,7 @@
     background-color: #282039;
   }
   .img_card_desc {
-    padding: 11px;
+    padding: 11px 20px;
   }
   .img_card img {
     border-radius: 50px 50px 0 0;

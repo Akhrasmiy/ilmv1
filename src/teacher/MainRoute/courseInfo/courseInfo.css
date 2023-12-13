@@ -97,7 +97,7 @@
 }
 
 .video_information_content {
-  padding: 0 28px 28px 28px;
+  padding: 0 20px 28px 20px;
 }
 .video_information_content h3 {
   margin-top: 16px;
@@ -116,10 +116,10 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  color: #ffffff;
+  color: #ffffffe3;
 }
 .video_information_scroll {
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-y: scroll;
 }
 .def2 {

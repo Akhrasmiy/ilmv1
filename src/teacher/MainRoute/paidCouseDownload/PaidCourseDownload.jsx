@@ -92,7 +92,7 @@ function FreeCourseDownload() {
     formData.append("name", courseNameRef.current.value);
     formData.append("desc", courseDescRef.current.value);
     formData.append("muddati", courseMuddatiRef.current.value);
-    formData.append("narxi", priceRef.current.value * 1.25);
+    formData.append("narxi", narx * 1.25);
 
     for (let i = 0; i < videoDataArray.length; i++) {
       const videoData = videoDataArray[i];
@@ -146,6 +146,9 @@ function FreeCourseDownload() {
   const handlechangenarx = () => {
     if (priceRef?.current?.value && priceRef?.current?.value >= 0) {
       setnarx(priceRef.current.value);
+    }
+    if(priceRef?.current?.value <= 0){
+      setnarx(0);
     }
     
   };
@@ -285,13 +288,13 @@ function FreeCourseDownload() {
                       <div className={styles.free_video_input_wrapper}>
                         <input
                           type="text"
-                          placeholder="Enter video title"
+                          placeholder="Video nomi"
                           ref={titleInputRef}
                           className={styles.video_download_input_title}
                         />
                         <input
                           type="text"
-                          placeholder="Enter video description"
+                          placeholder="Video uchun izoh"
                           ref={descriptionInputRef}
                           className={styles.video_download_input_desc}
                         />
@@ -301,14 +304,14 @@ function FreeCourseDownload() {
                         Faylni tanlang
                           <input
                             type="file"
-                            placeholder="Muqova uchun video"
+                            placeholder=""
                             accept="video/*"
                             className={styles.video_download_input_file}
                             ref={fileInputRef}
                           />
                           
                         </div>
-                        <select name="" ref={isopenRef} id="">
+                        <select className="open_close_select" name="" ref={isopenRef} id="">
                           <option value="false">
                             <span className="material-symbols-outlined">yopiq</span>
                           </option>
@@ -365,7 +368,7 @@ function FreeCourseDownload() {
             <p>
               Yuklanmoqda{" "}
               <Spin
-                indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
+                indicator={<LoadingOutlined style={{ fontSize: 30 }} spin />}
               />
             </p>
           </div>
