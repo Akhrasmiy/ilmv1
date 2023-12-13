@@ -2,8 +2,7 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style.css";
-import { ToastContainer, toast } from 'react-toastify';
-
+import { ToastContainer, toast } from "react-toastify";
 
 const StudentRegistration = () => {
   const [verifycode, setverifycode] = useState(false);
@@ -17,6 +16,8 @@ const StudentRegistration = () => {
   const passwordRepeatRef = useRef();
   const fileRef = useRef();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
 
   const onBack = () => {
     navigate(-1);
@@ -39,16 +40,19 @@ const StudentRegistration = () => {
     axios
       .post("https://api.ilmlar.com/users/register/", formData)
       .then((response) => {
-        toast.info(`${emailRef.current.value}ga kod yuborildi. Tasdiqlash kodni kiriting`, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.info(
+          `${emailRef.current.value} ga kod yuborildi. Tasdiqlash kodni kiriting`,
+          {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
         setverifycode(true);
       })
       .catch((error) => {
@@ -61,62 +65,102 @@ const StudentRegistration = () => {
       email: email,
       code: emailcodeRef.current.value,
     });
-    axios.post("https://api.ilmlar.com/users/register/verify", {
-      email: email,
-      code: emailcodeRef.current.value,
-    }).then((res)=>{
-      if(res.data._id){
-        navigate("/login")
-      }
-    });
+    axios
+      .post("https://api.ilmlar.com/users/register/verify", {
+        email: email,
+        code: emailcodeRef.current.value,
+      })
+      .then((res) => {
+        if (res.data._id) {
+          navigate("/login");
+        }
+      });
   };
-
+  function showFunc(e) {
+    e.target.classList.toggle("bi-eye");
+    setShowPassword((prev) => !prev);
+  }
+  function showFuncRepeat(e) {
+    e.target.classList.toggle("bi-eye");
+    setShowPasswordRepeat((prev) => !prev);
+  }
   return (
     <div className="app-content">
       <div className="sign_wrap">
-      <ToastContainer />
+        <ToastContainer />
         <button onClick={onBack} className="back">
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
-        <form className="registr_form" onSubmit={(e) => onHandler(e)}>
-          <h3 className="registr_title">O'quvchi sifatida ro'yxatdan o'tish</h3>
-          <input ref={nameRef} type="text" placeholder="ism" required />
-          <input ref={surnameRef} type="text" placeholder="familiya" required />
-          <input
-            ref={usernameRef}
-            onChange={handlechange}
-            type="text"
-            placeholder="username"
-            required
-          />
-          <input ref={emailRef} type="email" placeholder="email" required />
-          <input
-            ref={passwordRef}
-            type="password"
-            placeholder="parol"
-            required
-          />
-          <input
-            ref={passwordRepeatRef}
-            type="password"
-            placeholder="parolni qayta yozing"
-            required
-          />
-          <div className="register-mobile__forBtn">
-            <button 
-          className={`${verifycode ? "d-none" : ""} verify_form`} type="submit">Davom etish</button>
-          </div>
-        </form>
-        <form
-          action=""
-          className={`${verifycode ? "activecode" : "noactivecode"} verify_form`}
-          onSubmit={(e) => onverify(e)}
-        >
-          <input ref={emailcodeRef} maxLength={6} type="number" placeholder="Kodni kiriting" required />
-          <button type="submit">Ro'yxatdan o'tish</button>
-        </form>
+        <div className="registration_wrapper">
+          <form className="registr_form" onSubmit={(e) => onHandler(e)}>
+            <h3 className="registr_title">
+              O'quvchi sifatida ro'yxatdan o'tish
+            </h3>
+            <input ref={nameRef} type="text" placeholder="Ism" required />
+            <input
+              ref={surnameRef}
+              type="text"
+              placeholder="Familiya"
+              required
+            />
+            <input
+              ref={usernameRef}
+              onChange={handlechange}
+              type="text"
+              placeholder="Foydalanuvchi nomi"
+              required
+            />
+            <input ref={emailRef} type="email" placeholder="Email" required />
+            <div className="show_password_registr">
+              <input
+                ref={passwordRef}
+                required
+                type={showPassword ? "text" : "password"}
+                placeholder="Parol"
+              />
+              <i
+                onClick={(e) => showFunc(e)}
+                className="bi bi-eye-slash closeIcon"
+              ></i>
+            </div>
+            <div className="show_password_registr">
+              <input
+                ref={passwordRepeatRef}
+                required
+                type={showPasswordRepeat ? "text" : "password"}
+                placeholder="Parolingizni yana kiriting"
+              />
+              <i
+                onClick={(e) => showFuncRepeat(e)}
+                className="bi bi-eye-slash closeIcon"
+              ></i>
+            </div>
+            <button
+              className={`${verifycode ? "d-none" : ""} verify_form`}
+              type="submit"
+            >
+              Davom etish
+            </button>
+          </form>
+          <form
+            action=""
+            className={`${
+              verifycode ? "activecode" : "noactivecode"
+            } verify_form`}
+            onSubmit={(e) => onverify(e)}
+          >
+            <input
+              ref={emailcodeRef}
+              maxLength={6}
+              type="number"
+              placeholder="Emailga yuborilgan kodni kiriting"
+              required
+            />
+            <button type="submit">Ro'yxatdan o'tish</button>
+          </form>
+        </div>
         <Link className="alright_note" to={"/login"}>
-          Oldin ro'yxatdan o'tganmisiz?
+          Akkauntingiz bormi?
         </Link>
       </div>
     </div>

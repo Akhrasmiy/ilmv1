@@ -1,3 +1,39 @@
+.show_password {
+  width: 100%;
+  position: relative;
+  margin-bottom: 25px;
+}
+.show_password input {
+  width: 100%;
+  margin-bottom: 0 !important;
+  padding-right: 50px !important;
+}
+.show_password_registr {
+  width: 80%;
+  position: relative;
+  margin-bottom: 14px;
+}
+.show_password_registr input {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+  padding-right: 50px !important;
+}
+.closeIcon,
+.openIcon {
+  font-size: 20px;
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.none {
+  display: none;
+}
+.show {
+  display: block;
+}
 .back {
   position: absolute;
   top: 22px;
@@ -46,11 +82,14 @@
   font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 29px;
   border: none;
   margin-bottom: 25px;
   border-radius: 20px;
+}
+.sign_form input::placeholder {
+  font-size: 18px;
 }
 .sign_form button {
   padding: 4px 0;
@@ -76,19 +115,27 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
   margin: 0 auto;
+}
+.registration_wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }
 .verify_form {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
+  max-width: 602px;
+  width: 100%;
 }
 .verify_form input {
   font-family: sans-serif;
   padding: 0px 15px;
-  padding-right: 0;
+  flex-grow: 0.5;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -99,6 +146,9 @@
   border: 2px solid #ffffff;
   outline: none;
   border-radius: 15px;
+}
+.verify_form input::placeholder{
+  color: #ffffff6c;
 }
 .d-none {
   display: none;
@@ -131,7 +181,7 @@
   font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 39px;
   color: #fff;
   width: 80%;
@@ -143,6 +193,7 @@
 }
 .registr_form input::placeholder {
   color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
 }
 .registr_form button {
   margin-top: 33px;
@@ -157,12 +208,15 @@
   border: none;
   background: linear-gradient(180deg, #3706f4 4.65%, rgba(55, 6, 244, 0) 181.36%);
   border-radius: 50px;
-  width: 100%;
+  width: 80%;
 }
 .alright_note {
   position: absolute;
   top: 15px;
   right: 35px;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: underline;
 }
 input {
   color-scheme: dark;
@@ -199,10 +253,6 @@ input {
     line-height: 25px;
     margin-bottom: 20px;
   }
-  .register-mobile__forBtn {
-    display: flex;
-    justify-content: center;
-  }
   .registr_form button {
     max-width: 300px;
     margin-top: 7px;
@@ -220,7 +270,26 @@ input {
     line-height: 30px;
     max-width: 500px;
   }
-
+  .alright_note {
+    position: absolute;
+    top: 11px;
+    right: 30px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: underline;
+  }
+  .verify_form {
+    flex-direction: column;
+    gap: 15px;
+    max-width: 602px;
+    width: 100%;
+  }
+  .verify_form input {
+    width: 80%;
+  }
+  .verify_form button {
+    width: 80%;
+  }
   .registr_form input {
     max-width: 280px;
     font-size: 18px;

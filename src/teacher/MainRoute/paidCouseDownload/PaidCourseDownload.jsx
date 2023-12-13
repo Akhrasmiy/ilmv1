@@ -144,9 +144,10 @@ function FreeCourseDownload() {
     };
   };
   const handlechangenarx = () => {
-    if (priceRef?.current?.value) {
+    if (priceRef?.current?.value && priceRef?.current?.value >= 0) {
       setnarx(priceRef.current.value);
     }
+    
   };
 
   return (
@@ -309,10 +310,10 @@ function FreeCourseDownload() {
                         </div>
                         <select name="" ref={isopenRef} id="">
                           <option value="false">
-                            <span class="material-symbols-outlined">yopiq</span>
+                            <span className="material-symbols-outlined">yopiq</span>
                           </option>
                           <option value="true">
-                            <span class="material-symbols-outlined">ochiq</span>
+                            <span className="material-symbols-outlined">ochiq</span>
                           </option>
                         </select>
                         <div className={styles.plus_minus}>
