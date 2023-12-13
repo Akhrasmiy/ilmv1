@@ -69,6 +69,12 @@ function CourseInfo() {
         console.error(error);
       });
   }, [courseId]);
+  const next = () => {
+    if (courseData.length > courseIndex) {
+      setCourseIndex(courseIndex + 1);
+      setSelectedVideo(courseData[courseIndex]);
+    }
+  };
 
   const handleVideoSelection = (video) => {
     setSelectedVideo(video);
@@ -125,9 +131,13 @@ function CourseInfo() {
                 selectedVideo.orni
               )}`}
               alt="Video"
+              onEnded={() => {
+                next();
+              }}
               width="100%"
               muted={true}
               controls
+              onContextMenu={(e) => e.preventDefault()}
               config={{ file: { attributes: { controlsList: "nodownload" } } }}
             />
               {/* <video

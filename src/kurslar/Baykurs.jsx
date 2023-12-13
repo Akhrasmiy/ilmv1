@@ -15,7 +15,7 @@ function deleteplatforma(url) {
     if (url.includes("platforma")) {
       const parts = url.split("/");
       const s = parts.slice(2).join("/");
-      return s; // Remove the first 3 segments of the URL
+      return s; 
     }
     return url;
   } catch (error) {
