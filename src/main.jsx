@@ -9,6 +9,8 @@ import { MyCoursesProvider } from "./contexts/myCoursesContext.jsx";
 import { SaveCoursesProvider } from "./contexts/saveCoursesContext.jsx";
 import { SubsTeacherProvider } from "./contexts/subsTeacherContext.jsx";
 import { TeacherProfileProvider } from "./contexts/teacherProfilContext.jsx";
+import { StudentNavbarProvider } from "./contexts/studentNavbarContext.jsx";
+import { TeacherNavbarProvider } from "./contexts/teacherNavbarContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -17,7 +19,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <MyCoursesProvider>
           <SaveCoursesProvider>
             <SubsTeacherProvider>
-              <App />
+              <StudentNavbarProvider>
+                <TeacherNavbarProvider>
+                  <App />
+                </TeacherNavbarProvider>
+              </StudentNavbarProvider>
             </SubsTeacherProvider>
           </SaveCoursesProvider>
         </MyCoursesProvider>

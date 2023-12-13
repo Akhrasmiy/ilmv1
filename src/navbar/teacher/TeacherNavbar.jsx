@@ -1,67 +1,47 @@
-import React, { memo, useEffect, useRef, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../style.css";
 import TeachUserprofile from "../../teacher/components/Userprofile";
 import t1 from "../../imgs/t1.svg";
 import t2 from "../../imgs/t2.svg";
 import t3 from "../../imgs/t3.svg";
-import t4 from "../../imgs/t4.svg";
-import t5 from "../../imgs/t5.svg";
 import t6 from "../../imgs/t6.svg";
 import prev from "../../imgs/prev.svg";
+import { teacherNavbarContext } from "../../contexts/teacherNavbarContext";
 function TeacherNavbar({ changeModal, modal }) {
   const [modalClass, setModalClass] = useState("");
-  
-  const lessonsRef = useRef();
-  const balanceRef = useRef();
-  const saveRef = useRef();
-  const statisticRef = useRef();
-  const updateRef = useRef();
-  const profileRef = useRef();
+  const {
+    lesson,
+    setLesson,
+    balance,
+    setBalance,
+    download,
+    setDownload,
+    profile,
+    setProfile,
+  } = useContext(teacherNavbarContext);
 
   useEffect(() => {
     if (window.location.pathname === "/teacher/darslar") {
-      lessonsRef?.current?.classList?.add("active");
-      balanceRef?.current?.classList?.remove("active");
-      saveRef?.current?.classList?.remove("active");
-      statisticRef?.current?.classList?.remove("active");
-      updateRef?.current?.classList?.remove("active");
-      profileRef?.current?.classList?.remove("active");
+      setLesson(true);
+      setBalance(false);
+      setDownload(false);
+      setProfile(false);
     } else if (window.location.pathname === "/teacher/hisoblar") {
-      lessonsRef?.current?.classList?.remove("active");
-      balanceRef?.current?.classList?.add("active");
-      saveRef?.current?.classList?.remove("active");
-      statisticRef?.current?.classList?.remove("active");
-      updateRef?.current?.classList?.remove("active");
-      profileRef?.current?.classList?.remove("active");
+      setLesson(false);
+      setBalance(true);
+      setDownload(false);
+      setProfile(false);
     } else if (window.location.pathname === "/teacher/kurs") {
-      lessonsRef?.current?.classList?.remove("active");
-      balanceRef?.current?.classList?.remove("active");
-      saveRef?.current?.classList?.add("active");
-      statisticRef?.current?.classList?.remove("active");
-      updateRef?.current?.classList?.remove("active");
-      profileRef?.current?.classList?.remove("active");
-    } else if (window.location.pathname === "/teacher/statistic") {
-      lessonsRef?.current?.classList?.remove("active");
-      balanceRef?.current?.classList?.remove("active");
-      saveRef?.current?.classList?.remove("active");
-      statisticRef?.current?.classList?.add("active");
-      updateRef?.current?.classList?.remove("active");
-      profileRef?.current?.classList?.remove("active");
-    } else if (window.location.pathname === "/teacher/update/kurs") {
-      lessonsRef?.current?.classList?.remove("active");
-      balanceRef?.current?.classList?.remove("active");
-      saveRef?.current?.classList?.remove("active");
-      statisticRef?.current?.classList?.remove("active");
-      updateRef?.current?.classList?.add("active");
-      profileRef?.current?.classList?.remove("active");
+      setLesson(false);
+      setBalance(false);
+      setDownload(true);
+      setProfile(false);
     } else if (window.location.pathname === "/teacher/profile") {
-      profileRef?.current?.classList?.add("active");
-      lessonsRef?.current?.classList?.remove("active");
-      balanceRef?.current?.classList?.remove("active");
-      saveRef?.current?.classList?.remove("active");
-      statisticRef?.current?.classList?.remove("active");
-      updateRef?.current?.classList?.remove("active");
+      setLesson(false);
+      setBalance(false);
+      setDownload(false);
+      setProfile(true);
     }
   }, [window.location.pathname]);
 
@@ -84,19 +64,19 @@ function TeacherNavbar({ changeModal, modal }) {
         <TeachUserprofile />
       </div>
       <ul className="teacher_nav_main">
-        <li onClick={() => lessonsRef.current.classList.add("active")} ref={lessonsRef}>
+        <li className={`${lesson ? "active" : ""}`}>
           <img src={t1} alt="" />
           <Link to="/teacher/darslar">darslar</Link>
         </li>
-        <li onClick={() => balanceRef.current.classList.add("active")} ref={balanceRef}>
+        <li className={`${balance ? "active" : ""}`}>
           <img src={t2} alt="" />
           <Link to="/teacher/hisoblar">hisob balans</Link>
         </li>
-        <li onClick={() => saveRef.current.classList.add("active")} ref={saveRef}>
+        <li className={`${download ? "active" : ""}`}>
           <img src={t3} alt="" />
           <Link to="/teacher/kurs">kurs yuklash</Link>
         </li>
-        <li onClick={() => profileRef.current.classList.add("active")} ref={profileRef}>
+        <li className={`${profile ? "active" : ""}`}>
           <img src={t6} alt="" />
           <Link to="/teacher/profile">profile</Link>
         </li>

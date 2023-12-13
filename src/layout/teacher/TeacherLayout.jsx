@@ -19,7 +19,6 @@ const TeacherLayout = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setTeacherProfile(res.data);
       });
       

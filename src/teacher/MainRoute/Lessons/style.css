@@ -6,13 +6,13 @@
   min-height: 90vh;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.lessons_wrap div{
+.lessons_wrap div div.main-cart{
   border-radius: 50px;
   transition: all 0.1s ease-in;
 }
-.lessons_wrap div:hover {
-  box-shadow: rgba(0, 0, 0, 0.175) 15px 15px 24px;
-  transform: scale(1.008);
+.lessons_wrap div div.main-cart:hover {
+  box-shadow: rgba(0, 0, 0, 0.318) 15px 15px 24px;
+  transform: scale(1.015);
 }
 @media only screen and (max-width: 1100px) {
   .lessons_wrap {
