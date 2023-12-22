@@ -19,9 +19,14 @@ function findCursById(cursList, cursId) {
   }
   return false;
 }
-// 
 function AboutCourseInfo() {
-  const [hisoblanuvchi_vaqt, sethisoblanuvchi_vaqt] = useState();
+  const [hisoblanuvchi_vaqt, sethisoblanuvchi_vaqt] = useState({
+    oy: 0,
+    kun: 0,
+    soat: 0,
+    minut: 0,
+    secund: 0,
+  });
 
   const [kurs, setKurs] = useState({});
   const [teacher, setTeacher] = useState({});
