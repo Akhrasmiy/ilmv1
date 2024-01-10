@@ -10,12 +10,12 @@ const Footer = () => {
           <img src={footer_logo} alt="" />
         </div>
         <div className="landing_footer_middle">
-          <div className="landing_footer_middle_first">
+          <div className="landing_footer_middle_first first_width">
             <a href="#about">Biz haqimizda</a>
             <a href="#teacher">O’qituvchilar</a>
             <a href="#student">O’rganuvchilar</a>
           </div>
-          <div className="landing_footer_middle_first">
+          <div className="landing_footer_middle_first second_width">
             <Link to="/teacherlogin">O’qituvchi sifatida kirish</Link>
             <Link to="/login">O’rganuvchi sifatida kirish</Link>
             <Link to="/teacherregistration">O’qituvchi sifatida ro’yxatdan o’tish</Link>

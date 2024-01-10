@@ -42,6 +42,21 @@ img {
 ::-webkit-scrollbar {
   width: 1px;
 }
+.error_message{
+  color: #fb4d4d;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-size: 16px;
+  display: block;
+  text-align: start !important;
+}
+.error_message_2{
+  color: #fb4d4d;
+  margin-bottom: 12px;
+  font-size: 16px;
+  display: block;
+  text-align: start !important;
+}
 .homepage {
   display: flex;
 }
@@ -119,6 +134,17 @@ button {
   display: none;
 }
 @media only screen and (max-width: 540px) {
+  .error_message{
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  .error_message_2{
+    color: #fb4d4d;
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: block;
+    text-align: start !important;
+  }
   .fife{
     height: 90vh;
   }

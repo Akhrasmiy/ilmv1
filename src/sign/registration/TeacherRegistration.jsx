@@ -3,18 +3,41 @@ import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+const teacherRegistrSchema = z
+  .object({
+    name: z.string().trim().min(1, "Ism kiritilishi kerak"),
+    surname: z.string().trim().min(1, "Familiya kiritilishi kerak"),
+    username: z.string().trim().min(1, "Foydalanuvchi nomi kiritilishi kerak"),
+    email: z.string().email("Emailni to'g'ri kiriting"),
+    password: z
+      .string()
+      .trim()
+      .min(4, "Parol 4-20 ta belgidan iborat bo'lishi kerak")
+      .max(20, "Parol 4-20 ta belgidan iborat bo'lishi kerak"),
+    resetPassword: z.string().trim(),
+  })
+  .refine((data) => data.password === data.resetPassword, {
+    message: "Parollar bir xil bo'lishi kerak",
+    path: ["resetPassword"],
+  });
 const TeacherRegistration = () => {
   const [verifycode, setverifycode] = useState(false);
   const [email, setemail] = useState("");
   const emailcodeRef = useRef();
-  const nameRef = useRef();
-  const surnameRef = useRef();
   const usernameRef = useRef();
   const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordRepeatRef = useRef();
-  const fileRef = useRef();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(teacherRegistrSchema),
+  });
+
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
@@ -25,27 +48,21 @@ const TeacherRegistration = () => {
     navigate(-1);
   };
 
-  const onHandler = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("username", usernameRef.current.value);
-    formData.append("password", passwordRef.current.value);
-    formData.append("email", emailRef.current.value);
-    formData.append(
-      "fullname",
-      `${nameRef.current.value} ${surnameRef.current.value}`
-    );
-    setemail(emailRef.current.value);
+  const onSubmit = (data) => {
+    data.fullname = `${data.name} ${data.surname}`;
+    setemail(data.email);
+    delete data.resetPassword;
+    delete data.name;
+    delete data.surname;
 
     axios
-      .post("https://api.ilmlar.com/teacher/register/", formData)
+      .post("https://api.ilmlar.com/teacher/register/", data)
       .then((response) => {
-        // Handle successful registration
         toast.info(
-          `${emailRef.current.value} ga kod yuborildi. Tasdiqlash kodni kiriting`,
+          `${data.email} ga kod yuborildi. Tasdiqlash kodini kiriting`,
           {
             position: "top-right",
-            autoClose: 3000,
+            autoClose: 10000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -54,10 +71,9 @@ const TeacherRegistration = () => {
             theme: "light",
           }
         );
-        setverifycode(response.data.email);
+        setverifycode(true);
       })
       .catch((error) => {
-        // Handle registration error
         console.error(error);
       });
   };
@@ -71,7 +87,23 @@ const TeacherRegistration = () => {
       .then((res) => {
         if (res.data._id) {
           navigate("/teacherlogin");
+        }else{
+          toast.error(
+            "Kod xato kiritildi",
+            {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            }
+          );
         }
+      }).catch((error) => {
+        console.log(error);
       });
   };
   function showFunc(e) {
@@ -91,30 +123,43 @@ const TeacherRegistration = () => {
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         <div className="registration_wrapper">
-          <form className="registr_form" onSubmit={(e) => onHandler(e)}>
+          <form className="registr_form" onSubmit={handleSubmit(onSubmit)}>
             <h3 className="registr_title">
               O'qituvchi sifatida ro'yxatdan o'tish
             </h3>
-            <input ref={nameRef} type="text" placeholder="Ism" required />
-            <input
-              ref={surnameRef}
-              type="text"
-              placeholder="Familiya"
-              required
-            />
+            <input {...register("name")} type="text" placeholder="Ism" />
+            {errors.name ? (
+              <span className="error_message_2">{`${errors.name.message}`}</span>
+            ) : (
+              <span className="error_message_2"></span>
+            )}
+            <input type="text" placeholder="Familiya" {...register("surname")} />
+            {errors.surname ? (
+              <span className="error_message_2">{`${errors.surname.message}`}</span>
+            ) : (
+              <span className="error_message_2"></span>
+            )}
             <input
               ref={usernameRef}
               type="text"
               placeholder="Foydalanuvchi nomi"
-              required
               onChange={handlechange}
+              {...register("username")}
             />
-            <input ref={emailRef} type="email" placeholder="Email" required />
-
+             {errors.username ? (
+              <span className="error_message_2">{`${errors.username.message}`}</span>
+            ) : (
+              <span className="error_message_2"></span>
+            )}
+            <input ref={emailRef} type="email" placeholder="Email" {...register("email")} />
+            {errors.email ? (
+              <span className="error_message_2">{`${errors.email.message}`}</span>
+            ) : (
+              <span className="error_message_2"></span>
+            )}
             <div className="show_password_registr">
               <input
-                ref={passwordRef}
-                required
+              {...register("password")}
                 type={showPassword ? "text" : "password"}
                 placeholder="Parol"
               />
@@ -123,18 +168,27 @@ const TeacherRegistration = () => {
                 className="bi bi-eye-slash closeIcon"
               ></i>
             </div>
+            {errors.password ? (
+              <span className="error_message_2">{`${errors.password.message}`}</span>
+            ) : (
+              <span className="error_message_2"></span>
+            )}
             <div className="show_password_registr">
               <input
-                ref={passwordRepeatRef}
-                required
                 type={showPasswordRepeat ? "text" : "password"}
                 placeholder="Parolingizni yana kiriting"
+                {...register("resetPassword")}
               />
               <i
                 onClick={(e) => showFuncRepeat(e)}
                 className="bi bi-eye-slash closeIcon"
               ></i>
             </div>
+            {errors.resetPassword ? (
+              <span className="error_message_2">{`${errors.resetPassword.message}`}</span>
+            ) : (
+              <span className="error_message_2"></span>
+            )}
             <button
               type="submit"
               className={`${verifycode ? "d-none" : ""} verify_form`}

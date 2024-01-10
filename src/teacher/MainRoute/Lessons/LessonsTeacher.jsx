@@ -58,11 +58,16 @@ function LessonsTeacher(props) {
           />
         </div>
         <div className="main_teacher_content sidebar-main-wrap teacher-main-sidebar">
-          <div className="lessons_wrap sm:grid-cols-3">
+          {
+            courses.length ? <div className="lessons_wrap sm:grid-cols-3">
             {courses.map((course, index) => {
               return <LessonCard where={where} cart={course} key={index} />;
             })}
-          </div>
+          </div> : <h1 className="teacher_lessons_info_title">
+            Siz hozircha kurs yuklamagansiz
+          </h1>
+          }
+          
         </div>
       </div>
     </>

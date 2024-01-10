@@ -1,7 +1,7 @@
 .show_password {
   width: 100%;
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 .show_password input {
   width: 100%;
@@ -9,7 +9,7 @@
   padding-right: 50px !important;
 }
 .show_password_registr {
-  width: 80%;
+  width: 100%;
   position: relative;
   margin-bottom: 14px;
 }
@@ -66,7 +66,6 @@
 }
 .sign_form {
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 400px;
@@ -85,7 +84,7 @@
   font-size: 20px;
   line-height: 29px;
   border: none;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   border-radius: 20px;
 }
 .sign_form input::placeholder {
@@ -99,25 +98,27 @@
   font-size: 24px;
   line-height: 29px;
   color: #ffffff;
-  background-color: tr;
   outline: none;
   border: none;
   background-color: #453663;
   border-radius: 30px;
   width: 100%;
+  display: block;
+}
+.sign_form button:disabled{
+  opacity: 0.5;
 }
 .registr_form {
   overflow-y: scroll;
   padding-bottom: 25px;
-  max-width: 602px;
+  max-width: 500px;
   width: 100%;
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
 }
-.registration_wrapper{
+.registration_wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,6 +131,7 @@
   justify-content: center;
   gap: 15px;
   max-width: 602px;
+  margin: 0 auto;
   width: 100%;
 }
 .verify_form input {
@@ -147,7 +149,7 @@
   outline: none;
   border-radius: 15px;
 }
-.verify_form input::placeholder{
+.verify_form input::placeholder {
   color: #ffffff6c;
 }
 .d-none {
@@ -171,29 +173,30 @@
   font-family: sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 28px;
   line-height: 39px;
   text-align: center;
-  padding-bottom: 31px;
+  padding-bottom: 30px;
   color: #ffffff;
 }
 .registr_form input {
   font-family: sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 39px;
+  font-size: 18px;
   color: #fff;
-  width: 80%;
+  width: 100%;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid #ffffff;
   outline: none;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
+  padding-bottom: 5px;
 }
+
 .registr_form input::placeholder {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 20px;
+  font-size: 18px;
 }
 .registr_form button {
   margin-top: 33px;
@@ -242,6 +245,7 @@ input {
   .registr_form {
     padding-top: 0;
     max-width: 300px;
+    width: 100%;
   }
   .sign_wrap {
     display: flex;
@@ -249,15 +253,20 @@ input {
     align-items: center;
   }
   .registr_form input {
-    font-size: 22px;
-    line-height: 25px;
-    margin-bottom: 20px;
+    font-size: 18px;
+    width: 100%;
+    line-height: 20px;
+    margin-bottom: 5px;
+  }
+  .show_password_registr {
+    width: 100%;
+    margin-bottom: 5px;
   }
   .registr_form button {
-    max-width: 300px;
+    width: 100%;
     margin-top: 7px;
     padding: 5px 35px;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 30px;
     border-radius: 50px;
   }
@@ -265,10 +274,9 @@ input {
 
 @media only screen and (max-width: 576px) {
   .registr_title {
-    max-width: 360px;
     font-size: 25px;
     line-height: 30px;
-    max-width: 500px;
+    max-width: 340px;
   }
   .alright_note {
     position: absolute;
@@ -285,13 +293,14 @@ input {
     width: 100%;
   }
   .verify_form input {
-    width: 80%;
+    width: 100%;
   }
   .verify_form button {
-    width: 80%;
+    width: 100%;
   }
   .registr_form input {
     max-width: 280px;
+    width: 100%;
     font-size: 18px;
     line-height: 20px;
   }
@@ -304,7 +313,7 @@ input {
   }
   .sign_form {
     max-width: 400px;
-    width: 80%;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 530px) {
