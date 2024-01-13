@@ -25,7 +25,7 @@
   gap: 19px;
 }
 .every__cource-info {
-  height: 90vh;
+  height: 90dvh;
   width: 44vw;
   border-radius: 50px;
   background: #5b4784;
@@ -128,5 +128,5 @@
 }
 .sidebar-main-content {
   overflow-y: scroll;
-  max-height: 90vh;
+  max-height: 90dvh;
 }

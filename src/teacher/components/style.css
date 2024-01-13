@@ -30,7 +30,7 @@
   text-align: center;
   padding-top: 15px;
 }
-@media only  screen and (max-width:540px) {
+@media only  screen and (max-width:850px) {
   .commit-div{
    max-width: calc(100% - 80px );
    width: 100%;

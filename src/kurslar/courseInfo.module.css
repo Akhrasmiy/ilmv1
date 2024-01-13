@@ -6,7 +6,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 850px) {
   .back {
     background-color: #5A4682;
     border: none;

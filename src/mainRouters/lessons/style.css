@@ -24,13 +24,12 @@
   cursor: pointer;
   border: none;
 }
-@media only screen and (min-width: 540px) {
+@media only screen and (min-width: 850px) {
   .main-contentt {
-    height: calc(90vh - 70px) !important;
-    /* height: 80vh; */
+    height: calc(100% - 70px) !important;
   }
   .w100 {
-    width: 44vh;
+    width: 44dvh;
   }
 }
 @keyframes mobileBurger {
@@ -159,13 +158,16 @@
   transition: 2s;
   left: -100%;
 }
+.main_lesson {
+  height: 100%;
+}
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 850px) {
   .Nav {
     display: none;
   }
   .w100 {
-    max-height: 100vh;
+    max-height: 100dvh;
   }
   .modalDarslar .Nav {
     display: block;
@@ -232,7 +234,7 @@
   }
 
   .modal-navbar .Nav ul li a {
-    padding-left: 100px !important;
+    padding-left: 120px !important;
   }
 }
 
@@ -250,6 +252,11 @@
   padding: 10px 0;
 }
 
+@media only screen and (max-width: 850px) {
+  .student_lessons_wrap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 @media only screen and (max-width: 540px) {
   .student_lessons_wrap {
     grid-template-columns: auto;

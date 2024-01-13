@@ -23,14 +23,13 @@ const SelectDownloadCourse = () => {
   return (
     <>
       <div className={modal ? "def modal-navbar" : "def yoq"}>
-        {/* <StudentNavbar changeModal={changeModal} modal={modal} /> */}
         <TeacherNavbar changeModal={changeModal} modal={modal} />
       </div>
       <div
         className={
           modal || modalDarslar
-            ? "blur w100 main_lesson mobile mobile_none"
-            : "w100 main_lesson mobile_none"
+            ? "blur w100 extra_width_class mobile mobile_none"
+            : "w100 extra_width_class mobile_none"
         }
       >
         <MobileHeader
@@ -44,7 +43,6 @@ const SelectDownloadCourse = () => {
       </div>
       <div className="teacherHomePage main_profile_container sidebar-wrap teacher-main-sidebar">
         <div className={styles.buttons}  >
-          {/* <NavLink to="/kurs/free">Tekin kurs yuklash</NavLink> */}
           <NavLink to="/kurs/money">Kurs yuklash</NavLink>
         </div>
       </div>

@@ -127,7 +127,7 @@ function TeacherInfo() {
           <button onClick={onBack} className="back-1">
             <ion-icon name="chevron-back-outline"></ion-icon>
           </button>
-          <div style={{ width: "85%" }}>
+          <div className="mobile_width_class">
             <MobileHeader
               changeModalDars={changeModalDars}
               changeModal={changeModal}

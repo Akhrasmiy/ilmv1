@@ -110,7 +110,7 @@ function CourseInfo() {
           <button onClick={onBack} className={styles.back}>
                 <ion-icon name="chevron-back-outline"></ion-icon>
               </button>
-            <div style={{ width: "85%" }}>
+            <div className="mobile_width_class">
               
               <MobileHeader
                 changeModalDars={changeModal}

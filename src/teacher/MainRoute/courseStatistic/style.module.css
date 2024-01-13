@@ -87,6 +87,17 @@
   color: #ffffff;
   margin-bottom: 25px;
 }
+@media only screen and (max-width: 850px) {
+  .course_statistic {
+    padding: 0 40px;
+  }
+  .course_statictic_wrap {
+    display: flex;
+    gap: 25px;
+    padding-top: 145px;
+    padding-left: 5px;
+  }
+}
 @media only screen and (max-width: 750px) {
   .course_statictic_wrap {
     flex-direction: column;

@@ -2,7 +2,7 @@
   padding: 0 10px;
   background-color: #5b4784;
   border-radius: 50px;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .main-page {
@@ -12,11 +12,11 @@
 
 .sidebar-student-main-wrap {
   overflow-y: scroll;
-  max-height: 100vh;
+  max-height: 100dvh;
 }
 .sidebar-main-wrap_all {
   overflow-y: scroll;
-  max-height: 100vh;
+  max-height: 100dvh;
 }
 .teacherinfo_courses{
   padding: 9px;
@@ -59,7 +59,7 @@
 }
 .extra_class {
   overflow-y: scroll;
-  height: 90vh;
+  height: 90dvh;
 }
 .my_subs img.teacher_img {
   width: 130px;
@@ -179,15 +179,13 @@
 .courses_list div {
   padding-left: 15px;
 }
-@media only screen and (max-width: 540px) {
-  /* .fife{
-    height: 90vh;
-  } */
+@media only screen and (max-width: 850px) {
+
   .main-content {
     padding: 0 10px;
     background-color: #5b4784;
     border-radius: 50px;
-    height: 90vh ;
+    height: 90dvh ;
   }
   .main-page {
     display: block !important;
@@ -201,11 +199,11 @@
   }
   .sidebar-student-main-wrap {
     overflow-y: scroll;
-    max-height: 85vh;
+    max-height: 85dvh;
   }
   .sidebar-main-wrap_all {
     overflow-y: scroll;
-    max-height: 90vh;
+    max-height: 90dvh;
   }
   .courses_list {
     width: 100%;

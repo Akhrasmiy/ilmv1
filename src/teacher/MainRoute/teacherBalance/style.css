@@ -5,8 +5,7 @@
   width: 100%;
 }
 .teacher__hisoblar_wrap{
-  height: 90vh;
-
+  height: 90dvh;
 }
 .teacher_hisoblar {
   max-width: 420px;
@@ -39,12 +38,17 @@
   left: 50%;
   transform: translateX(-50%);
 }
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 850px){
   .price_btn {
     font-size: 16px;
     width: 180px;
     padding: 4px 25px;
     bottom: 120px;
     left: 50%;
+  }
+}
+@media only screen and (max-width: 540px){
+  .teacher__hisoblar_wrap{
+    height: 88dvh;
   }
 }

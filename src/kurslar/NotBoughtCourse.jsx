@@ -9,23 +9,6 @@ import urlJoin from "url-join";
 import defaultuser from "../imgs/user-1.png";
 import { notification } from "antd";
 function NotBoughtCourse() {
-  function savekurs(id) {
-    axios
-      .post(
-        "https://api.ilmlar.com/users/savecurs",
-        {
-          cursId: id,
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) => {
-        setProfil(res.data);
-      });
-  }
   let [modal, setModal] = useState(false);
   let [modalDarslar, setModalDarslar] = useState(false);
   const changeModal = (value) => {
@@ -36,7 +19,6 @@ function NotBoughtCourse() {
     setModalDarslar(value);
   };
   const [kurs, setKurs] = useState({});
-  const [price, setPrice] = useState(false);
   const [teacher, setTeacher] = useState({});
   const { kursId } = useParams();
   function deleteplatforma(url) {
@@ -79,9 +61,8 @@ function NotBoughtCourse() {
   const openNotificationWithIcon = (type, placement) => {
     api[type]({
       message: "Hisobingizni to'ldiring",
-      description:
-        "Hisobingizni to'ldirmasdan turib bu kursni ko'rish imkoniyati yo'q",
-        placement,
+      description: "Bu kursni sotib olish uchun hisobingizni to'ldiring",
+      placement,
     });
   };
 
@@ -100,7 +81,7 @@ function NotBoughtCourse() {
         if (response.data !== "hisobingizni toldiring") {
           navigate("/student/kurs/olinganlar/" + kursId);
         } else {
-          openNotificationWithIcon('warning', "top");
+          openNotificationWithIcon("warning", "top");
           // alert("hisongizni toldring");
         }
       })
@@ -144,7 +125,7 @@ function NotBoughtCourse() {
           <div className="every__cource-desc">
             <div className="every__cource-header">
               <div
-              style={{cursor: "pointer"}}
+                style={{ cursor: "pointer" }}
                 className="every__cource-title"
                 onClick={() => {
                   navigate("/student/teacherinfo/" + teacher?._id);

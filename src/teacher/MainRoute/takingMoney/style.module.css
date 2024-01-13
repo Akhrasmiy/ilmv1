@@ -26,7 +26,7 @@
   margin: 0 auto;
   margin-top: 80px;
   position: relative;
-  height: 65vh;
+  height: 65dvh;
 }
 .hisob_form button {
   font-family: sans-serif;
@@ -117,12 +117,12 @@
     width: 100%;
   }
 }
-@media only screen and (max-width: 540px){
+@media only screen and (max-width: 850px){
   .hisob_form button {
     margin-top: 150px;
   }
   .hisob_form {
-    height: 80vh;
+    height: 80dvh;
   }
   .hisob_form button {
     font-size: 20px;
@@ -143,5 +143,11 @@
   }
   .input_div {
     padding: 10px 25px 2px 25px;
+  }
+}
+@media only screen and (max-width: 540px){
+  .input_wrap label,
+  .label_wrap label {
+    font-size: 15px;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./courseInfo.css";
 import VideosNavbar from "../components/videosTeacherNavbar/VideosNavbar";
@@ -15,7 +15,7 @@ function deleteplatforma(url) {
     if (url.includes("platforma")) {
       const parts = url.split("/");
       const s = parts.slice(2).join("/");
-      return s; 
+      return s;
     }
     return url;
   } catch (error) {
@@ -23,6 +23,27 @@ function deleteplatforma(url) {
     return url;
   }
 }
+
+// window.onload = myFunc();
+// function myFunc() {
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('GET', 'mov_bbb.mp4', true);
+//   xhr.responseType = 'blob'; //important
+//   xhr.onload = function(e) {
+//       if (this.status == 200) {
+//           console.log("loaded");
+//           var blob = this.response;
+//           var video = document.getElementById('id');
+//           video.oncanplaythrough = function() {
+//               console.log("Can play through video without stopping");
+//               URL.revokeObjectURL(this.src);
+//           };
+//           video.src = URL.createObjectURL(blob);
+//           video.load();
+//       }
+//   };
+//   xhr.send();
+// }
 
 function Baykurs() {
   const { kursId } = useParams();
@@ -32,6 +53,8 @@ function Baykurs() {
   const [courseData, setCourseData] = useState([]);
   const [courseIndex, setCourseIndex] = useState(1);
   const [selectedVideo, setSelectedVideo] = useState({});
+  const [videoUrl, setVideoUrl] = useState("");
+  const [blobUrl, setBlobUrl] = useState("");
 
   let [modal, setModal] = useState(false);
   let [modalDarslar, setModalDarslar] = useState(false);
@@ -63,6 +86,13 @@ function Baykurs() {
         console.error(error);
       });
   }, [courseId]);
+  useEffect(() => {
+    if (selectedVideo.orni !== undefined) {
+      setVideoUrl(
+        `https://api.ilmlar.com/${deleteplatforma(selectedVideo?.orni)}`
+      );
+    }
+  }, [selectedVideo]);
   const next = () => {
     if (courseData.length > courseIndex) {
       setCourseIndex(courseIndex + 1);
@@ -78,6 +108,17 @@ function Baykurs() {
   const onBack = () => {
     navigate(-1);
   };
+  useEffect(() => {
+    fetch(videoUrl)
+      .then((res) => res.blob())
+      .then((blob) => handler(blob))
+      .catch((err) => console.log(err));
+  }, [videoUrl]);
+
+  function handler(blob) {
+    const url = URL.createObjectURL(blob);
+    setBlobUrl(url);
+  }
   return (
     <div className="app-content">
       <div className="course_info">
@@ -103,7 +144,7 @@ function Baykurs() {
             <button onClick={onBack} className={styles.back}>
               <ion-icon name="chevron-back-outline"></ion-icon>
             </button>
-            <div style={{ width: "85%" }}>
+            <div className="mobile_width_class">
               <MobileHeader
                 changeModalDars={changeModal}
                 changeModal={changeModalDars}
@@ -115,35 +156,38 @@ function Baykurs() {
             </div>
           </div>
           <div className="video_information video_information_scroll">
-            <ReactPlayer
-              playing={true}
-              url={`https://api.ilmlar.com/${deleteplatforma(
-                selectedVideo.orni
-              )}`}
-              onEnded={() => {
-                next();
-              }}
-              alt="Video"
-              width="100%"
-              muted={true}
-              controls
-              fallback={<img src={or3} alt="" />}
-              config={{
-                file: {
-                  attributes: { controlsList: 'nodownload' },
-                },
-              }}
-              onContextMenu={(e) => e.preventDefault()}
-              // config={{ 
-              //   file: { 
-              //     attributes: {
-              //       onContextMenu: e => e.preventDefault(),
-              //       controlsList: "nodownload"
-              //     } 
-              //   } 
-              // }}
-              // config={{ file: { attributes: { controlsList: "nodownload" } } }}
-            />
+            {blobUrl && (
+              <ReactPlayer
+                playing={true}
+                url={blobUrl}
+                onEnded={() => {
+                  next();
+                }}
+                alt="Video"
+                width="100%"
+                muted={true}
+                controls
+                config={{
+                  file: {
+                    attributes: { controlsList: "nodownload" },
+                  },
+                }}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  "return: false"
+                }}
+                // config={{
+                //   file: {
+                //     attributes: {
+                //       onContextMenu: e => e.preventDefault(),
+                //       controlsList: "nodownload"
+                //     }
+                //   }
+                // }}
+                // config={{ file: { attributes: { controlsList: "nodownload" } } }}
+              />
+            )}
+
             <div className="video_information_content">
               <h3>
                 {courseIndex} - dars. {selectedVideo.nomi}

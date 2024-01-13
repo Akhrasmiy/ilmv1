@@ -312,8 +312,8 @@ input {
     left: 15px !important;
   }
   .sign_form {
-    max-width: 400px;
-    width: 100%;
+    max-width: 390px;
+    width: 90%;
   }
 }
 @media only screen and (max-width: 530px) {

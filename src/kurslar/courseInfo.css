@@ -1,10 +1,10 @@
-.lesson_btn_wrap{
+.lesson_btn_wrap {
   position: absolute;
   left: 0;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #5A4683;
+  background-color: #5a4683;
   border: none;
   outline: none;
   display: flex;
@@ -13,7 +13,7 @@
   cursor: pointer;
   top: -15px;
 }
-.lesson_btn_wrap ion-icon{
+.lesson_btn_wrap ion-icon {
   color: #fff;
   font-size: 27px;
 }
@@ -37,11 +37,11 @@
   }
 }
 
-.course_info{
+.course_info {
   display: flex;
   gap: 20px;
   position: relative;
-  padding-top: 5vh;
+  padding-top: 5dvh;
 }
 .back {
   position: absolute;
@@ -64,7 +64,7 @@
 }
 
 .videos_navbar {
-  height: 85vh;
+  height: 85dvh;
   width: 22vw;
   background: linear-gradient(#564282, #826a91);
   border-radius: 50px;
@@ -92,11 +92,11 @@
 .video_information {
   background-color: #5b4784;
   width: 71vw;
-  min-height: 85vh;
+  min-height: 85dvh;
   border-radius: 50px;
 }
 
-.video_information video{
+.video_information video {
   background-color: #453862;
 }
 
@@ -106,7 +106,6 @@
   object-fit: cover;
   border-radius: 50px 50px 0px 0px;
 }
-
 
 .video_information_content {
   padding: 0 20px 20px 20px;
@@ -131,17 +130,17 @@
   color: #ffffff;
 }
 .video_information_scroll {
-  max-height: 87vh;
+  max-height: 87dvh;
   overflow-y: scroll;
 }
- .def2{
-  position: relative; 
+.def2 {
+  position: relative;
   display: block;
- }
- .course_info .mobile-for{
+}
+.course_info .mobile-for {
   display: none;
- }
- .modal-navbar .videos_navbar{
+}
+.modal-navbar .videos_navbar {
   width: 100%;
   position: absolute;
   /* left: -400%; */
@@ -149,48 +148,51 @@
   animation-duration: 2s;
   animation-fill-mode: forwards;
   transition: 2s;
- }
- .qaytish{
+}
+.qaytish {
   animation-name: mobileBurgerQaytish;
   animation-duration: 2s;
   animation-fill-mode: forwards;
   transition: 2s;
- }
- @media only screen and (max-width:900px){
-  .video_information .img_div{
+}
+@media only screen and (max-width: 1200px) {
+  .course_info {
+    padding-top: 3dvh;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .video_information .img_div {
     height: auto;
   }
 }
 
-@media only screen and (max-width:540px){
-  
-  .course_info{
+@media only screen and (max-width: 850px) {
+  .course_info {
     padding-top: 0;
   }
-  .lesson_btn_wrap{
+  .lesson_btn_wrap {
     display: none;
   }
-  .btn_wrap{
+  .btn_wrap {
     display: none;
   }
-  .course_info{
+  .course_info {
     width: 100%;
   }
-  .course_info .mobile-for{
+  .course_info .mobile-for {
     display: flex;
-   }
-  .course_info .back{
+  }
+  .course_info .back {
     display: none;
   }
-  .video_information{
+  .video_information {
     width: 100%;
   }
-  .def2{
-position: absolute;
-left: -100%;
-/* display: none; */
+  .def2 {
+    position: absolute;
+    left: -100%;
   }
-  .video_information .img_div{
+  .video_information .img_div {
     height: auto;
   }
 }

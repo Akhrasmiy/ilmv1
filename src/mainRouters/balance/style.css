@@ -26,20 +26,22 @@
 .main-content {
   display: block;
   overflow-y: scroll;
-  height: 90vh;
+  height: 100%;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 850px) {
   .main-content {
     display: block;
     overflow-y: scroll;
+    height: 89.2dvh;
   }
   .w100{
-    max-height: 100vh !important;
+    max-height: 100dvh !important;
   }
   .hisoblar {
     padding-left: 120px 20px;
   }
 }
+
 @media only screen and (max-width: 468px) {
   .hisoblar {
     align-items: center;
@@ -63,19 +65,14 @@
   }
 
   .hisoblar_number {
-    max-width: 330;
-  }
-}
-/* @media only screen and (max-width:368px) {
-  .hisoblar{
-    padding:200px 15px;
-    padding-bottom: 0;
-  }
-  .hisoblar_header {
     max-width: 330px;
   }
-
-  .hisoblar_number {
-    max-width: 330;
+}
+@media only screen and (max-width: 385px) {
+  .main-content {
+    display: block;
+    overflow-y: scroll;
+    height: 86.5dvh;
   }
-} */
+}
+

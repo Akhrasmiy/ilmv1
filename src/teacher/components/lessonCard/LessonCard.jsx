@@ -57,17 +57,8 @@ const LessonCard = (props) => {
   ];
   return (
     <div
-      // onClick={() => {
-      //   if (where == "lesson") {
-      //     navigate("/teacher/course/" + courseId);
-      //   } else if (where == "statistik") {
-      //     navigate("/teacher/statistic/" + courseId);
-      //   } else if (where == "update") {
-      //     navigate("/teacher/update/kurs/" + courseId);
-      //   }
-      // }
-      // }
-      className="col-span-1"
+     
+      className=""
     >
       <div className="main-cart">
         <img

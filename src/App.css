@@ -18,7 +18,7 @@ input::-webkit-inner-spin-button {
 }
 .w100 {
   width: 44vw;
-  max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: scroll;
 }
 
@@ -30,12 +30,12 @@ input::-webkit-inner-spin-button {
 .video_information div:first-child{
   height: 360px;
 }
-@media only screen and (max-width: 540px){
+@media only screen and (max-width: 850px){
   .video_information div:first-child{
     height: 100%;
   }
   .w100{
-    max-height: 100vh;
+    max-height: 100dvh;
   }
 }
 

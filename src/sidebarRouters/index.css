@@ -8,7 +8,7 @@
   height: 90px;
 }
 .carts-wrapper{
-  max-height: 80vh;
+  max-height: 80dvh;
   overflow: scroll;
   border-radius: 30px;
 }
@@ -56,7 +56,7 @@
   padding: 0 5px;
   padding-top: 21px;
   overflow-y: scroll;
-  max-height: 90vh;
+  max-height: 90dvh;
 }
 .sidebar-main-content h2 {
   font-style: normal;
@@ -229,7 +229,7 @@
 }
 .sidebar-main-wrap {
   overflow-y: scroll;
-  max-height: 90vh;
+  max-height: 90dvh;
 }
 .sidebar-bought-course {
   padding: 0 10px 10px 10px;
@@ -270,7 +270,7 @@
 .mobileForPadding {
   padding: 0;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 850px) {
   .darslarModal .sidebar-main-content {
     padding: 0;
   }

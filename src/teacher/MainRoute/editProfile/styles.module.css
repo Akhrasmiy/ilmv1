@@ -121,6 +121,16 @@
 }
 @media only screen and (max-width: 600px) {
   .imgs_div {
+    padding-top: 100px;
+    width: 301px;
+  }
+  .input_wrap input{
+    border-bottom: 2px solid #fff;
+    font-size: 14px;
+    line-height: 14px;
+    padding-bottom: 5px;
+  }
+  .imgs_div {
     width: 300px;
   }
   .edit_student_profile {

@@ -7,10 +7,12 @@
   row-gap: 21px;
   width: 100%;
 }
-
+.extra_width_class{
+  width: 100%;
+}
 .main-page {
   display: flex;
-  gap: 19px;
+  gap: 15px;
   height: 100%;
 }
 
@@ -36,10 +38,10 @@
 
 .sidebar-main-wrap {
   overflow-y: scroll;
-  max-height: 90vh;
+  max-height: 90dvh;
 }
 .teacherHomePage {
-  min-height: 90vh;
+  height: 90dvh;
 }
 .teacherHomePage .main-content {
   background-color: transparent;
@@ -109,7 +111,21 @@
   transform: translateX(-50%);
 }
 /* Hisoblar end */
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 1300px) {
+  .main-page {
+    gap: 10px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .main-page {
+    gap: 15px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  
+  .teacher_hisoblar h2 {
+    margin-top: 0px;
+  }
   .price_btn {
     max-width: 300px;
     width: 100%;
@@ -118,5 +134,14 @@
  
   .main_profile_container img {
     margin-top: 0px;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .teacherHomePage {
+    height: 88dvh;
+  }
+  .sidebar-main-wrap {
+    overflow-y: scroll;
+    max-height: 88dvh;
   }
 }
