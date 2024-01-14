@@ -108,17 +108,17 @@ function Baykurs() {
   const onBack = () => {
     navigate(-1);
   };
-  useEffect(() => {
-    fetch(videoUrl)
-      .then((res) => res.blob())
-      .then((blob) => handler(blob))
-      .catch((err) => console.log(err));
-  }, [videoUrl]);
+  // useEffect(() => {
+  //   fetch(videoUrl)
+  //     .then((res) => res.blob())
+  //     .then((blob) => handler(blob))
+  //     .catch((err) => console.log(err));
+  // }, [videoUrl]);
 
-  function handler(blob) {
-    const url = URL.createObjectURL(blob);
-    setBlobUrl(url);
-  }
+  // function handler(blob) {
+  //   const url = URL.createObjectURL(blob);
+  //   setBlobUrl(url);
+  // }
   return (
     <div className="app-content">
       <div className="course_info">
@@ -156,37 +156,37 @@ function Baykurs() {
             </div>
           </div>
           <div className="video_information video_information_scroll">
-            {blobUrl && (
-              <ReactPlayer
-                playing={true}
-                url={blobUrl}
-                onEnded={() => {
-                  next();
-                }}
-                alt="Video"
-                width="100%"
-                muted={true}
-                controls
-                config={{
-                  file: {
-                    attributes: { controlsList: "nodownload" },
-                  },
-                }}
-                onContextMenu={(e) => {
-                  e.preventDefault();
-                  "return: false"
-                }}
-                // config={{
-                //   file: {
-                //     attributes: {
-                //       onContextMenu: e => e.preventDefault(),
-                //       controlsList: "nodownload"
-                //     }
-                //   }
-                // }}
-                // config={{ file: { attributes: { controlsList: "nodownload" } } }}
-              />
-            )}
+            <ReactPlayer
+              playing={true}
+              url={`https://api.ilmlar.com/${deleteplatforma(
+                selectedVideo?.orni
+              )}`}
+              onEnded={() => {
+                next();
+              }}
+              alt="Video"
+              width="100%"
+              muted={true}
+              controls
+              config={{
+                file: {
+                  attributes: { controlsList: "nodownload" },
+                },
+              }}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                ("return: false");
+              }}
+              // config={{
+              //   file: {
+              //     attributes: {
+              //       onContextMenu: e => e.preventDefault(),
+              //       controlsList: "nodownload"
+              //     }
+              //   }
+              // }}
+              // config={{ file: { attributes: { controlsList: "nodownload" } } }}
+            />
 
             <div className="video_information_content">
               <h3>
