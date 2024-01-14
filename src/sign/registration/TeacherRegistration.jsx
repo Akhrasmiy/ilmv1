@@ -28,7 +28,6 @@ const TeacherRegistration = () => {
   const [verifycode, setverifycode] = useState(false);
   const [email, setemail] = useState("");
   const emailcodeRef = useRef();
-  const usernameRef = useRef();
   const emailRef = useRef();
   const {
     register,
@@ -41,8 +40,8 @@ const TeacherRegistration = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
-  const handlechange = () => {
-    usernameRef.current.value = usernameRef.current.value.toLowerCase().trim();
+  const handlechange = (e) => {
+    e.target.value = e.target.value.toLowerCase().trim();
   };
   const onBack = () => {
     navigate(-1);
@@ -140,11 +139,11 @@ const TeacherRegistration = () => {
               <span className="error_message_2"></span>
             )}
             <input
-              ref={usernameRef}
               type="text"
               placeholder="Foydalanuvchi nomi"
-              onChange={handlechange}
-              {...register("username")}
+              {...register("username", {
+                onChange: (e) => {handlechange(e)},
+              })}
             />
              {errors.username ? (
               <span className="error_message_2">{`${errors.username.message}`}</span>

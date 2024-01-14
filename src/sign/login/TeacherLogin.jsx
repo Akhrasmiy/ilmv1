@@ -14,7 +14,6 @@ const teacherLoginSchema = z.object({
 
 const TeacherLogin = () => {
   const passwordRef = useRef();
-  const usernameRef = useRef();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -29,8 +28,8 @@ const TeacherLogin = () => {
   const onBack = () => {
     navigate(-1);
   };
-  const handlechange = () => {
-    usernameRef.current.value = usernameRef.current.value.toLowerCase().trim();
+  const handlechange = (e) => {
+    e.target.value = e.target.value.toLowerCase().trim();
   };
 
   const onSubmit = (data) => {
@@ -71,10 +70,10 @@ const TeacherLogin = () => {
         </button>
         <form className="sign_form" onSubmit={handleSubmit(onSubmit)}>
           <input
-            ref={usernameRef}
-            onChange={handlechange}
             type="text"
-            {...register("username")}
+            {...register("username", {
+              onChange: (e) => {handlechange(e)},
+            })}
             placeholder="Foydalanuvchi nomini kiriting"
           />
           {errors.username ? <span className="error_message">{`${errors.username.message}`}</span> : <span className="error_message"></span>}

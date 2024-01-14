@@ -29,7 +29,6 @@ const StudentRegistration = () => {
   const [email, setemail] = useState("");
   const formRef = useRef();
   const emailcodeRef = useRef();
-  const usernameRef = useRef();
   const emailRef = useRef();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -45,8 +44,8 @@ const StudentRegistration = () => {
   const onBack = () => {
     navigate(-1);
   };
-  const handlechange = () => {
-    usernameRef.current.value = usernameRef.current.value.toLowerCase().trim();
+  const handlechange = (e) => {
+    e.target.value = e.target.value.toLowerCase().trim();
   };
   const onSubmit = (data) => {
     data.fullname = `${data.name} ${data.surname}`;
@@ -183,11 +182,12 @@ const StudentRegistration = () => {
               <span className="error_message_2"></span>
             )}
             <input
-              ref={usernameRef}
               onChange={handlechange}
               type="text"
               placeholder="Foydalanuvchi nomi"
-              {...register("username")}
+              {...register("username", {
+                onChange: (e) => {handlechange(e)},
+              })}
             />
             {errors.username ? (
               <span className="error_message_2">{`${errors.username.message}`}</span>
