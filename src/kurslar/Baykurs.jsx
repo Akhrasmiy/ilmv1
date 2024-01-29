@@ -9,6 +9,7 @@ import axios from "axios";
 import MobileHeader from "../components/mobileHeader/mobileHeader";
 import ReactPlayer from "react-player";
 import Loader from "../loader/Loader";
+import VideoPlayer from 'react-video-js-player';
 
 function deleteplatforma(url) {
   try {
@@ -45,16 +46,33 @@ function deleteplatforma(url) {
 //   xhr.send();
 // }
 
+
 function Baykurs() {
   const { kursId } = useParams();
   const courseId = kursId;
   const navigate = useNavigate();
-
+  const videoRef = useRef(null);
   const [courseData, setCourseData] = useState([]);
   const [courseIndex, setCourseIndex] = useState(1);
   const [selectedVideo, setSelectedVideo] = useState({});
   const [videoUrl, setVideoUrl] = useState("");
-  const [blobUrl, setBlobUrl] = useState("");
+  const [blobUrl, setBlobUrl] = useState(null);
+
+  const customBlobUrlFunc = (src) => {
+    console.log(src);
+    console.log("ishladi");
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", src);
+    xhr.responseType = "arraybuffer";
+    xhr.onload = (e) => {
+      let blob = new Blob([xhr.response]);
+      let url = URL.createObjectURL(blob);
+      console.log(url);
+      setBlobUrl(url);
+    };
+  
+    xhr.send();
+  };
 
   let [modal, setModal] = useState(false);
   let [modalDarslar, setModalDarslar] = useState(false);
@@ -87,12 +105,22 @@ function Baykurs() {
       });
   }, [courseId]);
   useEffect(() => {
-    if (selectedVideo.orni !== undefined) {
-      setVideoUrl(
-        `https://api.ilmlar.com/${deleteplatforma(selectedVideo?.orni)}`
-      );
+    console.log(selectedVideo.orni);
+    if (selectedVideo.orni) {
+      
+      // let stroka = `https://api.ilmlar.com/${deleteplatforma(
+      //   selectedVideo?.orni
+      // )}`;
+      console.log("ishl");
+      customBlobUrlFunc(`https://api.ilmlar.com/${deleteplatforma(
+        selectedVideo?.orni
+      )}`);
+      // console.log(stroka);
+      // let blob = new Blob([stroka], { type: "text/plain" });
+      // console.log(blob);
+      // setVideoUrl(URL.createObjectURL(blob));
     }
-  }, [selectedVideo]);
+  }, [selectedVideo.orni]);
   const next = () => {
     if (courseData.length > courseIndex) {
       setCourseIndex(courseIndex + 1);
@@ -100,6 +128,7 @@ function Baykurs() {
     }
   };
   const handleVideoSelection = (video) => {
+    setBlobUrl(null);
     setSelectedVideo(video);
   };
   const handleCourseIndex = (index) => {
@@ -156,37 +185,60 @@ function Baykurs() {
             </div>
           </div>
           <div className="video_information video_information_scroll">
-            <ReactPlayer
-              playing={true}
-              url={`https://api.ilmlar.com/${deleteplatforma(
-                selectedVideo?.orni
-              )}`}
-              onEnded={() => {
-                next();
-              }}
-              alt="Video"
-              width="100%"
-              muted={true}
-              controls
-              config={{
-                file: {
-                  attributes: { controlsList: "nodownload" },
-                },
-              }}
-              onContextMenu={(e) => {
-                e.preventDefault();
-                ("return: false");
-              }}
-              // config={{
-              //   file: {
-              //     attributes: {
-              //       onContextMenu: e => e.preventDefault(),
-              //       controlsList: "nodownload"
-              //     }
-              //   }
-              // }}
-              // config={{ file: { attributes: { controlsList: "nodownload" } } }}
-            />
+          <VideoPlayer
+                    controls={true}
+                    src={this.state.video.src}
+                    poster={this.state.video.poster}
+                    width="720"
+                    height="420"
+                    onReady={this.onPlayerReady.bind(this)}
+                />
+            {
+            // blobUrl ? (
+              // <ReactPlayer
+                // playing={true}
+                
+                // ref={videoRef}
+                // onClick={() =>
+                //   customBlobUrlFunc(
+                //     `https://api.ilmlar.com/${deleteplatforma(
+                //       selectedVideo?.orni
+                //     )}`,
+                //     videoRef
+                //   )
+                // }
+                // url={() => customBlobUrlFunc(`https://api.ilmlar.com/${deleteplatforma(
+                //   selectedVideo?.orni
+                // )}`, videoRef)}
+                // url={blobUrl}
+                // onEnded={() => {
+                //   next();
+                // }}
+                // alt="Video"
+                // width="100%"
+                // muted={true}
+                // controls
+                // config={{
+                //   file: {
+                //     attributes: { controlsList: "nodownload" },
+                //   },
+                // }}
+                // onContextMenu={(e) => {
+                //   e.preventDefault();
+                //   ("return: false");
+                // }}
+                // config={{
+                //   file: {
+                //     attributes: {
+                //       onContextMenu: e => e.preventDefault(),
+                //       controlsList: "nodownload"
+                //     }
+                //   }
+                // }}
+                // config={{ file: { attributes: { controlsList: "nodownload" } } }}
+            //   />
+            // ) : <Loader />
+            }
 
             <div className="video_information_content">
               <h3>
