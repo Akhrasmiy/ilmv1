@@ -185,48 +185,48 @@ function Baykurs() {
             </div>
           </div>
           <div className="video_information video_information_scroll">
-          <VideoPlayer
+          {/* <VideoPlayer
                     controls={true}
                     src={this.state.video.src}
                     poster={this.state.video.poster}
                     width="720"
                     height="420"
                     onReady={this.onPlayerReady.bind(this)}
-                />
+                /> */}
             {
-            // blobUrl ? (
-              // <ReactPlayer
-                // playing={true}
+            blobUrl ? (
+              <ReactPlayer
+                playing={true}
                 
-                // ref={videoRef}
-                // onClick={() =>
-                //   customBlobUrlFunc(
-                //     `https://api.ilmlar.com/${deleteplatforma(
-                //       selectedVideo?.orni
-                //     )}`,
-                //     videoRef
-                //   )
-                // }
+                ref={videoRef}
+                onClick={() =>
+                  customBlobUrlFunc(
+                    `https://api.ilmlar.com/${deleteplatforma(
+                      selectedVideo?.orni
+                    )}`,
+                    videoRef
+                  )
+                }
                 // url={() => customBlobUrlFunc(`https://api.ilmlar.com/${deleteplatforma(
                 //   selectedVideo?.orni
                 // )}`, videoRef)}
-                // url={blobUrl}
-                // onEnded={() => {
-                //   next();
-                // }}
-                // alt="Video"
-                // width="100%"
-                // muted={true}
-                // controls
-                // config={{
-                //   file: {
-                //     attributes: { controlsList: "nodownload" },
-                //   },
-                // }}
-                // onContextMenu={(e) => {
-                //   e.preventDefault();
-                //   ("return: false");
-                // }}
+                url={blobUrl}
+                onEnded={() => {
+                  next();
+                }}
+                alt="Video"
+                width="100%"
+                muted={true}
+                controls
+                config={{
+                  file: {
+                    attributes: { controlsList: "nodownload" },
+                  },
+                }}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  ("return: false");
+                }}
                 // config={{
                 //   file: {
                 //     attributes: {
@@ -236,8 +236,8 @@ function Baykurs() {
                 //   }
                 // }}
                 // config={{ file: { attributes: { controlsList: "nodownload" } } }}
-            //   />
-            // ) : <Loader />
+              />
+            ) : <Loader />
             }
 
             <div className="video_information_content">
